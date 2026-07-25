@@ -1,0 +1,37 @@
+{
+  "company": "Kalshi",
+  "founded": "2018",
+  "founders": "Tarek Mansour, Luana Lopes Lara",
+  "intelligence_program": "PAM (DARPA) \u2192 Augur lineage + CFTC regulatory capture",
+  "key_differentiation": "CFTC-regulated (vs Polymarket offshore) - FIRST regulated prediction market",
+  "cfc_regulatory_capture": {
+    "quintenz": "CFTC Commissioner 2017-21 \u2192 Kalshi Board Member + a16z crypto advisor",
+    "selig": "Acting Chair 2025 - approved Kalshi election markets via no-action relief",
+    "don_jr": "Advises Kalshi via 1789 Capital (SAME as Polymarket)",
+    "receipts": [
+      "R-CFTC-002 (Quintenz CFTC bio)",
+      "R-CFTC-005 (1789 Capital disclosures)"
+    ]
+  },
+  "funding": {
+    "investors": "Sequoia, a16z crypto, Charles Schwab, Henry Kravis",
+    "receipts": [
+      "R-KALSHI-001 (SEC Form D filings)"
+    ]
+  },
+  "current_state": {
+    "status": "CFTC-regulated, US-based, KYC required",
+    "election_markets": "Approved via no-action relief 2023-24",
+    "model": "Regulated moat vs Polymarket's offshore volume",
+    "receipts": [
+      "R-KALSHI-002 (CFTC no-action letters)"
+    ]
+  },
+  "pipeline_stages": {
+    "S1": "PAM (same as Polymarket) \u2192 Hanson futarchy/LMSR",
+    "S2": "Senate 96-0 PAM kill (same)",
+    "S3": "Krug/FF \u2192 Augur \u2192 LMSR proven \u2192 Kalshi founders + a16z/Sequoia + CFTC capture (Quintenz\u2192Board)",
+    "S4": "Kalshi incorporates 2018, seeks CFTC regulation as COMPETITIVE ADVANTAGE",
+    "S5": "CFTC captured \u2192 Election markets approved \u2192 Futarchy legitimized via REGULATION not evasion"
+  }
+}

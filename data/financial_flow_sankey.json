@@ -1,0 +1,222 @@
+{
+  "nodes": [
+    {
+      "name": "Federal Budget\n($6.1T FY2024)",
+      "color": "#00bfff"
+    },
+    {
+      "name": "DoD/IC Budget\n($1.1T)",
+      "color": "#00bfff"
+    },
+    {
+      "name": "DARPA/IARPA\n($4.5B)",
+      "color": "#00bfff"
+    },
+    {
+      "name": "NASA Launch\n($4B/yr)",
+      "color": "#00bfff"
+    },
+    {
+      "name": "Palantir\n($2.2B gov rev)",
+      "color": "#ff6b6b"
+    },
+    {
+      "name": "SpaceX\n($4-6B/yr gov)",
+      "color": "#ff6b6b"
+    },
+    {
+      "name": "Anduril\n($2.5B+)",
+      "color": "#ff6b6b"
+    },
+    {
+      "name": "Palantir Lobbying\n($12.4M/yr)",
+      "color": "#ffd700"
+    },
+    {
+      "name": "SpaceX Lobbying\n($8.7M/yr)",
+      "color": "#ffd700"
+    },
+    {
+      "name": "Anduril Lobbying\n($7.3M/yr)",
+      "color": "#ffd700"
+    },
+    {
+      "name": "Thiel \u2192 Vance\n(Narya Capital)",
+      "color": "#ff00ff"
+    },
+    {
+      "name": "Schmidt \u2192 Newsom\n(Donor network)",
+      "color": "#ff00ff"
+    },
+    {
+      "name": "Musk \u2192 Trump\n(X + DOGE)",
+      "color": "#ff00ff"
+    },
+    {
+      "name": "Hoffman \u2192 Newsom\n(OpenAI/LinkedIn)",
+      "color": "#ff00ff"
+    },
+    {
+      "name": "CFTC Capture\n(Selig/Quintenz/Don Jr.)",
+      "color": "#00ff7f"
+    },
+    {
+      "name": "FTC/DOJ Capture\n(Uyeda/Ferguson)",
+      "color": "#00ff7f"
+    },
+    {
+      "name": "SEC Capture\n(Uyeda)",
+      "color": "#00ff7f"
+    },
+    {
+      "name": "Tesla ZEV Credits\n($1.79B/yr protected)",
+      "color": "#00ff7f"
+    },
+    {
+      "name": "SpaceX NRO\n($1.8B Starshield)",
+      "color": "#00ff7f"
+    },
+    {
+      "name": "Palantir DOGE\n($113M+ contracts)",
+      "color": "#00ff7f"
+    },
+    {
+      "name": "IRS Mega API\n\u2192 Palantir Foundry",
+      "color": "#ff6b6b"
+    },
+    {
+      "name": "Immigration DB\n\u2192 Polymarket",
+      "color": "#ff6b6b"
+    },
+    {
+      "name": "Polymarket/Kalshi\nFutarchy Markets",
+      "color": "#ff6b6b"
+    },
+    {
+      "name": "DOGE \"Efficiency\"\n= Governance Replacement",
+      "color": "#ff6b6b"
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 1,
+      "value": 1100
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "value": 4.5
+    },
+    {
+      "source": 0,
+      "target": 3,
+      "value": 4
+    },
+    {
+      "source": 2,
+      "target": 4,
+      "value": 2.2
+    },
+    {
+      "source": 3,
+      "target": 5,
+      "value": 5
+    },
+    {
+      "source": 1,
+      "target": 6,
+      "value": 2.5
+    },
+    {
+      "source": 4,
+      "target": 7,
+      "value": 12.4
+    },
+    {
+      "source": 5,
+      "target": 8,
+      "value": 8.7
+    },
+    {
+      "source": 6,
+      "target": 9,
+      "value": 7.3
+    },
+    {
+      "source": 7,
+      "target": 10,
+      "value": 1
+    },
+    {
+      "source": 8,
+      "target": 12,
+      "value": 1
+    },
+    {
+      "source": 7,
+      "target": 11,
+      "value": 1
+    },
+    {
+      "source": 8,
+      "target": 13,
+      "value": 1
+    },
+    {
+      "source": 10,
+      "target": 14,
+      "value": 1
+    },
+    {
+      "source": 11,
+      "target": 15,
+      "value": 1
+    },
+    {
+      "source": 12,
+      "target": 16,
+      "value": 1
+    },
+    {
+      "source": 12,
+      "target": 17,
+      "value": 1790
+    },
+    {
+      "source": 12,
+      "target": 18,
+      "value": 1800
+    },
+    {
+      "source": 10,
+      "target": 19,
+      "value": 113
+    },
+    {
+      "source": 14,
+      "target": 22,
+      "value": 1
+    },
+    {
+      "source": 19,
+      "target": 20,
+      "value": 1
+    },
+    {
+      "source": 18,
+      "target": 23,
+      "value": 1
+    },
+    {
+      "source": 20,
+      "target": 22,
+      "value": 1
+    },
+    {
+      "source": 21,
+      "target": 23,
+      "value": 1
+    }
+  ]
+}

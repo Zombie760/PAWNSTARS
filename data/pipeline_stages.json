@@ -1,0 +1,230 @@
+{
+  "stages": [
+    {
+      "id": "S1",
+      "name": "Public Program Prototyping",
+      "description": "DARPA/IARPA/NSA builds surveillance/data-fusion/governance capability",
+      "waves": {
+        "TIA\u2192Palantir": {
+          "program": "TIA",
+          "pm": "John Poindexter",
+          "budget": "$200M/yr",
+          "receipt": "R-TIA-001"
+        },
+        "LifeLog\u2192Facebook": {
+          "program": "LifeLog",
+          "pm": "Douglas Gage",
+          "budget": "$10M/yr",
+          "receipt": "R-LIFELOG-001"
+        },
+        "PAM\u2192Polymarket": {
+          "program": "PAM",
+          "pm": "Michael Foster",
+          "architect": "Robin Hanson",
+          "budget": "$8M/yr",
+          "receipt": "R-PAM-001"
+        },
+        "Space\u2192SpaceX": {
+          "program": "NASA/DOD Launch",
+          "pm": "Mike Griffin (NASA Admin)",
+          "budget": "$4B/yr",
+          "receipt": "R-SPACE-001"
+        },
+        "DOGE": {
+          "program": "Federal IT/Procurement",
+          "note": "Skips Stage 1 - operationalized pipeline",
+          "receipt": "N/A"
+        }
+      },
+      "gate": {
+        "entry": [
+          "Program charter",
+          "Designated PM",
+          "Budget line",
+          "Surveillance/governance scope"
+        ],
+        "exit": [
+          "Prototype demo to leadership",
+          "Technical architecture documented",
+          "Transition plan drafted"
+        ]
+      }
+    },
+    {
+      "id": "S2",
+      "name": "Congressional Defunding / Public Rejection",
+      "description": "Political resistance creates policy vacuum enabling privatization",
+      "waves": {
+        "TIA\u2192Palantir": {
+          "mechanism": "FY2004 DoD Approps Act \u00a78131",
+          "date": "Sept 2003",
+          "receipt": "R-TIA-DEFUND-001"
+        },
+        "LifeLog\u2192Facebook": {
+          "mechanism": "DARPA public cancellation",
+          "date": "Feb 4, 2004",
+          "receipt": "R-LIFELOG-CANCEL-001"
+        },
+        "PAM\u2192Polymarket": {
+          "mechanism": "Senate 96-0 condemnation (S.Res.186)",
+          "date": "July 22, 2003",
+          "receipt": "R-PAM-CONDEMN-001"
+        },
+        "Space\u2192SpaceX": {
+          "mechanism": "N/A - capability privatization",
+          "receipt": "N/A"
+        },
+        "DOGE": {
+          "mechanism": "N/A - pipeline operationalized",
+          "receipt": "N/A"
+        }
+      },
+      "gate": {
+        "entry": [
+          "Program operational",
+          "Privacy/civil liberties controversy documented"
+        ],
+        "exit": [
+          "Defunding bill passed",
+          "OR public cancellation",
+          "OR 90+ day funding gap"
+        ]
+      }
+    },
+    {
+      "id": "S3",
+      "name": "Intelligence VC Bridge (In-Q-Tel / CIA VC)",
+      "description": "In-Q-Tel or CIA-recruited personnel transfer capital, personnel, IP from defunded program to private entity",
+      "waves": {
+        "TIA\u2192Palantir": {
+          "investment": "~$2M seed",
+          "iqt_ceo": "Gilman Louie",
+          "personnel": "Poindexter\u2192Thiel via Perle",
+          "receipt": "R-IQT-PAL-001"
+        },
+        "LifeLog\u2192Facebook": {
+          "investment": "No direct IQT; Parker (CIA 16)\u2192Thiel $500K",
+          "receipt": "R-FB-PARKER-001"
+        },
+        "PAM\u2192Polymarket": {
+          "investment": "Thiel Fellow Krug\u2192Founders Fund",
+          "receipt": "R-THIELF-001"
+        },
+        "Space\u2192SpaceX": {
+          "investment": "Griffin himself = bridge (IQT Pres\u2192NASA Admin)",
+          "receipt": "R-GRIFFIN-IQT-001"
+        },
+        "DOGE": {
+          "investment": "IQT alumni installed as CIOs (Barbaccia, Hogan, Riedel, Graber, Minor)",
+          "receipt": "R-DOGE-IQT-001"
+        }
+      },
+      "gate": {
+        "entry": [
+          "Stage 2 complete",
+          "IQT/CIA VC active"
+        ],
+        "exit": [
+          "IQT investment recorded",
+          "Key personnel transfer",
+          "IP/tech transfer agreement"
+        ]
+      }
+    },
+    {
+      "id": "S4",
+      "name": "Private Incorporation (Same Month, Same Architects)",
+      "description": "Private entity incorporates within 30 days of Stage 2 exit, with same PM/lead engineers as founders/CTO",
+      "waves": {
+        "TIA\u2192Palantir": {
+          "entity": "Palantir Technologies",
+          "incorp": "May 2003 (DE #3759318)",
+          "architects": "Karp, Lonsdale, Cohen, Gettings (PayPal alumni)",
+          "delta_days": -120,
+          "receipt": "R-PAL-INC-001"
+        },
+        "LifeLog\u2192Facebook": {
+          "entity": "TheFacebook.com",
+          "incorp": "Feb 4, 2004",
+          "architects": "Gage\u2192'pseudo-LifeLog'; Parker (Napster\u2192Pres)",
+          "delta_days": 0,
+          "receipt": "R-FB-INC-001"
+        },
+        "PAM\u2192Polymarket": {
+          "entity": "Augur (2014) \u2192 Polymarket (2020)",
+          "architects": "Hanson\u2192Krug (Thiel Fellow)\u2192Coplan",
+          "delta_days": "Long gap; ideological transfer",
+          "receipt": "R-AUGUR-001"
+        },
+        "Space\u2192SpaceX": {
+          "entity": "SpaceX",
+          "incorp": "March 2002",
+          "architects": "Griffin enabled COTS 2006",
+          "receipt": "R-SPACEX-001"
+        },
+        "DOGE": {
+          "entity": "N/A - direct CIO installation",
+          "receipt": "N/A"
+        }
+      },
+      "gate": {
+        "entry": [
+          "Stage 3 bridge complete"
+        ],
+        "exit": [
+          "Incorporation \u226430 days from Stage 2 exit",
+          "Same architects as founders/CTO",
+          "Technical architecture continuity"
+        ]
+      }
+    },
+    {
+      "id": "S5",
+      "name": "Regulatory Capture \u2192 Governance Replacement (Futarchy)",
+      "description": "Entity achieves regulatory capture, centralizes federal data, replaces democratic governance with prediction-market governance",
+      "waves": {
+        "Palantir": {
+          "capture": "DOGE CIOs (Barbaccia OMB, Minor HHS)",
+          "data": "Immigration DB, IRS Mega API, AI agents",
+          "futarchy": "Foundry\u2192Polymarket",
+          "receipt": "R-PAL-DOGE-001"
+        },
+        "Facebook/Meta": {
+          "capture": "FTC consent violations; PYUSD stablecoin",
+          "data": "Global ID/surveillance layer",
+          "futarchy": "Libra/Diem\u2192PYUSD",
+          "receipt": "R-FB-PYUSD-001"
+        },
+        "Polymarket": {
+          "capture": "CFTC Selig Chair, Quintenz recusal, Don Jr. advises both",
+          "data": "IRS/Immigration\u2192Polymarket markets",
+          "futarchy": "CORE PRODUCT",
+          "receipt": "R-CFTC-001"
+        },
+        "SpaceX": {
+          "capture": "DOGE CIOs (Hogan OPM, Riedel DOE, Graber DOE)",
+          "data": "Starlink/Starshield federal comms",
+          "receipt": "R-SPACEX-DOGE-001"
+        },
+        "DOGE": {
+          "capture": "FULL PIPELINE OPERATIONAL",
+          "data": "IRS, Immigration, SSA, OPM, Energy \u2192 Palantir \u2192 Polymarket/Kalshi",
+          "futarchy": "DOGE 'efficiency' = futarchy legitimization",
+          "receipt": "R-DOGE-ALL-001"
+        }
+      },
+      "gate": {
+        "entry": [
+          "Company operational with gov contracts",
+          "Alumni in regulatory positions"
+        ],
+        "exit": [
+          "Regulatory decisions favor portfolio",
+          "Federal data centralized via company infra",
+          "Prediction markets fed federal data",
+          "Governance outcomes align with portfolio"
+        ]
+      }
+    }
+  ]
+}

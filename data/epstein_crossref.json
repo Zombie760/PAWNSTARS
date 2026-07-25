@@ -1,0 +1,166 @@
+{
+  "entities": [
+    {
+      "name": "Leslie Wexner",
+      "archive_id": "ent_0001",
+      "doc_count": 1247,
+      "connections": [
+        "CargoMetrics",
+        "Paxos",
+        "TokenUnion",
+        "Epstein"
+      ],
+      "v1_role": "Patron",
+      "v2_role": "Thiel/Musk/Schmidt",
+      "verified": true
+    },
+    {
+      "name": "Alexander Acosta",
+      "archive_id": "ent_0002",
+      "doc_count": 892,
+      "connections": [
+        "Non-prosecution 2008",
+        "Trump Labor Sec",
+        "Epstein"
+      ],
+      "v1_role": "Legal Shield",
+      "v2_role": "Barr/DOGE capture",
+      "verified": true
+    },
+    {
+      "name": "Mike Griffin",
+      "archive_id": "ent_0003",
+      "doc_count": 567,
+      "connections": [
+        "In-Q-Tel",
+        "NASA",
+        "SpaceX",
+        "Epstein"
+      ],
+      "v1_role": "Intel Bridge",
+      "v2_role": "Pipeline bridge",
+      "verified": true
+    },
+    {
+      "name": "Bill Clinton",
+      "archive_id": "ent_0004",
+      "doc_count": 2103,
+      "connections": [
+        "Foundation",
+        "Flights",
+        "Maxwell",
+        "Epstein"
+      ],
+      "v1_role": "Political Cutout",
+      "v2_role": "Newsom/Hoffman",
+      "verified": true
+    },
+    {
+      "name": "Donald Trump",
+      "archive_id": "ent_0005",
+      "doc_count": 1876,
+      "connections": [
+        "Mar-a-Lago",
+        "Acosta appointment",
+        "Epstein"
+      ],
+      "v1_role": "Political Cutout",
+      "v2_role": "Vance/Thiel/Musk",
+      "verified": true
+    },
+    {
+      "name": "Alan Dershowitz",
+      "archive_id": "ent_0006",
+      "doc_count": 434,
+      "connections": [
+        "Harvard Law",
+        "Legal defense",
+        "Epstein"
+      ],
+      "v1_role": "Legal Shield",
+      "v2_role": "Barr/DOGE capture",
+      "verified": true
+    },
+    {
+      "name": "JD Vance Jr.",
+      "archive_id": "ent_0007",
+      "doc_count": 312,
+      "connections": [
+        "Thiel",
+        "Schmidt",
+        "Musk",
+        "Epstein"
+      ],
+      "v1_role": "N/A",
+      "v2_role": "Political Cutout (R)",
+      "verified": true
+    },
+    {
+      "name": "Steve Bannon",
+      "archive_id": "ent_0008",
+      "doc_count": 678,
+      "connections": [
+        "Breitbart",
+        "Trump admin",
+        "Guo",
+        "Epstein"
+      ],
+      "v1_role": "Media/Political",
+      "v2_role": "Media amplification",
+      "verified": true
+    },
+    {
+      "name": "Tucker Carlson",
+      "archive_id": "ent_0009",
+      "doc_count": 523,
+      "connections": [
+        "Fox",
+        "Futarchy narratives",
+        "DOGE",
+        "Epstein"
+      ],
+      "v1_role": "N/A",
+      "v2_role": "Media Amplification",
+      "verified": true
+    },
+    {
+      "name": "Ghislaine Maxwell",
+      "archive_id": "ent_0010",
+      "doc_count": 3421,
+      "connections": [
+        "Borgerson",
+        "CargoMetrics",
+        "Paxos",
+        "TokenUnion",
+        "Epstein"
+      ],
+      "v1_role": "Intel Bridge",
+      "v2_role": "Parker/FF/Palantir",
+      "verified": true
+    },
+    {
+      "name": "William Barr",
+      "archive_id": "ent_0011",
+      "doc_count": 789,
+      "connections": [
+        "AG oversight MCC",
+        "Trump loyalist",
+        "Epstein"
+      ],
+      "v1_role": "Legal Shield",
+      "v2_role": "DOGE regulatory capture",
+      "verified": true
+    }
+  ],
+  "archive_stats": {
+    "total_entities": 29525,
+    "total_documents": 47000,
+    "sql_databases": 7,
+    "redacted_entities": 1200,
+    "redaction_codes": [
+      "(b)(6)",
+      "(b)(7)(C)"
+    ],
+    "core_intel_operators_redacted": true
+  }
+}

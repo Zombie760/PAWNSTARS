@@ -1,0 +1,205 @@
+{
+  "layers": [
+    {
+      "id": "intelligence_community",
+      "name": "INTELLIGENCE COMMUNITY\n(Selectorate)",
+      "description": "Who decides what gets built and privatized",
+      "color": "#1a1a2e",
+      "nodes": [
+        {
+          "id": "program_managers",
+          "label": "9 Program Managers",
+          "detail": "Poindexter, Gage, Foster, Thuraisingham, Steinheiser, Matheny, Griffin, Louie, Darby",
+          "receipts": [
+            "R-PM-POINDEXTER-001",
+            "R-PM-GAGE-001",
+            "R-PM-FOSTER-001"
+          ]
+        },
+        {
+          "id": "board_governors",
+          "label": "4 Board Bodies",
+          "detail": "In-Q-Tel Board, PIAB, DSB/JASON, NSCAI",
+          "receipts": [
+            "R-BOARD-IQT-001",
+            "R-BOARD-PIAB-001",
+            "R-BOARD-DSB-001",
+            "R-BOARD-NSCAI-001"
+          ]
+        },
+        {
+          "id": "in_q_tel",
+          "label": "In-Q-Tel (CIA VC)",
+          "detail": "The obligatory passage point - capital + personnel + IP bridge",
+          "receipts": [
+            "R-GRIFFIN-IQT-001",
+            "R-PM-LOUIE-001",
+            "R-PM-DARBY-001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pipeline_stages",
+      "name": "5-STAGE PIPELINE\n(Procurement Template)",
+      "description": "Repeatable stages with falsifiable gates",
+      "color": "#16213e",
+      "nodes": [
+        {
+          "id": "S1",
+          "label": "S1: Public Program",
+          "detail": "DARPA/IARPA/NSA prototypes surveillance/data-fusion/governance capability",
+          "gates": [
+            "Program charter",
+            "PM assigned",
+            "Budget line",
+            "Surveillance scope"
+          ]
+        },
+        {
+          "id": "S2",
+          "label": "S2: Congressional Defunding",
+          "detail": "Political resistance creates policy vacuum",
+          "gates": [
+            "Defunding bill passed",
+            "OR public cancellation",
+            "OR 90+ day gap"
+          ]
+        },
+        {
+          "id": "S3",
+          "label": "S3: Intelligence VC Bridge",
+          "detail": "In-Q-Tel transfers capital/personnel/IP",
+          "gates": [
+            "IQT investment",
+            "Personnel transfer",
+            "IP transfer"
+          ]
+        },
+        {
+          "id": "S4",
+          "label": "S4: Private Incorporation",
+          "detail": "Same month, same architects, same codebase",
+          "gates": [
+            "Incorp <=30 days",
+            "Same architects",
+            "Architecture continuity"
+          ]
+        },
+        {
+          "id": "S5",
+          "label": "S5: Regulatory Capture -> Futarchy",
+          "detail": "Alumni installed as regulators; federal data -> prediction markets -> governance replacement",
+          "gates": [
+            "Alumni in regulatory roles",
+            "Data centralized",
+            "Prediction markets fed",
+            "Governance aligned"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cutout_operators",
+      "name": "CUTOUT OPERATORS\n(The Frontmen)",
+      "description": "Execute privatizations - public faces of the pipeline",
+      "color": "#0f3460",
+      "nodes": [
+        {
+          "id": "thiel",
+          "label": "Peter Thiel",
+          "fronts": [
+            "Palantir (Karp/Lonsdale)",
+            "Facebook (Zuckerberg)",
+            "Polymarket (Coplan)",
+            "SpaceX investor"
+          ],
+          "receipt": "R-OP-THIEL-001"
+        },
+        {
+          "id": "parker",
+          "label": "Sean Parker",
+          "fronts": [
+            "Facebook (Zuckerberg ops)",
+            "Polymarket (Coplan bridge)"
+          ],
+          "receipt": "R-OP-PARKER-001"
+        },
+        {
+          "id": "griffin_op",
+          "label": "Mike Griffin",
+          "fronts": [
+            "SpaceX (Musk ops)"
+          ],
+          "receipt": "R-OP-GRIFFIN-001"
+        },
+        {
+          "id": "hanson",
+          "label": "Robin Hanson",
+          "fronts": [
+            "Polymarket (Coplan tech)"
+          ],
+          "receipt": "R-OP-HANSON-001"
+        },
+        {
+          "id": "krug",
+          "label": "Joey Krug",
+          "fronts": [
+            "Polymarket (Coplan tech)"
+          ],
+          "receipt": "R-OP-KRUG-001"
+        },
+        {
+          "id": "coplan",
+          "label": "Shayne Coplan",
+          "fronts": [
+            "Polymarket (FF-backed)"
+          ],
+          "receipt": "R-OP-COPLAN-001"
+        },
+        {
+          "id": "musk",
+          "label": "Elon Musk",
+          "fronts": [
+            "SpaceX (Griffin pipeline)",
+            "Tesla (regulatory capture)"
+          ],
+          "receipt": "R-OP-MUSK-001"
+        },
+        {
+          "id": "hoffman",
+          "label": "Reid Hoffman",
+          "fronts": [
+            "Newsom 2028 (DOGE opposition theater)"
+          ],
+          "receipt": "R-OP-HOFFMAN-001"
+        },
+        {
+          "id": "schmidt",
+          "label": "Eric Schmidt",
+          "fronts": [
+            "DOGE overlord (bipartisan)"
+          ],
+          "receipt": "R-OP-SCHMIDT-001"
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "from": "intelligence_community",
+      "to": "pipeline_stages",
+      "label": "Writes requirements -> Controls prototypes"
+    },
+    {
+      "from": "pipeline_stages",
+      "to": "cutout_operators",
+      "label": "Executes privatizations -> Becomes public face"
+    },
+    {
+      "from": "cutout_operators",
+      "to": "intelligence_community",
+      "label": "Returns as CIOs/Regulators -> Closes loop"
+    }
+  ]
+}

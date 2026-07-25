@@ -1,0 +1,10 @@
+title: "THE PROCUREMENT MACHINE"
+description: "Intelligence Program Privatization as a Distinct Procurement Category: A Structural Analysis of the DARPA-to-DOGE Pipeline"
+author: "Kyle Jimenez for Botwave"
+theme: null
+plugins: []
+exclude: ["node_modules", "vendor", ".git"]
+include: ["_pages"]
+markdown: kramdown
+highlighter: rouge
+permalink: pretty

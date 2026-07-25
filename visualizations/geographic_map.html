@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Geographic Contract Map — The Procurement Machine</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; height: 100vh; }
+        header { text-align: center; padding: 20px; background: rgba(10,10,15,0.95); border-bottom: 1px solid #222; }
+        h1 { margin: 0 0 8px; font-size: 2rem; background: linear-gradient(135deg, #fff, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { color: #888; font-size: 1rem; }
+        #map { height: calc(100vh - 140px); width: 100%; }
+        .controls { position: absolute; top: 20px; left: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 8px; }
+        .control-btn { background: rgba(10,10,15,0.95); border: 1px solid #333; color: #ccc; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; transition: all 0.2s; text-align: left; min-width: 180px; }
+        .control-btn:hover, .control-btn.active { border-color: #ffd700; color: #ffd700; background: rgba(255,215,0,0.1); }
+        .legend { position: absolute; bottom: 20px; right: 20px; z-index: 1000; background: rgba(10,10,15,0.95); padding: 16px; border-radius: 8px; border: 1px solid #333; font-size: 12px; max-width: 280px; }
+        .legend h3 { margin: 0 0 12px; color: #fff; font-size: 14px; }
+        .legend-item { display: flex; align-items: center; gap: 8px; margin: 6px 0; cursor: pointer; }
+        .legend-color { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #444; }
+        .stats { position: absolute; bottom: 20px; left: 20px; z-index: 1000; background: rgba(10,10,15,0.95); padding: 12px 16px; border-radius: 8px; border: 1px solid #333; font-size: 12px; color: #ccc; }
+        .tooltip { position: absolute; background: rgba(10,10,15,0.98); border: 1px solid #444; border-radius: 8px; padding: 12px; pointer-events: none; z-index: 1000; max-width: 300px; display: none; font-size: 12px; }
+        .tooltip h4 { margin: 0 0 8px; color: #ffd700; font-size: 13px; }
+        .tooltip .row { display: flex; justify-content: space-between; margin: 4px 0; font-size: 11px; }
+        .tooltip .label { color: #888; }
+        .tooltip .value { color: #fff; font-weight: 500; }
+    
+        @media (max-width: 768px) {
+            .container { padding: 16px 12px; }
+            header { padding: 20px 0 16px; }
+            h1 { font-size: 1.8rem !important; }
+            .subtitle { font-size: 1rem !important; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .filter-btn, .btn { width: 100%; text-align: center; }
+            .legend { position: static; margin: 20px 0; max-width: 100%; }
+            .stats { position: static; margin-top: 20px; text-align: center; }
+            .stats-row { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
+            .widget.full-width { grid-column: auto; }
+            .widget-body iframe { height: 300px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .pipeline-stages { flex-direction: column; }
+            .controls { flex-direction: column; }
+            .btn { width: 100%; }
+            .layer-header { flex-direction: column; align-items: flex-start; }
+            .nodes-grid { grid-template-columns: 1fr; }
+            .flow { flex-direction: column; gap: 12px; }
+            .legend { flex-direction: column; gap: 8px; }
+            .filter-row { flex-direction: column; }
+            .filter-btn { width: 100%; }
+            .event-card { max-width: 100%; }
+            .event-date { width: 80px; font-size: 11px; padding-right: 8px; }
+            .event-dot { left: 90px; }
+            .event-card { padding: 12px 14px; }
+            .event-header { flex-wrap: wrap; }
+            .stat-card { padding: 16px; }
+            .stat-card .value { font-size: 1.5rem; }
+            .quick-links { flex-direction: column; }
+            .quick-link { text-align: center; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .filter-row { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 12px 8px; }
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.3rem !important; }
+            h3 { font-size: 1.1rem !important; }
+            .widget-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .widget-header h3 { font-size: 1rem; }
+            .btn { padding: 12px 16px; font-size: 0.9rem; }
+            .stat-card { padding: 12px; }
+            .stat-card .value { font-size: 1.3rem; }
+            .widget-body { padding: 12px; }
+        }
+
+</style>
+</head>
+<body>
+    <header>
+        <h1>Geographic Contract Map</h1>
+        <p class="subtitle">Federal contracts, intelligence nodes, and political power centers</p>
+    </header>
+    <div id="map"></div>
+    <div class="controls">
+        <button class="control-btn active" data-layer="all">All Layers</button>
+        <button class="control-btn" data-layer="palantir">Palantir Contracts</button>
+        <button class="control-btn" data-layer="spacex">SpaceX Contracts</button>
+        <button class="control-btn" data-layer="anduril">Anduril Contracts</button>
+        <button class="control-btn" data-layer="intel">Intelligence Nodes</button>
+        <button class="control-btn" data-layer="political">Political Centers</button>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="stats" id="stats"></div>
+    <div class="tooltip" id="tooltip"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const geoData = {"palantir_contracts": [{"agency": "CBP", "program": "Immigration Database", "value": 38400000, "location": "Washington, DC", "lat": 38.9072, "lng": -77.0369, "receipt": "R-PAL-DOGE-001"}, {"agency": "ICE", "program": "Enforcement Analytics", "value": 22100000, "location": "Washington, DC", "lat": 38.9072, "lng": -77.0369, "receipt": "R-PAL-DOGE-002"}, {"agency": "CBP", "program": "Border Intelligence", "value": 45600000, "location": "Washington, DC", "lat": 38.9072, "lng": -77.0369, "receipt": "R-PAL-DOGE-003"}, {"agency": "IRS", "program": "Mega API Modernization", "value": 52300000, "location": "Washington, DC", "lat": 38.9072, "lng": -77.0369, "receipt": "R-PAL-DOGE-004"}, {"agency": "HHS", "program": "AI Agents Deployment", "value": 23400000, "location": "Washington, DC", "lat": 38.9072, "lng": -77.0369, "receipt": "R-PAL-DOGE-005"}, {"agency": "DoD (Multiple)", "program": "Gotham/Foundry Deployments", "value": 2100000000, "location": "Arlington, VA", "lat": 38.8801, "lng": -77.1087, "receipt": "R-PAL-CURRENT-001"}, {"agency": "IC (18 agencies)", "program": "Intelligence Integration", "value": 1800000000, "location": "Langley, VA / Fort Meade, MD", "lat": 38.9581, "lng": -76.9881, "receipt": "R-PAL-IC-001"}], "spacex_contracts": [{"agency": "NASA", "program": "CRS-2", "value": 2800000000, "location": "Kennedy Space Center, FL", "lat": 28.5729, "lng": -80.649, "receipt": "R-SPACEX-GOV-001"}, {"agency": "Space Force", "program": "NSSL Phase 2", "value": 1900000000, "location": "Vandenberg SFB, CA / Cape Canaveral, FL", "lat": 34.742, "lng": -120.5737, "receipt": "R-SPACEX-GOV-001"}, {"agency": "NRO", "program": "Starshield", "value": 1800000000, "location": "Chantilly, VA (NRO HQ)", "lat": 38.8865, "lng": -77.5, "receipt": "R-REUTERS-009"}, {"agency": "SDA", "program": "Tranche 1/2 Satellites", "value": 1000000000, "location": "Redstone Arsenal, AL", "lat": 34.6557, "lng": -86.6353, "receipt": "R-SPACEX-GOV-001"}], "anduril_contracts": [{"agency": "Army", "program": "IVAS", "value": 1300000000, "location": "Redstone Arsenal, AL", "lat": 34.6557, "lng": -86.6353, "receipt": "R-PAL-ANDURIL-001"}, {"agency": "Air Force", "program": "Lattice", "value": 800000000, "location": "Wright-Patterson AFB, OH", "lat": 39.7817, "lng": -84.0483, "receipt": "R-PAL-ANDURIL-001"}, {"agency": "SOCOM", "program": "Autonomous Systems", "value": 400000000, "location": "MacDill AFB, FL", "lat": 27.8493, "lng": -82.5215, "receipt": "R-PAL-ANDURIL-001"}], "intel_contacts": [{"entity": "In-Q-Tel", "location": "Arlington, VA", "lat": 38.8801, "lng": -77.1087, "type": "vc"}, {"entity": "CIA", "location": "Langley, VA", "lat": 38.9581, "lng": -76.9881, "type": "intel"}, {"entity": "NSA", "location": "Fort Meade, MD", "lat": 39.1059, "lng": -76.7471, "type": "intel"}, {"entity": "NRO", "location": "Chantilly, VA", "lat": 38.8865, "lng": -77.5, "type": "intel"}, {"entity": "DARPA", "location": "Arlington, VA", "lat": 38.8801, "lng": -77.1087, "type": "research"}, {"entity": "IARPA", "location": "Washington, DC", "lat": 38.9072, "lng": -77.0369, "type": "research"}, {"entity": "NSCAI", "location": "Washington, DC", "lat": 38.9072, "lng": -77.0369, "type": "policy"}, {"entity": "White House (Narya/Vance)", "location": "Washington, DC", "lat": 38.8977, "lng": -77.0365, "type": "political"}, {"entity": "CA Governor (Newsom)", "location": "Sacramento, CA", "lat": 38.5816, "lng": -121.4944, "type": "political"}]};
+        
+        // Map setup - dark theme
+        const map = L.map('map', { center: [39.5, -98.35], zoom: 4, preferCanvas: true });
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 18
+        }).addTo(map);
+        
+        const layerColors = {
+            palantir: '#ff6b6b',
+            spacex: '#00bfff',
+            anduril: '#00ff7f',
+            intel: '#ffd700',
+            political: '#ff00ff'
+        };
+        
+        const layerNames = {
+            palantir: 'Palantir Contracts',
+            spacex: 'SpaceX Contracts',
+            anduril: 'Anduril Contracts',
+            intel: 'Intelligence Nodes',
+            political: 'Political Centers'
+        };
+        
+        const markers = { palantir: [], spacex: [], anduril: [], intel: [], political: [] };
+        const tooltip = document.getElementById('tooltip');
+        
+        // Create markers
+        Object.entries(geoData).forEach(([key, items]) => {
+            items.forEach(item => {
+                const color = layerColors[key] || '#666';
+                const circle = L.circleMarker([item.lat, item.lng], {
+                    radius: key === 'intel' ? 8 : Math.max(6, Math.min(15, Math.sqrt(item.value || 1) / 500000)),
+                    color: color,
+                    fillColor: color,
+                    fillOpacity: 0.7,
+                    weight: 2,
+                    opacity: 0.9
+                });
+                
+                circle.bindTooltip(() => {
+                    let html = `<strong>${item.agency || item.entity}</strong><br>`;
+                    if (item.program) html += `Program: ${item.program}<br>`;
+                    if (item.value) html += `Value: $${(item.value/1e9).toFixed(1)}B<br>`;
+                    if (item.receipt) html += `Receipt: ${item.receipt}`;
+                    return html;
+                }, { direction: 'top', offset: [0, -10] });
+                
+                circle.on('mouseover', function(e) {
+                    this.setStyle({ fillOpacity: 1, weight: 3 });
+                    showTooltip(e, item, key);
+                });
+                circle.on('mouseout', function(e) {
+                    this.setStyle({ fillOpacity: 0.7, weight: 2 });
+                    hideTooltip();
+                });
+                
+                markers[key].push(circle);
+            });
+        });
+        
+        // Layer groups
+        const layerGroups = {};
+        Object.keys(markers).forEach(key => {
+            layerGroups[key] = L.layerGroup(markers[key]);
+            layerGroups[key].addTo(map);
+        });
+        
+        // Layer controls
+        document.querySelectorAll('.control-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const layer = this.dataset.layer;
+                document.querySelectorAll('.control-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                Object.keys(layerGroups).forEach(key => {
+                    if (layer === 'all' || key === layer) {
+                        map.addLayer(layerGroups[key]);
+                    } else {
+                        map.removeLayer(layerGroups[key]);
+                    }
+                });
+                updateLegend(layer);
+            });
+        });
+        
+        function showTooltip(e, item, key) {
+            const tooltip = document.getElementById('tooltip');
+            let html = `<h4>${item.agency || item.entity}</h4>`;
+            if (item.program) html += `<div class="row"><span class="label">Program:</span><span class="value">${item.program}</span></div>`;
+            if (item.value) html += `<div class="row"><span class="label">Value:</span><span class="value">$${(item.value/1e9).toFixed(2)}B</span></div>`;
+            if (item.location) html += `<div class="row"><span class="label">Location:</span><span class="value">${item.location}</span></div>`;
+            if (item.receipt) html += `<div class="row"><span class="label">Receipt:</span><span class="value">${item.receipt}</span></div>`;
+            tooltip.innerHTML = html;
+            tooltip.style.display = 'block';
+            tooltip.style.left = (e.originalEvent.clientX + 16) + 'px';
+            tooltip.style.top = (e.originalEvent.clientY - 16) + 'px';
+        }
+        
+        function hideTooltip() {
+            document.getElementById('tooltip').style.display = 'none';
+        }
+        
+        function updateLegend(activeLayer) {
+            const legend = document.getElementById('legend');
+            legend.innerHTML = '<h3>Layers</h3>';
+            Object.entries(layerNames).forEach(([key, name]) => {
+                const item = document.createElement('div');
+                item.className = 'legend-item';
+                item.style.opacity = activeLayer === 'all' || key === activeLayer ? '1' : '0.4';
+                item.innerHTML = `<div class="legend-color" style="background: ${layerColors[key]}; border-color: ${layerColors[key]}"></div><span>${name}</span>`;
+                item.addEventListener('click', () => {
+                    document.querySelector(`[data-layer="${key}"]`).click();
+                });
+                legend.appendChild(item);
+            });
+        }
+        
+        // Stats
+        const totalContracts = geoData.palantir_contracts.length + geoData.spacex_contracts.length + geoData.anduril_contracts.length;
+        const totalValue = [...geoData.palantir_contracts, ...geoData.spacex_contracts, ...geoData.anduril_contracts]
+            .reduce((sum, c) => sum + (c.value || 0), 0);
+        document.getElementById('stats').innerHTML = `
+            <strong>${totalContracts} contracts</strong> | 
+            <strong>$${(totalValue/1e9).toFixed(1)}B total</strong> | 
+            <strong>${geoData.intel_contacts.length} intel nodes</strong>
+        `;
+        
+        updateLegend('all');
+        
+        map.on('zoomend', function() {
+            Object.values(markers).flat().forEach(m => {
+                const zoom = map.getZoom();
+                const baseRadius = m.options.radius;
+                m.setRadius(baseRadius * Math.max(0.5, 2 - zoom/10));
+            });
+        });
+    </script>
+</body>
+</html>

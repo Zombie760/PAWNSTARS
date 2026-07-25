@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pipeline Flow — The Procurement Machine</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; }
+        #graph { width: 100vw; height: 100vh; }
+        .tooltip { position: absolute; background: rgba(10,10,15,0.98); border: 1px solid #444; border-radius: 8px; padding: 16px; pointer-events: none; z-index: 1000; max-width: 400px; display: none; font-size: 12px; }
+        .tooltip h4 { margin: 0 0 8px; color: #ffd700; font-size: 14px; }
+        .tooltip .meta { color: #888; font-size: 11px; margin-bottom: 8px; }
+        .tooltip .data { font-size: 11px; line-height: 1.5; }
+        .controls { position: absolute; top: 20px; left: 20px; z-index: 100; display: flex; gap: 8px; flex-wrap: wrap; }
+        .btn { background: rgba(10,10,15,0.95); border: 1px solid #333; color: #ccc; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .btn.active { border-color: #ffd700; color: #ffd700; background: rgba(255,215,0,0.1); }
+        .legend { position: absolute; top: 20px; right: 20px; z-index: 100; background: rgba(10,10,15,0.95); padding: 16px; border-radius: 8px; border: 1px solid #333; font-size: 12px; max-width: 280px; }
+        .legend h3 { margin: 0 0 12px; font-size: 14px; color: #fff; }
+        .legend-item { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+        .legend-color { width: 20px; height: 12px; border-radius: 2px; }
+        .stats { position: absolute; bottom: 20px; left: 20px; z-index: 100; background: rgba(10,10,15,0.95); padding: 12px 16px; border-radius: 8px; border: 1px solid #333; font-size: 12px; color: #ccc; }
+    </style>
+</head>
+<body>
+    <div id="graph"></div>
+    <div class="controls">
+        <button class="btn active" data-view="all">All Waves</button>
+        <button class="btn" data-wave="TIA→Palantir">TIA→Palantir</button>
+        <button class="btn" data-wave="LifeLog→Facebook">LifeLog→Facebook</button>
+        <button class="btn" data-wave="PAM→Polymarket">PAM→Polymarket</button>
+        <button class="btn" data-wave="Space→SpaceX">Space→SpaceX</button>
+        <button class="btn" data-wave="DOGE">DOGE</button>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="stats" id="stats"></div>
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        const data = {"nodes": [{"name": "Public Program\nPrototyping", "layer": 0, "isStage": true, "color": "#00bfff"}, {"name": "Congressional\nDefunding/Rejection", "layer": 1, "isStage": true, "color": "#ff6b6b"}, {"name": "Intelligence VC\nBridge (In-Q-Tel)", "layer": 2, "isStage": true, "color": "#ffd700"}, {"name": "Private\nIncorporation", "layer": 3, "isStage": true, "color": "#00ff7f"}, {"name": "Regulatory Capture\n\u2192 Futarchy", "layer": 4, "isStage": true, "color": "#ff00ff"}, {"name": "TIA\u2192Palantir @ Public Program\nPrototyping", "layer": 0, "wave": "TIA\u2192Palantir", "stage": "S1", "data": {"program": "TIA", "pm": "John Poindexter", "budget": "$200M/yr", "receipt": "R-TIA-001"}, "isStage": false, "color": "#00bfff"}, {"name": "LifeLog\u2192Facebook @ Public Program\nPrototyping", "layer": 0, "wave": "LifeLog\u2192Facebook", "stage": "S1", "data": {"program": "LifeLog", "pm": "Douglas Gage", "budget": "$10M/yr", "receipt": "R-LIFELOG-001"}, "isStage": false, "color": "#00bfff"}, {"name": "PAM\u2192Polymarket @ Public Program\nPrototyping", "layer": 0, "wave": "PAM\u2192Polymarket", "stage": "S1", "data": {"program": "PAM", "pm": "Michael Foster", "architect": "Robin Hanson", "budget": "$8M/yr", "receipt": "R-PAM-001"}, "isStage": false, "color": "#00bfff"}, {"name": "Space\u2192SpaceX @ Public Program\nPrototyping", "layer": 0, "wave": "Space\u2192SpaceX", "stage": "S1", "data": {"program": "NASA/DOD Launch", "pm": "Mike Griffin (NASA Admin)", "budget": "$4B/yr", "receipt": "R-SPACE-001"}, "isStage": false, "color": "#00bfff"}, {"name": "DOGE @ Public Program\nPrototyping", "layer": 0, "wave": "DOGE", "stage": "S1", "data": {"program": "Federal IT/Procurement", "note": "Skips Stage 1 - operationalized pipeline", "receipt": "N/A"}, "isStage": false, "color": "#00bfff"}, {"name": "TIA\u2192Palantir @ Congressional\nDefunding/Rejection", "layer": 1, "wave": "TIA\u2192Palantir", "stage": "S2", "data": {"mechanism": "FY2004 DoD Approps Act \u00a78131", "date": "Sept 2003", "receipt": "R-TIA-DEFUND-001"}, "isStage": false, "color": "#ff6b6b"}, {"name": "LifeLog\u2192Facebook @ Congressional\nDefunding/Rejection", "layer": 1, "wave": "LifeLog\u2192Facebook", "stage": "S2", "data": {"mechanism": "DARPA public cancellation", "date": "Feb 4, 2004", "receipt": "R-LIFELOG-CANCEL-001"}, "isStage": false, "color": "#ff6b6b"}, {"name": "PAM\u2192Polymarket @ Congressional\nDefunding/Rejection", "layer": 1, "wave": "PAM\u2192Polymarket", "stage": "S2", "data": {"mechanism": "Senate 96-0 condemnation (S.Res.186)", "date": "July 22, 2003", "receipt": "R-PAM-CONDEMN-001"}, "isStage": false, "color": "#ff6b6b"}, {"name": "Space\u2192SpaceX @ Congressional\nDefunding/Rejection", "layer": 1, "wave": "Space\u2192SpaceX", "stage": "S2", "data": {"mechanism": "N/A - capability privatization", "receipt": "N/A"}, "isStage": false, "color": "#ff6b6b"}, {"name": "DOGE @ Congressional\nDefunding/Rejection", "layer": 1, "wave": "DOGE", "stage": "S2", "data": {"mechanism": "N/A - pipeline operationalized", "receipt": "N/A"}, "isStage": false, "color": "#ff6b6b"}, {"name": "TIA\u2192Palantir @ Intelligence VC\nBridge (In-Q-Tel)", "layer": 2, "wave": "TIA\u2192Palantir", "stage": "S3", "data": {"investment": "~$2M seed", "iqt_ceo": "Gilman Louie", "personnel": "Poindexter\u2192Thiel via Perle", "receipt": "R-IQT-PAL-001"}, "isStage": false, "color": "#ffd700"}, {"name": "LifeLog\u2192Facebook @ Intelligence VC\nBridge (In-Q-Tel)", "layer": 2, "wave": "LifeLog\u2192Facebook", "stage": "S3", "data": {"investment": "No direct IQT; Parker (CIA 16)\u2192Thiel $500K", "receipt": "R-FB-PARKER-001"}, "isStage": false, "color": "#ffd700"}, {"name": "PAM\u2192Polymarket @ Intelligence VC\nBridge (In-Q-Tel)", "layer": 2, "wave": "PAM\u2192Polymarket", "stage": "S3", "data": {"investment": "Thiel Fellow Krug\u2192Founders Fund", "receipt": "R-THIELF-001"}, "isStage": false, "color": "#ffd700"}, {"name": "Space\u2192SpaceX @ Intelligence VC\nBridge (In-Q-Tel)", "layer": 2, "wave": "Space\u2192SpaceX", "stage": "S3", "data": {"investment": "Griffin himself = bridge (IQT Pres\u2192NASA Admin)", "receipt": "R-GRIFFIN-IQT-001"}, "isStage": false, "color": "#ffd700"}, {"name": "DOGE @ Intelligence VC\nBridge (In-Q-Tel)", "layer": 2, "wave": "DOGE", "stage": "S3", "data": {"investment": "IQT alumni installed as CIOs (Barbaccia, Hogan, Riedel, Graber, Minor)", "receipt": "R-DOGE-IQT-001"}, "isStage": false, "color": "#ffd700"}, {"name": "TIA\u2192Palantir @ Private\nIncorporation", "layer": 3, "wave": "TIA\u2192Palantir", "stage": "S4", "data": {"entity": "Palantir Technologies", "incorp": "May 2003 (DE #3759318)", "architects": "Karp, Lonsdale, Cohen, Gettings (PayPal alumni)", "delta_days": -120, "receipt": "R-PAL-INC-001"}, "isStage": false, "color": "#00ff7f"}, {"name": "LifeLog\u2192Facebook @ Private\nIncorporation", "layer": 3, "wave": "LifeLog\u2192Facebook", "stage": "S4", "data": {"entity": "TheFacebook.com", "incorp": "Feb 4, 2004", "architects": "Gage\u2192'pseudo-LifeLog'; Parker (Napster\u2192Pres)", "delta_days": 0, "receipt": "R-FB-INC-001"}, "isStage": false, "color": "#00ff7f"}, {"name": "PAM\u2192Polymarket @ Private\nIncorporation", "layer": 3, "wave": "PAM\u2192Polymarket", "stage": "S4", "data": {"entity": "Augur (2014) \u2192 Polymarket (2020)", "architects": "Hanson\u2192Krug (Thiel Fellow)\u2192Coplan", "delta_days": "Long gap; ideological transfer", "receipt": "R-AUGUR-001"}, "isStage": false, "color": "#00ff7f"}, {"name": "Space\u2192SpaceX @ Private\nIncorporation", "layer": 3, "wave": "Space\u2192SpaceX", "stage": "S4", "data": {"entity": "SpaceX", "incorp": "March 2002", "architects": "Griffin enabled COTS 2006", "receipt": "R-SPACEX-001"}, "isStage": false, "color": "#00ff7f"}, {"name": "DOGE @ Private\nIncorporation", "layer": 3, "wave": "DOGE", "stage": "S4", "data": {"entity": "N/A - direct CIO installation", "receipt": "N/A"}, "isStage": false, "color": "#00ff7f"}, {"name": "TIA\u2192Palantir @ Regulatory Capture\n\u2192 Futarchy", "layer": 4, "wave": "TIA\u2192Palantir", "stage": "S5", "data": {"capture": "DOGE CIOs (Barbaccia OMB, Minor HHS)", "data": "Immigration DB, IRS Mega API, AI agents", "futarchy": "Foundry\u2192Polymarket", "receipt": "R-PAL-DOGE-001"}, "isStage": false, "color": "#ff00ff"}, {"name": "LifeLog\u2192Facebook @ Regulatory Capture\n\u2192 Futarchy", "layer": 4, "wave": "LifeLog\u2192Facebook", "stage": "S5", "data": {"capture": "FTC consent violations; PYUSD stablecoin", "data": "Global ID/surveillance layer", "futarchy": "Libra/Diem\u2192PYUSD", "receipt": "R-FB-PYUSD-001"}, "isStage": false, "color": "#ff00ff"}, {"name": "PAM\u2192Polymarket @ Regulatory Capture\n\u2192 Futarchy", "layer": 4, "wave": "PAM\u2192Polymarket", "stage": "S5", "data": {"capture": "CFTC Selig Chair, Quintenz recusal, Don Jr. advises both", "data": "IRS/Immigration\u2192Polymarket markets", "futarchy": "CORE PRODUCT", "receipt": "R-CFTC-001"}, "isStage": false, "color": "#ff00ff"}, {"name": "Space\u2192SpaceX @ Regulatory Capture\n\u2192 Futarchy", "layer": 4, "wave": "Space\u2192SpaceX", "stage": "S5", "data": {"capture": "DOGE CIOs (Hogan OPM, Riedel DOE, Graber DOE)", "data": "Starlink/Starshield federal comms", "receipt": "R-SPACEX-DOGE-001"}, "isStage": false, "color": "#ff00ff"}, {"name": "DOGE @ Regulatory Capture\n\u2192 Futarchy", "layer": 4, "wave": "DOGE", "stage": "S5", "data": {"capture": "FULL PIPELINE OPERATIONAL", "data": "IRS, Immigration, SSA, OPM, Energy \u2192 Palantir \u2192 Polymarket/Kalshi", "futarchy": "DOGE 'efficiency' = futarchy legitimization", "receipt": "R-DOGE-ALL-001"}, "isStage": false, "color": "#ff00ff"}], "links": [{"source": 5, "target": 10, "value": 1, "wave": "TIA\u2192Palantir", "from_stage": "S1", "to_stage": "S2"}, {"source": 10, "target": 15, "value": 1, "wave": "TIA\u2192Palantir", "from_stage": "S2", "to_stage": "S3"}, {"source": 15, "target": 20, "value": 1, "wave": "TIA\u2192Palantir", "from_stage": "S3", "to_stage": "S4"}, {"source": 20, "target": 25, "value": 1, "wave": "TIA\u2192Palantir", "from_stage": "S4", "to_stage": "S5"}, {"source": 6, "target": 11, "value": 1, "wave": "LifeLog\u2192Facebook", "from_stage": "S1", "to_stage": "S2"}, {"source": 11, "target": 16, "value": 1, "wave": "LifeLog\u2192Facebook", "from_stage": "S2", "to_stage": "S3"}, {"source": 16, "target": 21, "value": 1, "wave": "LifeLog\u2192Facebook", "from_stage": "S3", "to_stage": "S4"}, {"source": 21, "target": 26, "value": 1, "wave": "LifeLog\u2192Facebook", "from_stage": "S4", "to_stage": "S5"}, {"source": 7, "target": 12, "value": 1, "wave": "PAM\u2192Polymarket", "from_stage": "S1", "to_stage": "S2"}, {"source": 12, "target": 17, "value": 1, "wave": "PAM\u2192Polymarket", "from_stage": "S2", "to_stage": "S3"}, {"source": 17, "target": 22, "value": 1, "wave": "PAM\u2192Polymarket", "from_stage": "S3", "to_stage": "S4"}, {"source": 22, "target": 27, "value": 1, "wave": "PAM\u2192Polymarket", "from_stage": "S4", "to_stage": "S5"}, {"source": 8, "target": 13, "value": 1, "wave": "Space\u2192SpaceX", "from_stage": "S1", "to_stage": "S2"}, {"source": 13, "target": 18, "value": 1, "wave": "Space\u2192SpaceX", "from_stage": "S2", "to_stage": "S3"}, {"source": 18, "target": 23, "value": 1, "wave": "Space\u2192SpaceX", "from_stage": "S3", "to_stage": "S4"}, {"source": 23, "target": 28, "value": 1, "wave": "Space\u2192SpaceX", "from_stage": "S4", "to_stage": "S5"}, {"source": 9, "target": 14, "value": 1, "wave": "DOGE", "from_stage": "S1", "to_stage": "S2"}, {"source": 14, "target": 19, "value": 1, "wave": "DOGE", "from_stage": "S2", "to_stage": "S3"}, {"source": 19, "target": 24, "value": 1, "wave": "DOGE", "from_stage": "S3", "to_stage": "S4"}, {"source": 24, "target": 29, "value": 1, "wave": "DOGE", "from_stage": "S4", "to_stage": "S5"}]};
+        
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const svg = d3.select("#graph").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        
+        const stageNames = ["Public Program Prototyping", "Congressional Defunding/Rejection", "Intelligence VC Bridge (In-Q-Tel)", "Private Incorporation", "Regulatory Capture → Futarchy"];
+        const stageColors = ["#00bfff", "#ff6b6b", "#ffd700", "#00ff7f", "#ff00ff"];
+        const waveColors = {
+            "TIA→Palantir": "#ff6b6b",
+            "LifeLog→Facebook": "#00bfff", 
+            "PAM→Polymarket": "#ffd700",
+            "Space→SpaceX": "#00ff7f",
+            "DOGE": "#ff00ff"
+        };
+        
+        const tooltip = d3.select("#tooltip");
+        
+        // Sankey layout
+        const sankeyLayout = d3.sankey()
+            .nodeWidth(24)
+            .nodePadding(16)
+            .extent([[80, 40], [width - 80, height - 80]])
+            .nodeAlign(d3.sankeyJustify);
+        
+        const {nodes, links} = sankeyLayout({
+            nodes: data.nodes.map((d, i) => ({...d, index: i})),
+            links: data.links.map((d, i) => ({...d, index: i}))
+        });
+        
+        // Color nodes by layer
+        nodes.forEach(d => {
+            if (d.isStage) {
+                d.color = stageColors[d.layer];
+            } else {
+                d.color = waveColors[d.wave] || stageColors[d.layer];
+            }
+        });
+        
+        // Links
+        const link = svg.append("g")
+            .attr("fill", "none")
+            .attr("stroke-opacity", 0.3)
+            .selectAll("g")
+            .data(links)
+            .enter().append("g")
+            .style("mix-blend-mode", "multiply");
+        
+        link.append("path")
+            .attr("d", d3.sankeyLinkHorizontal())
+            .attr("stroke", d => waveColors[d.wave] || "#666")
+            .attr("stroke-width", d => Math.max(1, d.width))
+            .attr("class", "sankey-link")
+            .on("mouseover", function(event, d) {
+                d3.select(this).attr("stroke-opacity", 0.8).attr("stroke-width", d => Math.max(3, d.width + 2));
+                tooltip.html(`
+                    <h4>${d.wave} :: ${stageNames[d.from_stage]} → ${stageNames[d.to_stage]}</h4>
+                    <div class="data">
+                        ${Object.entries(d.data || {}).map(([k,v]) => `<div><strong>${k}:</strong> ${v}</div>`).join('')}
+                    </div>
+                `).style("display", "block");
+            })
+            .on("mousemove", function(event) {
+                tooltip.style("left", (event.pageX + 16) + "px").style("top", (event.pageY - 16) + "px");
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this).attr("stroke-opacity", 0.3).attr("stroke-width", d => Math.max(1, d.width));
+                tooltip.style("display", "none");
+            });
+        
+        link.append("title").text(d => `${d.wave}: ${stageNames[d.from_stage]} → ${stageNames[d.to_stage]}`);
+        
+        // Nodes
+        const node = svg.append("g")
+            .selectAll("g")
+            .data(nodes)
+            .enter().append("g");
+        
+        node.append("rect")
+            .attr("x", d => d.x0)
+            .attr("y", d => d.y0)
+            .attr("height", d => d.y1 - d.y0)
+            .attr("width", d => d.x1 - d.x0)
+            .attr("fill", d => d.color)
+            .attr("stroke", "#fff")
+            .attr("stroke-width", d => d.isStage ? 2 : 0.5)
+            .on("mouseover", function(event, d) {
+                d3.select(this).attr("stroke", "#fff").attr("stroke-width", 3);
+                let html = `<h4>${d.name}</h4>`;
+                if (d.isStage) {
+                    html += `<div class="meta">Stage ${d.layer + 1}: ${stageNames[d.layer]}</div>`;
+                } else {
+                    html += `<div class="meta">${d.wave} @ Stage ${d.layer + 1}</div>`;
+                    if (d.data) {
+                        html += `<div class="data">${Object.entries(d.data).map(([k,v]) => `<div><strong>${k}:</strong> ${v}</div>`).join('')}</div>`;
+                    }
+                }
+                tooltip.html(html).style("display", "block");
+            })
+            .on("mousemove", function(event) {
+                tooltip.style("left", (event.pageX + 16) + "px").style("top", (event.pageY - 16) + "px");
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this).attr("stroke", "#fff").attr("stroke-width", d => d.isStage ? 2 : 0.5);
+                tooltip.style("display", "none");
+            });
+        
+        node.append("text")
+            .attr("x", d => d.x0 - 6)
+            .attr("y", d => (d.y0 + d.y1) / 2)
+            .attr("dy", "0.35em")
+            .attr("text-anchor", "end")
+            .attr("font-size", "11px")
+            .attr("fill", "#ccc")
+            .text(d => d.name);
+        
+        // Stage labels
+        const stageLabel = svg.append("g")
+            .selectAll("text")
+            .data(stageNames)
+            .enter().append("text")
+            .attr("x", (d, i) => {
+                const layerNodes = nodes.filter(n => n.layer === i && n.isStage);
+                if (layerNodes.length) return layerNodes[0].x0 - 10;
+                return 100 + i * 250;
+            })
+            .attr("y", 24)
+            .attr("text-anchor", "end")
+            .attr("font-size", "13px")
+            .attr("font-weight", "bold")
+            .attr("fill", (d, i) => stageColors[i])
+            .text(d => d);
+        
+        // Wave filter buttons
+        const waves = [...new Set(links.map(l => l.wave))];
+        const controls = d3.select("#graph").insert("div", ":first-child")
+            .attr("class", "controls");
+        
+        controls.append("button")
+            .attr("class", "btn active")
+            .attr("data-wave", "all")
+            .text("All Waves")
+            .on("click", function() {
+                d3.selectAll(".btn").classed("active", false);
+                d3.select(this).classed("active", true);
+                filterWave("all");
+            });
+        
+        waves.forEach(w => {
+            controls.append("button")
+                .attr("class", "btn")
+                .attr("data-wave", w)
+                .text(w)
+                .style("border-left-color", waveColors[w])
+                .on("click", function() {
+                    d3.selectAll(".btn").classed("active", false);
+                    d3.select(this).classed("active", true);
+                    filterWave(w);
+                });
+        });
+        
+        function filterWave(wave) {
+            link.style("display", d => wave === "all" || d.wave === wave ? null : "none");
+            node.style("display", d => {
+                if (wave === "all") return null;
+                if (d.isStage) return null;
+                return d.wave === wave ? null : "none";
+            });
+        }
+        
+        // Legend
+        const legend = d3.select("#legend");
+        legend.append("h3").text("Pipeline Stages");
+        stageNames.forEach((name, i) => {
+            const item = legend.append("div").attr("class", "legend-item");
+            item.append("div").attr("class", "legend-color").style("background", stageColors[i]);
+            item.append("span").text(name);
+        });
+        
+        // Stats
+        d3.select("#stats").html(`
+            <strong>${nodes.filter(n => n.isStage).length} stages</strong> | 
+            <strong>${nodes.filter(n => !n.isStage).length} wave-stage nodes</strong> | 
+            <strong>${links.length} flows</strong> | 
+            <span style="color: #ffd700;">5 waves traced end-to-end</span>
+        `);
+    </script>
+</body>
+</html>

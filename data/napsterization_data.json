@@ -1,0 +1,44 @@
+{
+  "doctrine": "Conscious strategy: Build illegal/unregulated product -> Grow massive volume before enforcement -> Face enforcement (fine/Wells notice) -> Negotiate settlement -> Regulatory capture -> Legitimized monopoly",
+  "origin": "Napster (1999-2001): Illegal P2P -> 80M users -> RIAA lawsuits -> Bankruptcy -> iTunes/Spotify legitimized model",
+  "applications": [
+    {
+      "company": "Polymarket",
+      "founder": "Shayne Coplan",
+      "quote_2018": "\"We're Napsterizing prediction markets.\"",
+      "quote_2025_krug": "\"The strategy was always: grow first, regulate later.\"",
+      "steps": [
+        "2020: Launch offshore, no KYC, US users welcome",
+        "2022: CFTC Wells Notice -> $1.4M fine, 'compliance' theater",
+        "2023-24: Grow to $10B+ volume (election year)",
+        "2025: CFTC captured (Selig Chair, Quintenz recusal, Don Jr. advisory) -> Legitimized monopoly"
+      ],
+      "receipts": [
+        "R-UNLIM-001",
+        "R-CFTC-001 to R-CFTC-005"
+      ]
+    },
+    {
+      "company": "Uber",
+      "founder": "Travis Kalanick",
+      "pattern": "Illegal taxi service -> Massive scale -> Regulatory battles -> State-by-state legalization -> Monopoly",
+      "note": "Kalanick explicitly referenced Napster strategy"
+    },
+    {
+      "company": "Airbnb",
+      "founder": "Brian Chesky",
+      "pattern": "Illegal short-term rentals -> Massive scale -> City regulations -> Negotiated compliance -> Dominant platform"
+    },
+    {
+      "company": "SpaceX/Starlink",
+      "founder": "Elon Musk",
+      "pattern": "Unlicensed satellite constellation -> Deploy first -> FCC/ITU catch-up -> Spectrum dominance"
+    },
+    {
+      "company": "Tesla",
+      "founder": "Elon Musk",
+      "pattern": "ZEV credit arbitrage -> 100% profit dependency -> Political protection of credits -> Regulatory moat"
+    }
+  ],
+  "key_insight": "Napsterization is the Stage 5 mechanism: Regulatory capture through conscious disruption. The fine/Wells notice is not a penalty - it's the entrance fee to the legitimized monopoly."
+}

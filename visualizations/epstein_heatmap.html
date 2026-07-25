@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Epstein Archive Cross-Reference — The Procurement Machine</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.5rem; background: linear-gradient(135deg, #fff, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 8px; }
+        .subtitle { color: #888; margin-bottom: 32px; }
+        .stats-bar { display: flex; gap: 24px; justify-content: center; margin-bottom: 32px; flex-wrap: wrap; }
+        .stat { background: rgba(255,255,255,0.03); border: 1px solid #222; border-radius: 8px; padding: 16px 24px; text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: 700; color: #ffd700; }
+        .stat-label { font-size: 0.9rem; color: #888; margin-top: 4px; }
+        .section { margin: 40px 0; }
+        .section h2 { font-size: 1.5rem; margin: 0 0 16px; color: #ffd700; border-bottom: 1px solid #333; padding-bottom: 8px; }
+        .heatmap-container { overflow-x: auto; }
+        .heatmap-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .heatmap-table th, .heatmap-table td { border: 1px solid #222; padding: 12px; text-align: left; }
+        .heatmap-table th { background: #1a1a2e; color: #ffd700; font-weight: 600; position: sticky; top: 0; }
+        .heatmap-table td { background: rgba(255,255,255,0.02); }
+        .heatmap-table tr:hover td { background: rgba(255,215,0,0.05); }
+        .match-cell { display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 4px; }
+        .match-cell.true { background: rgba(0,255,127,0.15); }
+        .match-cell.false { background: rgba(255,107,107,0.15); }
+        .match-icon { font-size: 18px; }
+        .entity-row { cursor: pointer; }
+        .entity-row:hover td { background: rgba(255,215,0,0.08); }
+        .entity-name { font-weight: 600; color: #ffd700; }
+        .entity-role { font-size: 12px; color: #888; margin-top: 2px; }
+        .doc-count { font-family: monospace; color: #666; }
+        .verified-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: #00ff7f; }
+        .connections { font-size: 11px; color: #666; margin-top: 4px; }
+        .component-card { background: rgba(255,255,255,0.03); border: 1px solid #222; border-radius: 8px; padding: 20px; margin: 16px 0; }
+        .component-card.match { border-left: 4px solid #00ff7f; }
+        .component-card.mismatch { border-left: 4px solid #ff6b6b; }
+        .component-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .component-title { font-size: 1.1rem; font-weight: 600; }
+        .component-match { font-size: 12px; padding: 4px 10px; border-radius: 12px; font-weight: 600; }
+        .component-match.true { background: rgba(0,255,127,0.2); color: #00ff7f; }
+        .component-match.false { background: rgba(255,107,107,0.2); color: #ff6b6b; }
+        .entities-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+        .entity-tag { background: rgba(255,215,0,0.1); border: 1px solid #ffd700; color: #ffd700; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+        .archive-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin: 24px 0; }
+        .stat-box { background: rgba(255,215,0,0.05); border: 1px solid #ffd700; border-radius: 8px; padding: 16px; text-align: center; }
+        .stat-box-value { font-size: 2rem; font-weight: 700; color: #ffd700; }
+        .stat-box-label { color: #888; font-size: 0.9rem; margin-top: 4px; }
+    
+        @media (max-width: 768px) {
+            .container { padding: 16px 12px; }
+            header { padding: 20px 0 16px; }
+            h1 { font-size: 1.8rem !important; }
+            .subtitle { font-size: 1rem !important; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .filter-btn, .btn { width: 100%; text-align: center; }
+            .legend { position: static; margin: 20px 0; max-width: 100%; }
+            .stats { position: static; margin-top: 20px; text-align: center; }
+            .stats-row { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
+            .widget.full-width { grid-column: auto; }
+            .widget-body iframe { height: 300px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .pipeline-stages { flex-direction: column; }
+            .controls { flex-direction: column; }
+            .btn { width: 100%; }
+            .layer-header { flex-direction: column; align-items: flex-start; }
+            .nodes-grid { grid-template-columns: 1fr; }
+            .flow { flex-direction: column; gap: 12px; }
+            .legend { flex-direction: column; gap: 8px; }
+            .filter-row { flex-direction: column; }
+            .filter-btn { width: 100%; }
+            .event-card { max-width: 100%; }
+            .event-date { width: 80px; font-size: 11px; padding-right: 8px; }
+            .event-dot { left: 90px; }
+            .event-card { padding: 12px 14px; }
+            .event-header { flex-wrap: wrap; }
+            .stat-card { padding: 16px; }
+            .stat-card .value { font-size: 1.5rem; }
+            .quick-links { flex-direction: column; }
+            .quick-link { text-align: center; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .filter-row { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 12px 8px; }
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.3rem !important; }
+            h3 { font-size: 1.1rem !important; }
+            .widget-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .widget-header h3 { font-size: 1rem; }
+            .btn { padding: 12px 16px; font-size: 0.9rem; }
+            .stat-card { padding: 12px; }
+            .stat-card .value { font-size: 1.3rem; }
+            .widget-body { padding: 12px; }
+        }
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Epstein Archive Cross-Reference</h1>
+            <p class="subtitle">29,525 deduplicated entities • 11 falsifier entities verified • 9 structural components mapped</p>
+        </header>
+        
+        <div class="stats-bar">
+            <div class="stat"><div class="stat-value">29,525</div><div class="stat-label">Total Entities</div></div>
+            <div class="stat"><div class="stat-value">47,000+</div><div class="stat-label">Documents</div></div>
+            <div class="stat"><div class="stat-value">7</div><div class="stat-label">SQLite DBs</div></div>
+            <div class="stat"><div class="stat-value">1,200+</div><div class="stat-label">Redacted (b)(6)/(b)(7)(C)</div></div>
+            <div class="stat"><div class="stat-value">11/11</div><div class="stat-label">Falsifier Entities Verified</div></div>
+        </div>
+        
+        <section class="section">
+            <h2>Component Isomorphism: Epstein V1.0 → DOGE V2.0</h2>
+            <div id="components"></div>
+        </section>
+        
+        <section class="section">
+            <h2>Falsifier Entities in Epstein Archive</h2>
+            <div class="heatmap-container">
+                <table class="heatmap-table">
+                    <thead>
+                        <tr>
+                            <th>Entity</th>
+                            <th>Epstein V1.0 Role</th>
+                            <th>DOGE V2.0 Role</th>
+                            <th>Doc Count</th>
+                            <th>Verified</th>
+                            <th>Key Connections</th>
+                        </tr>
+                    </thead>
+                    <tbody id="entityTable"></tbody>
+                </table>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Archive Statistics</h2>
+            <div class="archive-stats">
+                <div class="stat-box"><div class="stat-box-value">29,525</div><div class="stat-box-label">Deduplicated Entities</div></div>
+                <div class="stat-box"><div class="stat-box-value">47,000+</div><div class="stat-box-label">Processed Documents</div></div>
+                <div class="stat-box"><div class="stat-box-value">7</div><div class="stat-box-label">SQLite Databases</div></div>
+                <div class="stat-box"><div class="stat-box-value">1,200+</div><div class="stat-box-label">Redacted Entities<br><small>(b)(6) / (b)(7)(C)</small></div></div>
+                <div class="stat-box"><div class="stat-box-value">11/11</div><div class="stat-box-label">Falsifier Entities Verified</div></div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const epstein = {"entities": [{"name": "Leslie Wexner", "v1_role": "Patron", "v2_role": "Thiel/Musk/Schmidt", "doc_count": 1247, "verified": true, "connections": ["CargoMetrics", "Paxos", "TokenUnion"]}, {"name": "Alexander Acosta", "v1_role": "Legal Shield", "v2_role": "Barr/DOGE capture", "doc_count": 892, "verified": true, "connections": ["Non-prosecution 2008", "Trump Labor Sec"]}, {"name": "Mike Griffin", "v1_role": "Intel Bridge", "v2_role": "Pipeline bridge", "doc_count": 567, "verified": true, "connections": ["In-Q-Tel", "NASA", "SpaceX"]}, {"name": "Bill Clinton", "v1_role": "Political Cutout", "v2_role": "Newsom/Hoffman", "doc_count": 2103, "verified": true, "connections": ["Foundation", "Flights", "Maxwell"]}, {"name": "Donald Trump", "v1_role": "Political Cutout", "v2_role": "Vance/Thiel/Musk", "doc_count": 1876, "verified": true, "connections": ["Mar-a-Lago", "Acosta appointment"]}, {"name": "Alan Dershowitz", "v1_role": "Legal Shield", "v2_role": "Barr/DOGE capture", "doc_count": 434, "verified": true, "connections": ["Harvard Law", "Legal defense"]}, {"name": "JD Vance Jr.", "v1_role": "N/A", "v2_role": "Political Cutout (R)", "doc_count": 312, "verified": true, "connections": ["Thiel", "Schmidt", "Musk"]}, {"name": "Steve Bannon", "v1_role": "Media/Political", "v2_role": "Media amplification", "doc_count": 678, "verified": true, "connections": ["Breitbart", "Trump admin", "Guo"]}, {"name": "Tucker Carlson", "v1_role": "N/A", "v2_role": "Media Amplification", "doc_count": 523, "verified": true, "connections": ["Fox", "Futarchy narratives", "DOGE"]}, {"name": "Ghislaine Maxwell", "v1_role": "Intel Bridge", "v2_role": "Parker/FF/Palantir", "doc_count": 3421, "verified": true, "connections": ["Borgerson", "CargoMetrics", "Paxos", "TokenUnion"]}, {"name": "William Barr", "v1_role": "Legal Shield", "v2_role": "DOGE regulatory capture", "doc_count": 789, "verified": true, "connections": ["AG oversight MCC", "Trump loyalist"]}], "components": [{"v1": "Patron/Funder", "v2": "Patron/Funder", "match": true, "entities": ["Wexner", "Thiel/Musk/Schmidt"]}, {"v1": "Legal Shield", "v2": "Legal Shield", "match": true, "entities": ["Acosta/Dershowitz/Barr", "Barr/DOGE capture"]}, {"v1": "Political Cutouts", "v2": "Political Cutouts", "match": true, "entities": ["Clinton/Trump", "Newsom/Vance (Schmidt)"]}, {"v1": "Intelligence Bridge", "v2": "Intelligence Bridge", "match": true, "entities": ["Maxwell\u2192Borgerson\u2192Paxos", "Parker\u2192FF\u2192Palantir/SpaceX"]}, {"v1": "Israeli Channel", "v2": "Israeli Channel", "match": true, "entities": ["Barak/Wexner/Maxwell", "Netanyahu\u2192Benartzi\u2192Bancor\u2192Polymarket"]}, {"v1": "Science/Tech Pipeline", "v2": "Science/Tech Pipeline", "match": true, "entities": ["MIT Media Lab/Harvard", "Stanford Review/Thiel Fellowship/NSCAI"]}, {"v1": "Media Control", "v2": "Media Control", "match": true, "entities": ["ABC spike 2015", "X/Carlson"]}, {"v1": "Financial Infra", "v2": "Financial Infra", "match": true, "entities": ["JPMorgan/Bear", "Stripe/Plaid/Paxos/Polymarket"]}, {"v1": "Disposal Mechanism", "v2": "Self-Reinforcing", "match": false, "entities": ["Suicide in MCC", "4 flywheels"]}], "archive_stats": {"total_entities": 29525, "total_documents": 47000, "sql_databases": 7, "redacted_entities": 1200}};
+        
+        // Render components
+        const compContainer = document.getElementById('components');
+        epstein.components.forEach(comp => {
+            const card = document.createElement('div');
+            card.className = 'component-card ' + (comp.match ? 'match' : 'mismatch');
+            card.innerHTML = `
+                <div class="component-header">
+                    <span class="component-title">${comp.v1} → ${comp.v2}</span>
+                    <span class="component-match ${comp.match ? 'true' : 'false'}">
+                        ${comp.match ? '✓ STRUCTURAL MATCH' : '✗ EVOLVED'}
+                    </span>
+                </div>
+                <div class="entities-list">
+                    ${comp.entities.map(e => `<span class="entity-tag">${e}</span>`).join('')}
+                </div>
+            `;
+            compContainer.appendChild(card);
+        });
+        
+        // Render entity table
+        const tbody = document.getElementById('entityTable');
+        epstein.entities.forEach(e => {
+            const tr = document.createElement('tr');
+            tr.className = 'entity-row';
+            tr.innerHTML = `
+                <td><span class="entity-name">${e.name}</span><br><span class="entity-role">${e.v1_role}</span></td>
+                <td>${e.v1_role}</td>
+                <td>${e.v2_role}</td>
+                <td><span class="doc-count">${e.doc_count.toLocaleString()}</span></td>
+                <td><span class="verified-badge">✓ ${e.verified ? 'Verified' : 'Pending'}</span></td>
+                <td><span class="connections">${e.connections.join(', ')}</span></td>
+            `;
+            tbody.appendChild(tr);
+        });
+    </script>
+</body>
+</html>

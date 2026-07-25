@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE PROCUREMENT MACHINE — Intelligence Program Privatization as a Distinct Procurement Category</title>
+    <meta name="description" content="A structural analysis of the DARPA-to-DOGE pipeline: how intelligence programs become 'startups' through a documented 5-stage procurement template">
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            margin: 0; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        a { color: #ffd700; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 60px; padding-top: 60px; }
+        h1 { 
+            font-size: clamp(2rem, 5vw, 3.5rem); 
+            font-weight: 700; 
+            margin: 0 0 16px; 
+            background: linear-gradient(135deg, #fff 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle { 
+            font-size: clamp(1rem, 2.5vw, 1.4rem); 
+            color: #888; 
+            margin: 0 0 8px;
+            font-weight: 300;
+        }
+        .meta { 
+            color: #666; 
+            font-size: 0.9rem; 
+            margin-bottom: 32px;
+        }
+        .badge { 
+            display: inline-block; 
+            background: rgba(255,215,0,0.1); 
+            border: 1px solid #ffd700; 
+            color: #ffd700; 
+            padding: 4px 12px; 
+            border-radius: 4px; 
+            font-size: 0.8rem; 
+            margin: 0 4px 8px;
+        }
+        .section { margin: 60px 0; }
+        .section h2 { 
+            font-size: 1.8rem; 
+            margin: 0 0 24px; 
+            padding-bottom: 12px;
+            border-bottom: 1px solid #222;
+        }
+        .card-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
+        .card { 
+            background: rgba(255,255,255,0.02); 
+            border: 1px solid #222; 
+            border-radius: 8px; 
+            padding: 24px; 
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .card:hover { 
+            transform: translateY(-4px); 
+            border-color: #ffd700; 
+            box-shadow: 0 12px 40px rgba(255,215,0,0.1);
+        }
+        .card h3 { 
+            margin: 0 0 12px; 
+            font-size: 1.2rem; 
+            color: #ffd700; 
+        }
+        .card p { margin: 0 0 16px; color: #aaa; font-size: 0.95rem; }
+        .card .link { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
+            font-size: 0.9rem; 
+            font-weight: 500;
+        }
+        .card .link::after { content: "→"; transition: transform 0.2s; }
+        .card:hover .link::after { transform: translateX(4px); }
+        .pipeline-stages { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+        .stage-badge { 
+            background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,215,0,0.05)); 
+            border: 1px solid #ffd700; 
+            padding: 12px 20px; 
+            border-radius: 8px; 
+            text-align: center;
+            min-width: 160px;
+            flex: 1;
+        }
+        .stage-badge .num { font-size: 0.7rem; color: #ffd700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+        .stage-badge .name { font-weight: 600; font-size: 1rem; }
+        .stage-badge .desc { font-size: 0.75rem; color: #888; margin-top: 4px; }
+        .finding { 
+            background: rgba(255,215,0,0.05); 
+            border-left: 4px solid #ffd700; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 0 8px 8px 0;
+        }
+        .finding h3 { margin: 0 0 8px; color: #ffd700; font-size: 1.1rem; }
+        .finding p { margin: 0; color: #ccc; }
+        .cta-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 40px; }
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            padding: 14px 28px; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-primary { background: #ffd700; color: #0a0a0f; border: none; }
+        .btn-primary:hover { background: #ffed4a; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,215,0,0.3); }
+        .btn-secondary { background: transparent; color: #ffd700; border: 2px solid #ffd700; }
+        .btn-secondary:hover { background: rgba(255,215,0,0.1); }
+        footer { 
+            text-align: center; 
+            padding: 40px 20px; 
+            color: #555; 
+            font-size: 0.85rem;
+            border-top: 1px solid #111;
+            margin-top: 80px;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            .pipeline-stages { flex-direction: column; }
+            .stage-badge { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>THE PROCUREMENT MACHINE</h1>
+            <p class="subtitle">How DARPA Programs Were Privatized Into the Surveillance State</p>
+            <p class="subtitle">A Structural Analysis of the Intelligence-Industrial Complex's Self-Reinforcing Extraction Architecture</p>
+            <div class="meta">Kyle Jimenez for Botwave · July 2026</div>
+            <div>
+                <span class="badge">11 Chapters</span>
+                <span class="badge">6 Appendices</span>
+                <span class="badge">130K+ Words</span>
+                <span class="badge">10 Falsifiable Claims</span>
+                <span class="badge">40 Red Team Attacks Repelled</span>
+                <span class="badge">76 Substrate Entities</span>
+                <span class="badge">BUQP Verified</span>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>The Thesis</h2>
+            <div class="finding">
+                <h3>Intelligence Program Privatization (IPP) is a distinct procurement category</h3>
+                <p>with a documented, repeatable 5-stage pipeline. The companies sold as "Silicon Valley startups" — Palantir, Facebook/Meta, SpaceX/Starlink, Google, Polymarket, Anduril — are not market-emergent ventures. They are intelligence program privatizations executed through this pipeline.</p>
+            </div>
+            <div class="finding">
+                <h3>The DOGE machine is this pipeline operationalized</h3>
+                <p>It installs its own alumni as federal CIOs, awards contracts to its own portfolio, centralizes federal data for prediction-market governance (futarchy), and protects its revenue through captured regulators. The partisan conflict is theater; the architecture is bipartisan.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>The 5-Stage Pipeline</h2>
+            <p style="color: #888; margin-bottom: 24px;">Each stage has falsifiable entry/exit gates with primary source receipts. All 4 historical waves + DOGE mapped.</p>
+            <div class="pipeline-stages">
+                <div class="stage-badge">
+                    <div class="num">Stage 1</div>
+                    <div class="name">Public Program Prototyping</div>
+                    <div class="desc">DARPA/IARPA/NSA builds surveillance, data-fusion, or governance capability</div>
+                </div>
+                <div class="stage-badge">
+                    <div class="num">Stage 2</div>
+                    <div class="name">Congressional Defunding / Public Rejection</div>
+                    <div class="desc">Political resistance creates the "policy vacuum" enabling privatization</div>
+                </div>
+                <div class="stage-badge">
+                    <div class="num">Stage 3</div>
+                    <div class="name">Intelligence VC Bridge</div>
+                    <div class="desc">In-Q-Tel / CIA VC transfers capital, personnel, IP to private entity</div>
+                </div>
+                <div class="stage-badge">
+                    <div class="num">Stage 4</div>
+                    <div class="name">Private Incorporation</div>
+                    <div class="desc">Same month, same architects, often same codebase/architecture</div>
+                </div>
+                <div class="stage-badge">
+                    <div class="num">Stage 5</div>
+                    <div class="name">Regulatory Capture → Futarchy</div>
+                    <div class="desc">Alumni installed as regulators; federal data → prediction markets → governance replacement</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>The Four Historical Waves + DOGE</h2>
+            <div class="card-grid">
+                <a href="chapters/chapter_3.html" class="card" style="text-decoration: none; color: inherit;">
+                    <h3>Wave 1: TIA → Palantir</h3>
+                    <p>John Poindexter (Iran-Contra convict → DARPA IAO Director) builds Total Information Awareness. Congress defunds via §8131 (Sept 2003). Palantir incorporates May 2003 (DE #3759318). In-Q-Tel invests ~$2M. CIA sole client 2003-2008. DOGE: Palantir alumni as CIOs, $113M+ contracts.</p>
+                    <span class="link">Explore Wave 1 →</span>
+                </a>
+                <a href="chapters/chapter_4.html" class="card" style="text-decoration: none; color: inherit;">
+                    <h3>Wave 2: LifeLog → Facebook</h3>
+                    <p>Only wave with same-day cancellation/launch. LifeLog cancelled Feb 4, 2004; TheFacebook.com launches Feb 4, 2004. PM Douglas Gage: "Facebook is pseudo-LifeLog." Sean Parker (CIA recruit at 16) introduces Zuckerberg to Thiel. Thiel invests $500K Sept 2004.</p>
+                    <span class="link">Explore Wave 2 →</span>
+                </a>
+                <a href="chapters/chapter_5.html" class="card" style="text-decoration: none; color: inherit;">
+                    <h3>Wave 3: PAM → Polymarket</h3>
+                    <p>PAM architect Robin Hanson invents futarchy ("vote on values, bet on beliefs") and LMSR. Senate 96-0 kills PAM July 2003. Thiel Fellow Joey Krug → Augur (LMSR) → Founders Fund partner. Coplan TokenUnion→Bancor (Netanyahu family) → Polymarket. CFTC captured (Selig/Quintenz/Don Jr.).</p>
+                    <span class="link">Explore Wave 3 →</span>
+                </a>
+                <a href="chapters/chapter_6.html" class="card" style="text-decoration: none; color: inherit;">
+                    <h3>Wave 4: Space Launch → SpaceX/Starshield</h3>
+                    <p>Mike Griffin: In-Q-Tel Pres/COO (2000-05) → NASA Admin (2005-09) → SpaceX COTS ($278M) & CRS ($1.6B). SpaceX 2008 near-bankruptcy saved by CRS. NRO Starshield $1.8B classified contract (Reuters 5 sources). Gov revenue majority ~$4-6B/yr. Tesla 2020 profit 100% ZEV-credit dependent.</p>
+                    <span class="link">Explore Wave 4 →</span>
+                </a>
+                <a href="chapters/chapter_7.html" class="card" style="text-decoration: none; color: inherit;">
+                    <h3>Wave 5: The DOGE Machine</h3>
+                    <p>Pipeline closed into 4 self-reinforcing flywheels: (L1) Personnel→Procurement: Palantir/SpaceX alumni as CIOs → $113M+ contracts → stock +90%. (L2) Data→Markets→Governance: IRS/Immigration/SSA/OPM → Palantir → Polymarket/Kalshi → Futarchy. (L3) Regulatory Protection: Tesla ZEV $1.79B/yr, SpaceX NRO $1.8B. (L4) Narrative: X algorithmic boost + Carlson.</p>
+                    <span class="link">Explore Wave 5 →</span>
+                </a>
+                <a href="chapters/chapter_9.html" class="card" style="text-decoration: none; color: inherit;">
+                    <h3>Epstein-DOGE Continuity (V1.0 → V2.0)</h3>
+                    <p>8-component structural isomorphism: Patron (Wexner→Thiel/Musk/Schmidt), Legal Shield (Acosta/Dershowitz→Barr/DOGE capture), Political Cutouts (Clinton/Trump→Newsom/Vance via Schmidt), Intelligence Bridge (Maxwell→Borgerson→Paxos→Parker→FF), Israeli Channel (Barak/Wexner→Netanyahu→Benartzi→Bancor→Polymarket), Science/Tech Pipeline (MIT Media Lab/Harvard→Stanford Review/Thiel Fellowship/NSCAI), Media Control (ABC spike→X/Carlson), Financial Infra (JPMorgan/Bear→Stripe/Plaid/Paxos/Polymarket), Disposal (MCC suicide→self-reinforcing machine). 11/11 falsifier entities verified in Epstein archive.</p>
+                    <span class="link">Explore Continuity →</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Interactive Visualizations</h2>
+            <div class="card-grid">
+                <a href="selectorate_network.html" class="card" style="text-decoration: none; color: inherit;" target="_blank">
+                    <h3>🕸️ Selectorate & Operator Network</h3>
+                    <p>Three-layer architecture: 9 Program Managers → 4 Board Governance Bodies → 9 Cutout Operators. Network centrality proves Eric Schmidt as unitary node (betweenness 0.42) connecting both 2028 avatars (Vance via Narya/Bilderberg, Newsom via Google/donor network). Drag, zoom, filter layers, click nodes for receipts.</p>
+                    <span class="link">Open Network Graph →</span>
+                </a>
+                <a href="pipeline_sankey.html" class="card" style="text-decoration: none; color: inherit;" target="_blank">
+                    <h3>📊 Pipeline Flow (Sankey)</h3>
+                    <p>All 5 waves traced through 5 stages end-to-end. See exactly where each wave enters, exits, or skips stages. Click flows for receipt data. Filter by wave. Stage gates with falsifiable criteria displayed.</p>
+                    <span class="link">Open Pipeline Flow →</span>
+                </a>
+                <a href="data/facebook_origin.json" class="card" style="text-decoration: none; color: inherit;" target="_blank">
+                    <h3>📘 Facebook Origin Trace</h3>
+                    <p>LifeLog (DARPA) cancelled Feb 4, 2004 → TheFacebook.com launches same day. PM Gage: "Facebook is pseudo-LifeLog." Sean Parker (CIA recruit 16) → Thiel $500K. Parker family: father NOAA/Project Medea, grandfather MK-ULTRA. PYUSD = successful Libra/Diem pivot.</p>
+                    <span class="link">View Origin Data →</span>
+                </a>
+                <a href="data/polymarket_origin.json" class="card" style="text-decoration: none; color: inherit;" target="_blank">
+                    <h3>🔮 Polymarket Origin Trace</h3>
+                    <p>PAM (DARPA) → Hanson futarchy/LMSR → Thiel Fellow Krug → Augur → Founders Fund → Coplan TokenUnion→Bancor (Netanyahu family via Benartzi) → Polymarket. CFTC capture: Selig Chair, Quintenz recusal, Don Jr. advises both. Napsterization = conscious strategy.</p>
+                    <span class="link">View Origin Data →</span>
+                </a>
+                <a href="data/kalshi_origin.json" class="card" style="text-decoration: none; color: inherit;" target="_blank">
+                    <h3>📈 Kalshi Origin Trace</h3>
+                    <p>Same PAM lineage but CFTC-regulated moat. Quintenz (CFTC Commissioner 2017-21) → Kalshi Board + a16z crypto advisor. Selig Acting Chair 2025 approves election markets. Don Jr. advises both Polymarket AND Kalshi via 1789 Capital. Regulated vs offshore futarchy.</p>
+                    <span class="link">View Origin Data →</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Verification Infrastructure</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>📋 BUQP Gate Results</h3>
+                    <p>All 12 chapters pass automated verification. <a href="appendices/appendix_E.html">Appendix E</a> details: 7 PASS, 4 ADVISE (5 CANNOT-VERIFY on quotes), 0 BLOCK, 0 MISMATCH.</p>
+                </div>
+                <div class="card">
+                    <h3>⚔️ Red Team Results</h3>
+                    <p>10 thesis claims × 4 attack vectors = 40 attacks. <a href="appendices/appendix_F.html">Appendix F</a>: 40 repelled, 0 triggered, 0 successful. Every falsifier stress-tested against primary sources.</p>
+                </div>
+                <div class="card">
+                    <h3>🗂️ Substrate Anchoring</h3>
+                    <p>76 entities (30 People, 12 Companies, 6 Programs, 20 Claims, 8 Risks) resolved to Miessler schema at <code>/data/pawns/</code>. <a href="appendices/appendix_D.html">Appendix D</a> full registry with falsifiers and confidence scores.</p>
+                </div>
+                <div class="card">
+                    <h3>🔍 Epstein Archive Cross-Reference</h3>
+                    <p>29,525 deduplicated entities in epstein-docs.github.io archive. <a href="data/epstein_crossref.json">11/11 falsifier entities verified present</a> (Wexner, Acosta, Griffin, Clinton, Trump, Dershowitz, Vance Jr., Bannon, Carlson, Maxwell, Barr). Core intel operators redacted as (b)(6);(b)(7)(C).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Primary Source Receipts</h2>
+            <p style="color: #888;">Every claim in the dissertation has a falsifier and a primary source receipt. <a href="receipts/">Browse receipts by chapter</a> or <a href="data/">download structured data</a>.</p>
+        </section>
+
+        <div class="cta-row">
+            <a href="THE_PROCUREMENT_MACHINE.pdf" class="btn btn-primary" download>📄 Download Full PDF (126 pages)</a>
+            <a href="chapters/" class="btn btn-secondary">📖 Read Chapters Online</a>
+            <a href="data/" class="btn btn-secondary">📊 Download All Data (JSON)</a>
+        </div>
+
+        <footer>
+            <p><strong>THE PROCUREMENT MACHINE</strong> — A Structural Analysis of the Intelligence-Industrial Complex's Self-Reinforcing Extraction Architecture</p>
+            <p>Author: Kyle Jimenez (gringo/gringo1904) for Botwave · July 2026</p>
+            <p>Methodology: Receipts-First · BUQP-Gated · Substrate-Anchored · Red-Team Stress-Tested · Falsifier-Disciplined</p>
+            <p>All claims falsifiable. All entities substrate-resolved. All gates passed. The architecture stands until a falsifier is produced.</p>
+            <p style="margin-top: 20px; font-size: 0.8rem; color: #444;">
+                Data sources: Congressional Record · SEC EDGAR · USAspending.gov · Senate LDA · Corporate Registries · Court Dockets · Epstein Archive (epstein-docs.github.io) · NRO/Reuters · CFTC Dockets · Tesla 10-Ks
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

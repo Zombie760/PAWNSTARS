@@ -1,0 +1,160 @@
+{
+  "nodes": [
+    {
+      "name": "Taxpayer Funds",
+      "category": "source",
+      "color": "#00bfff"
+    },
+    {
+      "name": "DARPA/IARPA/NSA Budgets",
+      "category": "program",
+      "color": "#00bfff"
+    },
+    {
+      "name": "Congressional Appropriations",
+      "category": "gate",
+      "color": "#ff6b6b"
+    },
+    {
+      "name": "In-Q-Tel Capital",
+      "category": "vc",
+      "color": "#ffd700"
+    },
+    {
+      "name": "Private Incorporation",
+      "category": "incorporation",
+      "color": "#00ff7f"
+    },
+    {
+      "name": "Federal Contracts (Palantir)",
+      "category": "contract",
+      "color": "#ff00ff"
+    },
+    {
+      "name": "Federal Contracts (SpaceX)",
+      "category": "contract",
+      "color": "#ff00ff"
+    },
+    {
+      "name": "Federal Contracts (Anduril)",
+      "category": "contract",
+      "color": "#ff00ff"
+    },
+    {
+      "name": "Tesla ZEV Credits",
+      "category": "subsidy",
+      "color": "#ff6b6b"
+    },
+    {
+      "name": "NRO Classified Contracts",
+      "category": "classified",
+      "color": "#8800ff"
+    },
+    {
+      "name": "Prediction Markets (Polymarket/Kalshi)",
+      "category": "futarchy",
+      "color": "#ffd700"
+    },
+    {
+      "name": "Investor Returns (Thiel, Musk, Schmidt)",
+      "category": "returns",
+      "color": "#ffd700"
+    },
+    {
+      "name": "Political Contributions",
+      "category": "political",
+      "color": "#ff6b6b"
+    },
+    {
+      "name": "Lobbying Expenditures",
+      "category": "lobbying",
+      "color": "#ff6b6b"
+    }
+  ],
+  "links": [
+    {
+      "source": "Taxpayer Funds",
+      "target": "DARPA/IARPA/NSA Budgets",
+      "value": 50000000000,
+      "label": "Annual IC R&D"
+    },
+    {
+      "source": "DARPA/IARPA/NSA Budgets",
+      "target": "Congressional Appropriations",
+      "value": 45000000000,
+      "label": "Program funding"
+    },
+    {
+      "source": "Congressional Appropriations",
+      "target": "In-Q-Tel Capital",
+      "value": 150000000,
+      "label": "IQT annual"
+    },
+    {
+      "source": "In-Q-Tel Capital",
+      "target": "Private Incorporation",
+      "value": 2000000,
+      "label": "Palantir seed"
+    },
+    {
+      "source": "Private Incorporation",
+      "target": "Federal Contracts (Palantir)",
+      "value": 2100000000,
+      "label": "78 contracts $2.1B+"
+    },
+    {
+      "source": "Private Incorporation",
+      "target": "Federal Contracts (SpaceX)",
+      "value": 4500000000,
+      "label": "93 contracts $4-6B/yr"
+    },
+    {
+      "source": "Private Incorporation",
+      "target": "Federal Contracts (Anduril)",
+      "value": 2500000000,
+      "label": "100 contracts $2.5B+"
+    },
+    {
+      "source": "Taxpayer Funds",
+      "target": "Tesla ZEV Credits",
+      "value": 1790000000,
+      "label": "CA credits 2023"
+    },
+    {
+      "source": "Taxpayer Funds",
+      "target": "NRO Classified Contracts",
+      "value": 1800000000,
+      "label": "Starshield"
+    },
+    {
+      "source": "Federal Contracts (Palantir)",
+      "target": "Prediction Markets",
+      "value": 50000000,
+      "label": "Data feeds"
+    },
+    {
+      "source": "Prediction Markets",
+      "target": "Investor Returns",
+      "value": 1000000000,
+      "label": "Volume/fees"
+    },
+    {
+      "source": "Investor Returns",
+      "target": "Political Contributions",
+      "value": 50000000,
+      "label": "Campaign/Lobbying"
+    },
+    {
+      "source": "Investor Returns",
+      "target": "Lobbying Expenditures",
+      "value": 28400000,
+      "label": "2024 total (Palantir/SpaceX/Anduril)"
+    },
+    {
+      "source": "Lobbying Expenditures",
+      "target": "Congressional Appropriations",
+      "value": 28400000,
+      "label": "Influence cycle"
+    }
+  ]
+}

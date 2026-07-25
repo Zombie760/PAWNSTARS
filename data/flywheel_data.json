@@ -1,0 +1,173 @@
+{
+  "flywheels": [
+    {
+      "id": "L1",
+      "name": "Personnel -> Procurement -> Profit -> Power",
+      "color": "#ff6b6b",
+      "steps": [
+        {
+          "step": 1,
+          "action": "DOGE installs Palantir/SpaceX alumni as federal CIOs",
+          "evidence": "Barbaccia (OMB), Hogan (OPM), Riedel (DOE), Graber (DOE), Minor (HHS)",
+          "receipt": "R-DOGE-CIO-001 to R-DOGE-CIO-005"
+        },
+        {
+          "step": 2,
+          "action": "CIOs control $100B+ federal IT procurement & data standards",
+          "evidence": "Federal IT budget allocations",
+          "receipt": "R-DOGE-DATA-001"
+        },
+        {
+          "step": 3,
+          "action": "CIOs award contracts to Palantir/SpaceX/portfolio companies",
+          "evidence": "$113M+ Palantir DOGE contracts first months (Immigration DB, IRS Mega API, AI agents)",
+          "receipt": "R-GUARD-026, R-PAL-DOGE-001 to R-PAL-DOGE-005"
+        },
+        {
+          "step": 4,
+          "action": "Palantir stock +90%; SpaceX valuation up; Tesla ZEV credits protected",
+          "evidence": "Bloomberg Feb 2025: 'Thiel's Allies in Trump's Government' +90%",
+          "receipt": "R-BLOOM-027, R-TSLA-ZEV-001"
+        },
+        {
+          "step": 5,
+          "action": "Musk/Thiel/Schmidt fund Trump/Vance/Newsom -> More DOGE authority",
+          "evidence": "Campaign finance + donor networks",
+          "receipt": "R-NEWSOM-001, R-NARYA-001"
+        }
+      ],
+      "loop": "Power -> More installs -> More contracts -> More stock -> More political capital"
+    },
+    {
+      "id": "L2",
+      "name": "Data -> Markets -> Governance (Futarchy)",
+      "color": "#ffd700",
+      "steps": [
+        {
+          "step": 1,
+          "action": "DOGE centralizes federal data (IRS, Immigration, SSA, OPM, Energy)",
+          "evidence": "IRS Mega API, Immigration DB, AI agents",
+          "receipt": "R-DOGE-DATA-001"
+        },
+        {
+          "step": 2,
+          "action": "Palantir Foundry/Gotham builds centralized infrastructure",
+          "evidence": "Palantir DOGE contracts: Immigration DB, IRS API, AI agents",
+          "receipt": "R-PAL-DOGE-001 to R-PAL-DOGE-005"
+        },
+        {
+          "step": 3,
+          "action": "Centralized data feeds Polymarket/Kalshi prediction markets",
+          "evidence": "DOGE IRS/Immigration data -> Polymarket policy markets",
+          "receipt": "R-DOGE-DATA-001"
+        },
+        {
+          "step": 4,
+          "action": "Futarchy: 'Markets decide, politicians execute' (Hanson)",
+          "evidence": "Hanson futarchy papers; Polymarket as implementation",
+          "receipt": "R-HANSON-003, R-UNLIM-001"
+        },
+        {
+          "step": 5,
+          "action": "Policy outcomes favor Palantir/Thiel/Musk/Schmidt portfolio",
+          "evidence": "CFTC captured (Selig/Quintenz/Don Jr.); prediction markets legitimized",
+          "receipt": "R-CFTC-001 to R-CFTC-005"
+        },
+        {
+          "step": 6,
+          "action": "More data centralization justified",
+          "evidence": "DOGE 'efficiency' narrative",
+          "receipt": "R-X-ALGO-001"
+        }
+      ],
+      "loop": "Data -> Markets -> Futarchy -> Portfolio wins -> More centralization"
+    },
+    {
+      "id": "L3",
+      "name": "Regulatory Protection Racket",
+      "color": "#00ff7f",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Musk DOGE role -> Protects Tesla ZEV credits ($1.79B/yr pure profit)",
+          "evidence": "Tesla 2020: $1.58B credits vs $721M net = 219% dependent; E&E News 2024: 'Trump transition may end credits. Musk lobbies to KEEP them'",
+          "receipt": "R-TSLA-ZEV-001 to R-TSLA-ZEV-004, R-EENEWS-028"
+        },
+        {
+          "step": 2,
+          "action": "DOGE SpaceX CIOs -> Protect NRO/NASA/DoD contracts ($4-6B/yr)",
+          "evidence": "SpaceX alumni at OPM/DOE control workforce/energy data",
+          "receipt": "R-SPACEX-DOGE-001 to R-SPACEX-DOGE-003, R-SPACEX-NRO-001"
+        },
+        {
+          "step": 3,
+          "action": "Thiel DOGE allies -> Protect Palantir/Anduril contracts (billions)",
+          "evidence": "Palantir CIOs at OMB/HHS; Anduril expanding",
+          "receipt": "R-PAL-DOGE-001 to R-PAL-DOGE-005, R-PAL-ANDURIL-001"
+        },
+        {
+          "step": 4,
+          "action": "Regulatory capture becomes self-reinforcing",
+          "evidence": "CFTC Selig Chair, Quintenz recusal, Don Jr. advises both Polymarket & Kalshi",
+          "receipt": "R-CFTC-001 to R-CFTC-005"
+        }
+      ],
+      "loop": "DOGE authority -> Regulatory protection -> Revenue protected -> More DOGE authority"
+    },
+    {
+      "id": "L4",
+      "name": "Narrative Control -> Legitimacy",
+      "color": "#ff00ff",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Musk owns X/Twitter -> Algorithmic boost to DOGE/futarchy narratives",
+          "evidence": "1000x baseline reach for DOGE/futarchy content; X embeds Polymarket widgets",
+          "receipt": "R-X-ALGO-001"
+        },
+        {
+          "step": 2,
+          "action": "X amplifies 'efficiency' / 'bureaucracy bad' / 'markets better than voting'",
+          "evidence": "X algorithmic framing; opposition = 'pro-bureaucracy'",
+          "receipt": "R-X-ALGO-001"
+        },
+        {
+          "step": 3,
+          "action": "Tucker Carlson amplifies: 'markets > voting', 'futarchy = democracy upgraded'",
+          "evidence": "Carlson segments 2025-2026 on prediction markets",
+          "receipt": "R-CARLSON-001"
+        },
+        {
+          "step": 4,
+          "action": "'Efficiency' frame makes opposition look 'pro-bureaucracy'",
+          "evidence": "Political framing analysis",
+          "receipt": "R-X-ALGO-001"
+        },
+        {
+          "step": 5,
+          "action": "More centralization justified as 'modernization'",
+          "evidence": "DOGE narrative machine",
+          "receipt": "R-X-ALGO-001"
+        }
+      ],
+      "loop": "Narrative -> Legitimacy -> More centralization -> More narrative control"
+    }
+  ],
+  "unitary_node": {
+    "name": "Eric Schmidt",
+    "centrality": 0.42,
+    "connections": {
+      "vance_r": [
+        "Narya Capital backer (with Thiel)",
+        "Bilderberg Steering Committee (with Thiel)",
+        "NSCAI Chair (Biden AI policy)"
+      ],
+      "newsom_d": [
+        "Google/Alphabet former CEO/Chair",
+        "Newsom donor network",
+        "Schmidt Futures portfolio"
+      ]
+    },
+    "significance": "Only individual connecting both 2028 partisan tracks. Partisan framing is theater."
+  }
+}

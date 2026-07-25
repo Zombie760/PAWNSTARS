@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Financial Flow — The Procurement Machine</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; }
+        #graph { width: 100vw; height: 100vh; }
+        .tooltip { position: absolute; background: rgba(10,10,15,0.98); border: 1px solid #444; border-radius: 8px; padding: 16px; pointer-events: none; z-index: 1000; max-width: 350px; display: none; font-size: 12px; }
+        .tooltip h4 { margin: 0 0 8px; color: #ffd700; font-size: 14px; }
+        .controls { position: absolute; top: 20px; left: 20px; z-index: 100; display: flex; gap: 8px; flex-wrap: wrap; }
+        .btn { background: rgba(10,10,15,0.95); border: 1px solid #333; color: #ccc; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .btn.active { border-color: #ffd700; color: #ffd700; background: rgba(255,215,0,0.1); }
+        .legend { position: absolute; top: 20px; right: 20px; z-index: 100; background: rgba(10,10,15,0.95); padding: 16px; border-radius: 8px; border: 1px solid #333; font-size: 12px; max-width: 280px; }
+        .legend h3 { margin: 0 0 12px; font-size: 14px; color: #fff; }
+        .legend-item { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+        .legend-color { width: 20px; height: 12px; border-radius: 2px; }
+        .stats { position: absolute; bottom: 20px; left: 20px; z-index: 100; background: rgba(10,10,15,0.95); padding: 12px 16px; border-radius: 8px; border: 1px solid #333; font-size: 12px; color: #ccc; }
+    
+        @media (max-width: 768px) {
+            .container { padding: 16px 12px; }
+            header { padding: 20px 0 16px; }
+            h1 { font-size: 1.8rem !important; }
+            .subtitle { font-size: 1rem !important; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .filter-btn, .btn { width: 100%; text-align: center; }
+            .legend { position: static; margin: 20px 0; max-width: 100%; }
+            .stats { position: static; margin-top: 20px; text-align: center; }
+            .stats-row { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
+            .widget.full-width { grid-column: auto; }
+            .widget-body iframe { height: 300px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .pipeline-stages { flex-direction: column; }
+            .controls { flex-direction: column; }
+            .btn { width: 100%; }
+            .layer-header { flex-direction: column; align-items: flex-start; }
+            .nodes-grid { grid-template-columns: 1fr; }
+            .flow { flex-direction: column; gap: 12px; }
+            .legend { flex-direction: column; gap: 8px; }
+            .filter-row { flex-direction: column; }
+            .filter-btn { width: 100%; }
+            .event-card { max-width: 100%; }
+            .event-date { width: 80px; font-size: 11px; padding-right: 8px; }
+            .event-dot { left: 90px; }
+            .event-card { padding: 12px 14px; }
+            .event-header { flex-wrap: wrap; }
+            .stat-card { padding: 16px; }
+            .stat-card .value { font-size: 1.5rem; }
+            .quick-links { flex-direction: column; }
+            .quick-link { text-align: center; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .filter-row { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 12px 8px; }
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.3rem !important; }
+            h3 { font-size: 1.1rem !important; }
+            .widget-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .widget-header h3 { font-size: 1rem; }
+            .btn { padding: 12px 16px; font-size: 0.9rem; }
+            .stat-card { padding: 12px; }
+            .stat-card .value { font-size: 1.3rem; }
+            .widget-body { padding: 12px; }
+        }
+
+</style>
+</head>
+<body>
+    <div id="graph"></div>
+    <div class="controls">
+        <button class="btn active" data-filter="all">All</button>
+        <button class="btn" data-filter="revenue">Revenue</button>
+        <button class="btn" data-filter="contracts">Contracts</button>
+        <button class="btn" data-filter="lobbying">Lobbying</button>
+        <button class="btn" data-filter="political">Political</button>
+        <button class="btn" data-filter="capture">Capture</button>
+        <button class="btn" data-filter="futarchy">Futarchy</button>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="stats" id="stats"></div>
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        const data = {"nodes": [{"name": "Federal Budget\n($6.1T FY2024)", "color": "#00bfff"}, {"name": "DoD/IC Budget\n($1.1T)", "color": "#00bfff"}, {"name": "DARPA/IARPA\n($4.5B)", "color": "#00bfff"}, {"name": "NASA Launch\n($4B/yr)", "color": "#00bfff"}, {"name": "Palantir\n($2.2B gov rev)", "color": "#ff6b6b"}, {"name": "SpaceX\n($4-6B/yr gov)", "color": "#ff6b6b"}, {"name": "Anduril\n($2.5B+)", "color": "#ff6b6b"}, {"name": "Palantir Lobbying\n($12.4M/yr)", "color": "#ffd700"}, {"name": "SpaceX Lobbying\n($8.7M/yr)", "color": "#ffd700"}, {"name": "Anduril Lobbying\n($7.3M/yr)", "color": "#ffd700"}, {"name": "Thiel \u2192 Vance\n(Narya Capital)", "color": "#ff00ff"}, {"name": "Schmidt \u2192 Newsom\n(Donor network)", "color": "#ff00ff"}, {"name": "Musk \u2192 Trump\n(X + DOGE)", "color": "#ff00ff"}, {"name": "Hoffman \u2192 Newsom\n(OpenAI/LinkedIn)", "color": "#ff00ff"}, {"name": "CFTC Capture\n(Selig/Quintenz/Don Jr.)", "color": "#00ff7f"}, {"name": "FTC/DOJ Capture\n(Uyeda/Ferguson)", "color": "#00ff7f"}, {"name": "SEC Capture\n(Uyeda)", "color": "#00ff7f"}, {"name": "Tesla ZEV Credits\n($1.79B/yr protected)", "color": "#00ff7f"}, {"name": "SpaceX NRO\n($1.8B Starshield)", "color": "#00ff7f"}, {"name": "Palantir DOGE\n($113M+ contracts)", "color": "#00ff7f"}, {"name": "IRS Mega API\n\u2192 Palantir Foundry", "color": "#ff6b6b"}, {"name": "Immigration DB\n\u2192 Polymarket", "color": "#ff6b6b"}, {"name": "Polymarket/Kalshi\nFutarchy Markets", "color": "#ff6b6b"}, {"name": "DOGE \"Efficiency\"\n= Governance Replacement", "color": "#ff6b6b"}], "links": [{"source": 0, "target": 1, "value": 1100}, {"source": 1, "target": 2, "value": 4.5}, {"source": 0, "target": 3, "value": 4}, {"source": 2, "target": 4, "value": 2.2}, {"source": 3, "target": 5, "value": 5}, {"source": 1, "target": 6, "value": 2.5}, {"source": 4, "target": 7, "value": 12.4}, {"source": 5, "target": 8, "value": 8.7}, {"source": 6, "target": 9, "value": 7.3}, {"source": 7, "target": 10, "value": 1}, {"source": 8, "target": 12, "value": 1}, {"source": 7, "target": 11, "value": 1}, {"source": 8, "target": 13, "value": 1}, {"source": 10, "target": 14, "value": 1}, {"source": 11, "target": 15, "value": 1}, {"source": 12, "target": 16, "value": 1}, {"source": 12, "target": 17, "value": 1790}, {"source": 12, "target": 18, "value": 1800}, {"source": 10, "target": 19, "value": 113}, {"source": 14, "target": 22, "value": 1}, {"source": 19, "target": 20, "value": 1}, {"source": 18, "target": 23, "value": 1}, {"source": 20, "target": 22, "value": 1}, {"source": 21, "target": 23, "value": 1}]};
+        
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const svg = d3.select("#graph").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        
+        const categoryColors = {
+            revenue: "#00bfff",
+            contracts: "#ff6b6b",
+            lobbying: "#ffd700",
+            political: "#ff00ff",
+            capture: "#00ff7f",
+            futarchy: "#ff6b6b"
+        };
+        
+        const tooltip = d3.select("#tooltip");
+        
+        const sankeyLayout = d3.sankey()
+            .nodeWidth(20)
+            .nodePadding(14)
+            .extent([[60, 40], [width - 60, height - 80]])
+            .nodeAlign(d3.sankeyJustify);
+        
+        const {nodes, links} = sankeyLayout({
+            nodes: data.nodes.map((d, i) => ({...d, index: i})),
+            links: data.links.map((d, i) => ({...d, index: i}))
+        });
+        
+        nodes.forEach(d => d.color = categoryColors[d.category] || "#666");
+        
+        // Links
+        const link = svg.append("g")
+            .attr("fill", "none")
+            .attr("stroke-opacity", 0.25)
+            .selectAll("g")
+            .data(links)
+            .enter().append("g")
+            .style("mix-blend-mode", "multiply");
+        
+        link.append("path")
+            .attr("d", d3.sankeyLinkHorizontal())
+            .attr("stroke", d => categoryColors[d.source.category] || "#666")
+            .attr("stroke-width", d => Math.max(1, d.width))
+            .on("mouseover", function(event, d) {
+                d3.select(this).attr("stroke-opacity", 0.8).attr("stroke-width", d => Math.max(3, d.width + 2));
+                tooltip.html(`
+                    <h4>${d.source.name} → ${d.target.name}</h4>
+                    <div>Value: $${d.value.toLocaleString()}M</div>
+                    <div>${d.source.category} → ${d.target.category}</div>
+                `).style("display", "block");
+            })
+            .on("mousemove", function(event) {
+                tooltip.style("left", (event.pageX + 16) + "px").style("top", (event.pageY - 16) + "px");
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this).attr("stroke-opacity", 0.25).attr("stroke-width", d => Math.max(1, d.width));
+                tooltip.style("display", "none");
+            });
+        
+        // Nodes
+        const node = svg.append("g")
+            .selectAll("g")
+            .data(nodes)
+            .enter().append("g");
+        
+        node.append("rect")
+            .attr("x", d => d.x0)
+            .attr("y", d => d.y0)
+            .attr("height", d => d.y1 - d.y0)
+            .attr("width", d => d.x1 - d.x0)
+            .attr("fill", d => d.color)
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1.5)
+            .on("mouseover", function(event, d) {
+                d3.select(this).attr("stroke-width", 3);
+                tooltip.html(`
+                    <h4>${d.name}</h4>
+                    <div class="meta">${d.category}</div>
+                    <div>Incoming: $${d3.sum(links.filter(l => l.target.index === d.index), l => l.value).toLocaleString()}M</div>
+                    <div>Outgoing: $${d3.sum(links.filter(l => l.source.index === d.index), l => l.value).toLocaleString()}M</div>
+                `).style("display", "block");
+            })
+            .on("mousemove", function(event) {
+                tooltip.style("left", (event.pageX + 16) + "px").style("top", (event.pageY - 16) + "px");
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this).attr("stroke-width", 1.5);
+                tooltip.style("display", "none");
+            });
+        
+        node.append("text")
+            .attr("x", d => d.x0 - 8)
+            .attr("y", d => (d.y0 + d.y1) / 2)
+            .attr("dy", "0.35em")
+            .attr("text-anchor", "end")
+            .attr("font-size", "10px")
+            .attr("fill", "#ccc")
+            .text(d => d.name);
+        
+        // Category filter buttons
+        const categories = [...new Set(nodes.map(d => d.category))];
+        const controls = d3.select("#graph").insert("div", ":first-child")
+            .attr("class", "controls");
+        
+        controls.append("button")
+            .attr("class", "btn active")
+            .attr("data-filter", "all")
+            .text("All")
+            .on("click", function() {
+                d3.selectAll(".btn").classed("active", false);
+                d3.select(this).classed("active", true);
+                filterCategory("all");
+            });
+        
+        categories.forEach(cat => {
+            controls.append("button")
+                .attr("class", "btn")
+                .attr("data-filter", cat)
+                .text(cat.charAt(0).toUpperCase() + cat.slice(1))
+                .style("border-left-color", categoryColors[cat])
+                .on("click", function() {
+                    d3.selectAll(".btn").classed("active", false);
+                    d3.select(this).classed("active", true);
+                    filterCategory(this.dataset.filter);
+                });
+        });
+        
+        function filterCategory(cat) {
+            node.style("display", d => cat === "all" || d.category === cat ? null : "none");
+            link.style("display", d => cat === "all" || d.source.category === cat || d.target.category === cat ? null : "none");
+        }
+        
+        // Legend
+        const legend = d3.select("#legend");
+        legend.append("h3").text("Flow Categories");
+        Object.entries(categoryColors).forEach(([cat, color]) => {
+            const item = legend.append("div").attr("class", "legend-item");
+            item.append("div").attr("class", "legend-color").style("background", color);
+            item.append("span").text(cat.charAt(0).toUpperCase() + cat.slice(1));
+        });
+        
+        // Stats
+        const totalFlow = d3.sum(links, d => d.value);
+        d3.select("#stats").html(`
+            <strong>${nodes.length} nodes</strong> | 
+            <strong>${links.length} flows</strong> | 
+            <strong>$${totalFlow.toLocaleString()}M total</strong> | 
+            <span style="color: #ffd700;">6 categories</span>
+        `);
+        
+        function categoryColors(d) { return categoryColors[d.category] || "#666"; }
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+{
+  "core_loop": [
+    {
+      "id": "intel_programs",
+      "label": "Intelligence Programs\n(TIA, LifeLog, PAM,\nSpace Launch)",
+      "stage": "S1"
+    },
+    {
+      "id": "congress_defunds",
+      "label": "Congress Defunds /\nPublic Rejection\n(\u00a78131, 96-0 vote,\nLifeLog cancellation)",
+      "stage": "S2"
+    },
+    {
+      "id": "iqt_bridge",
+      "label": "In-Q-Tel / CIA VC\nBridges Capital,\nPersonnel, IP",
+      "stage": "S3"
+    },
+    {
+      "id": "private_incorp",
+      "label": "Private Incorporation\n(Same Month, Same\nArchitects, Same Code)",
+      "stage": "S4"
+    },
+    {
+      "id": "reg_capture",
+      "label": "Regulatory Capture\n(Alumni as CIOs,\nCFTC/SEC/FTC Capture)",
+      "stage": "S5a"
+    },
+    {
+      "id": "futarchy",
+      "label": "Futarchy Governance\n(Federal Data ->\nPrediction Markets ->\nPolicy = Market Price)",
+      "stage": "S5b"
+    },
+    {
+      "id": "flywheels",
+      "label": "4 Self-Reinforcing\nFlywheels\n(L1 Personnel->Procurement\nL2 Data->Markets->Gov\nL3 Regulatory Protection\nL4 Narrative Control)",
+      "stage": "S5c"
+    },
+    {
+      "id": "machine_runs",
+      "label": "MACHINE RUNS ITSELF\n(No disposal needed -\nself-reinforcing extraction\narchitecture)",
+      "stage": "OUTPUT"
+    }
+  ],
+  "connections": [
+    {
+      "from": "intel_programs",
+      "to": "congress_defunds"
+    },
+    {
+      "from": "congress_defunds",
+      "to": "iqt_bridge"
+    },
+    {
+      "from": "iqt_bridge",
+      "to": "private_incorp"
+    },
+    {
+      "from": "private_incorp",
+      "to": "reg_capture"
+    },
+    {
+      "from": "reg_capture",
+      "to": "futarchy"
+    },
+    {
+      "from": "futarchy",
+      "to": "flywheels"
+    },
+    {
+      "from": "flywheels",
+      "to": "machine_runs"
+    },
+    {
+      "from": "flywheels",
+      "to": "intel_programs",
+      "label": "New programs\nprototyped",
+      "feedback": true
+    }
+  ],
+  "unitary_node": {
+    "entity": "Eric Schmidt",
+    "position": "Sits across all layers",
+    "centrality": 0.42
+  },
+  "epstein_continuity": {
+    "thesis": "Epstein V1.0 (1990s-2019) = Beta version\nDOGE V2.0 (2025+) = Production release",
+    "evidence": "8-component structural isomorphism, 11/11 falsifier entities in Epstein archive"
+  }
+}

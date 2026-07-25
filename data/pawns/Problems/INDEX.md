@@ -1,0 +1,9 @@
+# Problems — Index
+
+| ID | Name | One-line | Links |
+|----|------|----------|-------|
+| [PR-001](./PR-001—Money-Laundering-Through-Donor-Nets.md) | Money Laundering Through Donor Networks | Donor PACs + 501(c)(4) shells act as fungible conduits; FEC.gov is the visible ledger; principals are washed through 2-3 degrees of separation | solved by [SO-001]—Receipts-First-Pipeline, [SO-002]—Source-Trace-Validator; informs [PL-001]—Three-Deliverable-Plan |
+| [PR-002](./PR-002—Regulatory-Capture.md) | Regulatory Capture | Tech oligarch donors simultaneously fund elected officials AND hold state contracts with those same officials' jurisdictions | solved by [SO-002]—Source-Trace-Validator; informs [MO-001]—Thiel-Influence-Model; risks [RI-001]—Legal-Exposure |
+| [PR-003](./PR-003—Mechanism-Opacity.md) | Mechanism Opacity | Networks that move influence and money across tax-exempt entities, foreign jurisdictions, and intelligence-community conduits are not visible to the average reader | solved by [SO-001]—Receipts-First-Pipeline, [SO-004]—Blockchain-Anchor; informs [CL-004]—Mechanism-Dual-Case-Thesis |
+| [PR-004](./PR-004—Donor-Vote-Alignment-Beyond-Constituency.md) | Donor-Vote Alignment Beyond Constituency | Elected officials vote on issues (H-1B, AI contracts, ICE surveillance) that align with donor interests, not their stated constituency | solved by [SO-001]—Receipts-First-Pipeline; risks [RI-005]—Sourcing-Gaps; informs [PL-001]—Three-Deliverable-Plan |
+| [PR-005](./PR-005—Manufactured-Authenticity.md) | Manufactured Authenticity | Public figures deploy carefully constructed "authentic" identities (Hillbilly, Golden Boy, Alibi, Brand) as cover for an underlying extraction model | solved by [SO-001]—Receipts-First-Pipeline, [SO-003]—MOA-Voice-Lock; risks [RI-003]—Fabrication-Drift |

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>DOGE Four Flywheels — The Procurement Machine</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.5rem; background: linear-gradient(135deg, #fff, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 8px; }
+        .subtitle { color: #888; margin-bottom: 32px; }
+        .flywheels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 24px; }
+        .flywheel { background: rgba(255,255,255,0.02); border: 1px solid #222; border-radius: 12px; padding: 24px; }
+        .flywheel-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #333; }
+        .flywheel-color { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .flywheel-title { font-size: 1.3rem; font-weight: 600; }
+        .step { background: rgba(255,255,255,0.03); border: 1px solid #222; border-radius: 8px; padding: 16px; margin: 12px 0; border-left: 3px solid currentColor; }
+        .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: currentColor; color: #0a0a0f; font-weight: 700; font-size: 14px; margin-right: 12px; }
+        .step-action { font-weight: 600; margin-bottom: 8px; }
+        .step-evidence { font-size: 13px; color: #aaa; margin: 8px 0; }
+        .step-receipt { font-size: 11px; color: #666; font-family: monospace; }
+        .loop { background: rgba(255,215,0,0.1); border: 1px solid #ffd700; border-radius: 8px; padding: 16px; margin-top: 16px; font-style: italic; color: #ffd700; }
+        .unitary { background: rgba(255,215,0,0.05); border: 1px solid #ffd700; border-radius: 12px; padding: 24px; margin-top: 40px; }
+        .unitary h2 { color: #ffd700; margin: 0 0 16px; }
+        .connections { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+        .conn-column h3 { color: #ffd700; font-size: 1rem; margin-bottom: 12px; }
+        .conn-item { background: rgba(255,215,0,0.1); border: 1px solid #ffd700; color: #ffd700; padding: 8px 12px; border-radius: 6px; margin: 8px 0; font-size: 13px; }
+    
+        @media (max-width: 768px) {
+            .container { padding: 16px 12px; }
+            header { padding: 20px 0 16px; }
+            h1 { font-size: 1.8rem !important; }
+            .subtitle { font-size: 1rem !important; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .filter-btn, .btn { width: 100%; text-align: center; }
+            .legend { position: static; margin: 20px 0; max-width: 100%; }
+            .stats { position: static; margin-top: 20px; text-align: center; }
+            .stats-row { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
+            .widget.full-width { grid-column: auto; }
+            .widget-body iframe { height: 300px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .pipeline-stages { flex-direction: column; }
+            .controls { flex-direction: column; }
+            .btn { width: 100%; }
+            .layer-header { flex-direction: column; align-items: flex-start; }
+            .nodes-grid { grid-template-columns: 1fr; }
+            .flow { flex-direction: column; gap: 12px; }
+            .legend { flex-direction: column; gap: 8px; }
+            .filter-row { flex-direction: column; }
+            .filter-btn { width: 100%; }
+            .event-card { max-width: 100%; }
+            .event-date { width: 80px; font-size: 11px; padding-right: 8px; }
+            .event-dot { left: 90px; }
+            .event-card { padding: 12px 14px; }
+            .event-header { flex-wrap: wrap; }
+            .stat-card { padding: 16px; }
+            .stat-card .value { font-size: 1.5rem; }
+            .quick-links { flex-direction: column; }
+            .quick-link { text-align: center; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .filter-row { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 12px 8px; }
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.3rem !important; }
+            h3 { font-size: 1.1rem !important; }
+            .widget-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .widget-header h3 { font-size: 1rem; }
+            .btn { padding: 12px 16px; font-size: 0.9rem; }
+            .stat-card { padding: 12px; }
+            .stat-card .value { font-size: 1.3rem; }
+            .widget-body { padding: 12px; }
+        }
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DOGE Four Flywheels</h1>
+            <p class="subtitle">The self-reinforcing extraction architecture operationalized at federal scale</p>
+        </header>
+        
+        <div class="flywheels-grid" id="flywheels"></div>
+        
+        <div class="unitary" id="unitary"></div>
+    </div>
+
+    <script>
+        const data = {"flywheels": [{"id": "L1", "name": "Personnel -> Procurement -> Profit -> Power", "color": "#ff6b6b", "steps": [{"step": 1, "action": "DOGE installs Palantir/SpaceX alumni as federal CIOs", "evidence": "Barbaccia (OMB), Hogan (OPM), Riedel (DOE), Graber (DOE), Minor (HHS)", "receipt": "R-DOGE-CIO-001 to R-DOGE-CIO-005"}, {"step": 2, "action": "CIOs control $100B+ federal IT procurement & data standards", "evidence": "Federal IT budget allocations", "receipt": "R-DOGE-DATA-001"}, {"step": 3, "action": "CIOs award contracts to Palantir/SpaceX/portfolio companies", "evidence": "$113M+ Palantir DOGE contracts first months (Immigration DB, IRS Mega API, AI agents)", "receipt": "R-GUARD-026, R-PAL-DOGE-001 to R-PAL-DOGE-005"}, {"step": 4, "action": "Palantir stock +90%; SpaceX valuation up; Tesla ZEV credits protected", "evidence": "Bloomberg Feb 2025: 'Thiel's Allies in Trump's Government' +90%", "receipt": "R-BLOOM-027, R-TSLA-ZEV-001"}, {"step": 5, "action": "Musk/Thiel/Schmidt fund Trump/Vance/Newsom -> More DOGE authority", "evidence": "Campaign finance + donor networks", "receipt": "R-NEWSOM-001, R-NARYA-001"}], "loop": "Power -> More installs -> More contracts -> More stock -> More political capital"}, {"id": "L2", "name": "Data -> Markets -> Governance (Futarchy)", "color": "#ffd700", "steps": [{"step": 1, "action": "DOGE centralizes federal data (IRS, Immigration, SSA, OPM, Energy)", "evidence": "IRS Mega API, Immigration DB, AI agents", "receipt": "R-DOGE-DATA-001"}, {"step": 2, "action": "Palantir Foundry/Gotham builds centralized infrastructure", "evidence": "Palantir DOGE contracts: Immigration DB, IRS API, AI agents", "receipt": "R-PAL-DOGE-001 to R-PAL-DOGE-005"}, {"step": 3, "action": "Centralized data feeds Polymarket/Kalshi prediction markets", "evidence": "DOGE IRS/Immigration data -> Polymarket policy markets", "receipt": "R-DOGE-DATA-001"}, {"step": 4, "action": "Futarchy: 'Markets decide, politicians execute' (Hanson)", "evidence": "Hanson futarchy papers; Polymarket as implementation", "receipt": "R-HANSON-003, R-UNLIM-001"}, {"step": 5, "action": "Policy outcomes favor Palantir/Thiel/Musk/Schmidt portfolio", "evidence": "CFTC captured (Selig/Quintenz/Don Jr.); prediction markets legitimized", "receipt": "R-CFTC-001 to R-CFTC-005"}, {"step": 6, "action": "More data centralization justified", "evidence": "DOGE 'efficiency' narrative", "receipt": "R-X-ALGO-001"}], "loop": "Data -> Markets -> Futarchy -> Portfolio wins -> More centralization"}, {"id": "L3", "name": "Regulatory Protection Racket", "color": "#00ff7f", "steps": [{"step": 1, "action": "Musk DOGE role -> Protects Tesla ZEV credits ($1.79B/yr pure profit)", "evidence": "Tesla 2020: $1.58B credits vs $721M net = 219% dependent; E&E News 2024: 'Trump transition may end credits. Musk lobbies to KEEP them'", "receipt": "R-TSLA-ZEV-001 to R-TSLA-ZEV-004, R-EENEWS-028"}, {"step": 2, "action": "DOGE SpaceX CIOs -> Protect NRO/NASA/DoD contracts ($4-6B/yr)", "evidence": "SpaceX alumni at OPM/DOE control workforce/energy data", "receipt": "R-SPACEX-DOGE-001 to R-SPACEX-DOGE-003, R-SPACEX-NRO-001"}, {"step": 3, "action": "Thiel DOGE allies -> Protect Palantir/Anduril contracts (billions)", "evidence": "Palantir CIOs at OMB/HHS; Anduril expanding", "receipt": "R-PAL-DOGE-001 to R-PAL-DOGE-005, R-PAL-ANDURIL-001"}, {"step": 4, "action": "Regulatory capture becomes self-reinforcing", "evidence": "CFTC Selig Chair, Quintenz recusal, Don Jr. advises both Polymarket & Kalshi", "receipt": "R-CFTC-001 to R-CFTC-005"}], "loop": "DOGE authority -> Regulatory protection -> Revenue protected -> More DOGE authority"}, {"id": "L4", "name": "Narrative Control -> Legitimacy", "color": "#ff00ff", "steps": [{"step": 1, "action": "Musk owns X/Twitter -> Algorithmic boost to DOGE/futarchy narratives", "evidence": "1000x baseline reach for DOGE/futarchy content; X embeds Polymarket widgets", "receipt": "R-X-ALGO-001"}, {"step": 2, "action": "X amplifies 'efficiency' / 'bureaucracy bad' / 'markets better than voting'", "evidence": "X algorithmic framing; opposition = 'pro-bureaucracy'", "receipt": "R-X-ALGO-001"}, {"step": 3, "action": "Tucker Carlson amplifies: 'markets > voting', 'futarchy = democracy upgraded'", "evidence": "Carlson segments 2025-2026 on prediction markets", "receipt": "R-CARLSON-001"}, {"step": 4, "action": "'Efficiency' frame makes opposition look 'pro-bureaucracy'", "evidence": "Political framing analysis", "receipt": "R-X-ALGO-001"}, {"step": 5, "action": "More centralization justified as 'modernization'", "evidence": "DOGE narrative machine", "receipt": "R-X-ALGO-001"}], "loop": "Narrative -> Legitimacy -> More centralization -> More narrative control"}], "unitary_node": {"name": "Eric Schmidt", "centrality": 0.42, "connections": {"vance_r": ["Narya Capital backer (with Thiel)", "Bilderberg Steering Committee (with Thiel)", "NSCAI Chair (Biden AI policy)"], "newsom_d": ["Google/Alphabet former CEO/Chair", "Newsom donor network", "Schmidt Futures portfolio"]}, "significance": "Only individual connecting both 2028 partisan tracks. Partisan framing is theater."}};
+        
+        const grid = document.getElementById('flywheels');
+        
+        data.flywheels.forEach(fw => {
+            const fwEl = document.createElement('div');
+            fwEl.className = 'flywheel';
+            fwEl.style.borderLeft = `4px solid ${fw.color}`;
+            
+            fwEl.innerHTML = `
+                <div class="flywheel-header">
+                    <div class="flywheel-color" style="background: ${fw.color}">${fw.id}</div>
+                    <div class="flywheel-title">${fw.name}</div>
+                </div>
+                ${fw.steps.map(step => `
+                    <div class="step" style="border-left-color: ${fw.color};">
+                        <span class="step-num" style="background: ${fw.color};">${step.step}</span>
+                        <div class="step-action">${step.action}</div>
+                        <div class="step-evidence">${step.evidence}</div>
+                        <div class="step-receipt">Receipt: ${step.receipt}</div>
+                    </div>
+                `).join('')}
+                <div class="loop">Loop: ${fw.loop}</div>
+            `;
+            grid.appendChild(fwEl);
+        });
+        
+        const unitary = document.getElementById('unitary');
+        const un = data.unitary_node;
+        unitary.innerHTML = `
+            <h2>Unitary Node: ${un.name} (Centrality: ${un.centrality})</h2>
+            <p style="color: #aaa; margin-bottom: 16px;">${un.significance}</p>
+            <div class="connections">
+                <div class="conn-column">
+                    <h3>Vance (R) Connection</h3>
+                    ${un.connections.vance_r.map(c => `<div class="conn-item">${c}</div>`).join('')}
+                </div>
+                <div class="conn-column">
+                    <h3>Newsom (D) Connection</h3>
+                    ${un.connections.newsom_d.map(c => `<div class="conn-item">${c}</div>`).join('')}
+                </div>
+            </div>
+        `;
+    </script>
+</body>
+</html>

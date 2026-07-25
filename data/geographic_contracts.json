@@ -1,0 +1,199 @@
+{
+  "palantir_contracts": [
+    {
+      "agency": "CBP",
+      "program": "Immigration Database",
+      "value": 38400000,
+      "location": "Washington, DC",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "receipt": "R-PAL-DOGE-001"
+    },
+    {
+      "agency": "ICE",
+      "program": "Enforcement Analytics",
+      "value": 22100000,
+      "location": "Washington, DC",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "receipt": "R-PAL-DOGE-002"
+    },
+    {
+      "agency": "CBP",
+      "program": "Border Intelligence",
+      "value": 45600000,
+      "location": "Washington, DC",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "receipt": "R-PAL-DOGE-003"
+    },
+    {
+      "agency": "IRS",
+      "program": "Mega API Modernization",
+      "value": 52300000,
+      "location": "Washington, DC",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "receipt": "R-PAL-DOGE-004"
+    },
+    {
+      "agency": "HHS",
+      "program": "AI Agents Deployment",
+      "value": 23400000,
+      "location": "Washington, DC",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "receipt": "R-PAL-DOGE-005"
+    },
+    {
+      "agency": "DoD (Multiple)",
+      "program": "Gotham/Foundry Deployments",
+      "value": 2100000000,
+      "location": "Arlington, VA",
+      "lat": 38.8801,
+      "lng": -77.1087,
+      "receipt": "R-PAL-CURRENT-001"
+    },
+    {
+      "agency": "IC (18 agencies)",
+      "program": "Intelligence Integration",
+      "value": 1800000000,
+      "location": "Langley, VA / Fort Meade, MD",
+      "lat": 38.9581,
+      "lng": -76.9881,
+      "receipt": "R-PAL-IC-001"
+    }
+  ],
+  "spacex_contracts": [
+    {
+      "agency": "NASA",
+      "program": "CRS-2",
+      "value": 2800000000,
+      "location": "Kennedy Space Center, FL",
+      "lat": 28.5729,
+      "lng": -80.649,
+      "receipt": "R-SPACEX-GOV-001"
+    },
+    {
+      "agency": "Space Force",
+      "program": "NSSL Phase 2",
+      "value": 1900000000,
+      "location": "Vandenberg SFB, CA / Cape Canaveral, FL",
+      "lat": 34.742,
+      "lng": -120.5737,
+      "receipt": "R-SPACEX-GOV-001"
+    },
+    {
+      "agency": "NRO",
+      "program": "Starshield",
+      "value": 1800000000,
+      "location": "Chantilly, VA (NRO HQ)",
+      "lat": 38.8865,
+      "lng": -77.5,
+      "receipt": "R-REUTERS-009"
+    },
+    {
+      "agency": "SDA",
+      "program": "Tranche 1/2 Satellites",
+      "value": 1000000000,
+      "location": "Redstone Arsenal, AL",
+      "lat": 34.6557,
+      "lng": -86.6353,
+      "receipt": "R-SPACEX-GOV-001"
+    }
+  ],
+  "anduril_contracts": [
+    {
+      "agency": "Army",
+      "program": "IVAS",
+      "value": 1300000000,
+      "location": "Redstone Arsenal, AL",
+      "lat": 34.6557,
+      "lng": -86.6353,
+      "receipt": "R-PAL-ANDURIL-001"
+    },
+    {
+      "agency": "Air Force",
+      "program": "Lattice",
+      "value": 800000000,
+      "location": "Wright-Patterson AFB, OH",
+      "lat": 39.7817,
+      "lng": -84.0483,
+      "receipt": "R-PAL-ANDURIL-001"
+    },
+    {
+      "agency": "SOCOM",
+      "program": "Autonomous Systems",
+      "value": 400000000,
+      "location": "MacDill AFB, FL",
+      "lat": 27.8493,
+      "lng": -82.5215,
+      "receipt": "R-PAL-ANDURIL-001"
+    }
+  ],
+  "intel_contacts": [
+    {
+      "entity": "In-Q-Tel",
+      "location": "Arlington, VA",
+      "lat": 38.8801,
+      "lng": -77.1087,
+      "type": "vc"
+    },
+    {
+      "entity": "CIA",
+      "location": "Langley, VA",
+      "lat": 38.9581,
+      "lng": -76.9881,
+      "type": "intel"
+    },
+    {
+      "entity": "NSA",
+      "location": "Fort Meade, MD",
+      "lat": 39.1059,
+      "lng": -76.7471,
+      "type": "intel"
+    },
+    {
+      "entity": "NRO",
+      "location": "Chantilly, VA",
+      "lat": 38.8865,
+      "lng": -77.5,
+      "type": "intel"
+    },
+    {
+      "entity": "DARPA",
+      "location": "Arlington, VA",
+      "lat": 38.8801,
+      "lng": -77.1087,
+      "type": "research"
+    },
+    {
+      "entity": "IARPA",
+      "location": "Washington, DC",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "type": "research"
+    },
+    {
+      "entity": "NSCAI",
+      "location": "Washington, DC",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "type": "policy"
+    },
+    {
+      "entity": "White House (Narya/Vance)",
+      "location": "Washington, DC",
+      "lat": 38.8977,
+      "lng": -77.0365,
+      "type": "political"
+    },
+    {
+      "entity": "CA Governor (Newsom)",
+      "location": "Sacramento, CA",
+      "lat": 38.5816,
+      "lng": -121.4944,
+      "type": "political"
+    }
+  ]
+}

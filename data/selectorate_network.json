@@ -1,0 +1,466 @@
+{
+  "layers": [
+    {
+      "id": "L1_program_managers",
+      "name": "Layer 1: Program Managers (Operational Selectors)",
+      "description": "Write requirements, control prototypes, decide what gets built",
+      "nodes": [
+        {
+          "id": "poindexter",
+          "name": "John Poindexter",
+          "role": "DARPA IAO Director (2002-03)",
+          "programs": [
+            "TIA",
+            "PAM",
+            "FutureMAP",
+            "LifeLog oversight"
+          ],
+          "privatizations": [
+            "TIA\u2192Palantir",
+            "PAM\u2192Hanson/Augur",
+            "LifeLog\u2192Facebook"
+          ],
+          "intel_touchpoint": "Iran-Contra convict \u2192 NSC Advisor \u2192 DARPA",
+          "receipt": "R-POINDEXTER-004"
+        },
+        {
+          "id": "gage",
+          "name": "Douglas Gage",
+          "role": "DARPA PM",
+          "programs": [
+            "LifeLog"
+          ],
+          "privatizations": [
+            "LifeLog\u2192Facebook"
+          ],
+          "intel_touchpoint": "DARPA PM",
+          "receipt": "R-PM-GAGE-001"
+        },
+        {
+          "id": "foster",
+          "name": "Michael Foster",
+          "role": "DARPA PM",
+          "programs": [
+            "PAM",
+            "FutureMAP"
+          ],
+          "privatizations": [
+            "PAM architecture\u2192Hanson"
+          ],
+          "receipt": "R-PM-FOSTER-001"
+        },
+        {
+          "id": "thuraisingham",
+          "name": "Bhavani Thuraisingham",
+          "role": "MITRE/MDDS PM (CIA/NSA/DARPA)",
+          "programs": [
+            "MDDS"
+          ],
+          "privatizations": [
+            "Google seed funding (Brin/Page quarterly briefings)"
+          ],
+          "receipt": "R-PM-THURAISINGHAM-001"
+        },
+        {
+          "id": "steinheiser",
+          "name": "Rick Steinheiser",
+          "role": "CIA Tech Lead, MDDS",
+          "programs": [
+            "MDDS"
+          ],
+          "privatizations": [
+            "Co-managed Brin/Page"
+          ],
+          "receipt": "R-PM-STEINHEISER-001"
+        },
+        {
+          "id": "matheny",
+          "name": "Jason Matheny",
+          "role": "IARPA Director (2015-18)",
+          "programs": [
+            "ACE",
+            "SCICAST",
+            "Forecasting"
+          ],
+          "privatizations": [
+            "Forecasting infra\u2192Polymarket/Kalshi"
+          ],
+          "receipt": "R-PM-MATHENY-001"
+        },
+        {
+          "id": "griffin_pm",
+          "name": "Mike Griffin",
+          "role": "In-Q-Tel Pres/COO (2000-05) \u2192 NASA Admin (2005-09)",
+          "programs": [
+            "In-Q-Tel portfolio",
+            "NASA COTS/CRS"
+          ],
+          "privatizations": [
+            "SpaceX COTS/CRS/Starshield"
+          ],
+          "intel_touchpoint": "IQT Pres/COO \u2192 NASA Admin",
+          "receipt": "R-PM-GRIFFIN-001"
+        },
+        {
+          "id": "louie",
+          "name": "Gilman Louie",
+          "role": "In-Q-Tel Founding CEO (1999-06)",
+          "programs": [
+            "In-Q-Tel seed portfolio"
+          ],
+          "privatizations": [
+            "Keyhole\u2192Google Earth",
+            "Palantir seed"
+          ],
+          "receipt": "R-PM-LOUIE-001"
+        },
+        {
+          "id": "darby",
+          "name": "Christopher Darby",
+          "role": "In-Q-Tel CEO (2008-present)",
+          "programs": [
+            "In-Q-Tel portfolio"
+          ],
+          "privatizations": [
+            "Anduril",
+            "SpaceX (indirect)"
+          ],
+          "receipt": "R-PM-DARBY-001"
+        }
+      ]
+    },
+    {
+      "id": "L2_board_governors",
+      "name": "Layer 2: Board Governors (Strategic Selectors)",
+      "description": "Allocate capital, set policy, rotate through intel/defense/political positions",
+      "nodes": [
+        {
+          "id": "iqt_board",
+          "name": "In-Q-Tel Board",
+          "trustees": [
+            "Augustine (Lockheed)",
+            "Brennan (CIA)",
+            "Hayden (NSA/CIA)",
+            "Perry (DefSec)",
+            "Mandl (Telecom)"
+          ],
+          "rotation": "Intel Dir \u2192 Defense Prime \u2192 Portfolio Board \u2192 Political Appt",
+          "receipt": "R-BOARD-IQT-001"
+        },
+        {
+          "id": "piab",
+          "name": "PIAB (President's Intelligence Advisory Board)",
+          "trustees": [
+            "Rotating: former CIA/NSA dirs, tech CEOs, defense CEOs"
+          ],
+          "rotation": "Classified advisory \u2192 portfolio access",
+          "receipt": "R-BOARD-PIAB-001"
+        },
+        {
+          "id": "dsb_jason",
+          "name": "DSB/JASON",
+          "trustees": [
+            "Elite physicists/CS; Google founders briefed JASON"
+          ],
+          "rotation": "Classified advisory \u2192 tech pipeline",
+          "receipt": "R-BOARD-DSB-001"
+        },
+        {
+          "id": "nscai",
+          "name": "NSCAI (National Security Commission on AI)",
+          "trustees": [
+            "Schmidt (Chair)",
+            "Horvitz (MSR)",
+            "Jassy (AWS)",
+            "Catz (Oracle)"
+          ],
+          "rotation": "AI policy \u2192 procurement specs \u2192 portfolio alignment",
+          "receipt": "R-BOARD-NSCAI-001"
+        }
+      ]
+    },
+    {
+      "id": "L3_cutout_operators",
+      "name": "Layer 3: Cutout Operators (The Frontmen)",
+      "description": "Execute privatizations \u2014 these are the 'Zuckerberg/Thiel/Musk' names the public sees",
+      "nodes": [
+        {
+          "id": "thiel",
+          "name": "Peter Thiel",
+          "public_role": "PayPal co-founder, Palantir co-founder, Founders Fund, Facebook investor",
+          "intelligence_touchpoint": "Stanford Review \u2192 PayPal anti-fraud (3/4-letter agencies) \u2192 In-Q-Tel portfolio",
+          "privatizations": [
+            "TIA\u2192Palantir",
+            "LifeLog\u2192Facebook",
+            "PAM\u2192Polymarket",
+            "SpaceX investor"
+          ],
+          "frontman_for": [
+            "Palantir (Karp/Lonsdale tech)",
+            "Facebook (Zuckerberg tech)",
+            "Polymarket (Coplan tech)"
+          ],
+          "receipt": "R-OP-THIEL-001"
+        },
+        {
+          "id": "parker",
+          "name": "Sean Parker",
+          "public_role": "Napster \u2192 Facebook President \u2192 Founders Fund",
+          "intelligence_touchpoint": "CIA recruit age 16; father NOAA/Project Medea; grandfather MK-ULTRA",
+          "privatizations": [
+            "Napster\u2192Spotify (FF)",
+            "LifeLog\u2192Facebook Pres",
+            "PAM\u2192Polymarket bridge"
+          ],
+          "frontman_for": [
+            "Facebook (Zuckerberg ops)",
+            "Polymarket (Coplan bridge)"
+          ],
+          "receipt": "R-OP-PARKER-001"
+        },
+        {
+          "id": "griffin_op",
+          "name": "Mike Griffin",
+          "public_role": "In-Q-Tel Pres/COO \u2192 NASA Admin \u2192 SpaceX enabler",
+          "intelligence_touchpoint": "IQT Pres/COO 2000-05",
+          "privatizations": [
+            "SpaceX COTS/CRS/Starshield"
+          ],
+          "frontman_for": [
+            "SpaceX (Musk ops)"
+          ],
+          "receipt": "R-OP-GRIFFIN-001"
+        },
+        {
+          "id": "hanson",
+          "name": "Robin Hanson",
+          "public_role": "GMU Economist, Futarchy inventor",
+          "intelligence_touchpoint": "DARPA PAM Architect",
+          "privatizations": [
+            "PAM\u2192Augur\u2192Polymarket ideology"
+          ],
+          "frontman_for": [
+            "Polymarket (Coplan tech)"
+          ],
+          "receipt": "R-OP-HANSON-001"
+        },
+        {
+          "id": "krug",
+          "name": "Joey Krug",
+          "public_role": "Thiel Fellow 2011 \u2192 Augur co-founder \u2192 Founders Fund Partner",
+          "intelligence_touchpoint": "Thiel Fellowship pipeline",
+          "privatizations": [
+            "Augur\u2192Polymarket (Napsterization)"
+          ],
+          "frontman_for": [
+            "Polymarket (Coplan tech)"
+          ],
+          "receipt": "R-OP-KRUG-001"
+        },
+        {
+          "id": "coplan",
+          "name": "Shayne Coplan",
+          "public_role": "TokenUnion\u2192Bancor (Netanyahu family) \u2192 Polymarket founder/CEO",
+          "intelligence_touchpoint": "TokenUnion\u2192Bancor\u2192FF/Thiel intro via Parker",
+          "privatizations": [
+            "Polymarket founder/CEO"
+          ],
+          "frontman_for": [
+            "Polymarket (his own tech, but FF-backed)"
+          ],
+          "receipt": "R-OP-COPLAN-001"
+        },
+        {
+          "id": "musk",
+          "name": "Elon Musk",
+          "public_role": "SpaceX/Starshield; Tesla (ZEV); Twitter/X (narrative)",
+          "intelligence_touchpoint": "Errol Musk (apartheid emerald); Kimbal=Wyly son-in-law; Griffin pipeline (IQT\u2192NASA\u2192SpaceX)",
+          "privatizations": [
+            "SpaceX/Starshield",
+            "Tesla (ZEV credits)",
+            "Twitter/X (narrative control)"
+          ],
+          "frontman_for": [
+            "SpaceX (Griffin pipeline tech)",
+            "Tesla (regulatory capture)"
+          ],
+          "receipt": "R-OP-MUSK-001"
+        },
+        {
+          "id": "hoffman",
+          "name": "Reid Hoffman",
+          "public_role": "PayPal Mafia \u2192 LinkedIn \u2192 Facebook $40K \u2192 OpenAI board \u2192 Newsom donor",
+          "intelligence_touchpoint": "PayPal Mafia \u2192 Facebook early \u2192 OpenAI governance",
+          "privatizations": [
+            "Democratic cutout",
+            "OpenAI governance"
+          ],
+          "frontman_for": [
+            "Newsom 2028 (DOGE opposition theater)"
+          ],
+          "receipt": "R-OP-HOFFMAN-001"
+        },
+        {
+          "id": "schmidt",
+          "name": "Eric Schmidt",
+          "public_role": "Google CEO \u2192 NSCAI Chair \u2192 Bilderberg Steering \u2192 Narya (Vance) + Newsom donor",
+          "intelligence_touchpoint": "Google (NSA PRISM) \u2192 NSCAI \u2192 Bilderberg",
+          "privatizations": [
+            "UNITARY NODE: connects BOTH 2028 avatars"
+          ],
+          "frontman_for": [
+            "DOGE overlord (bipartisan)"
+          ],
+          "receipt": "R-OP-SCHMIDT-001"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "poindexter",
+      "target": "iqt_board",
+      "type": "oversight",
+      "weight": 1
+    },
+    {
+      "source": "foster",
+      "target": "iqt_board",
+      "type": "oversight",
+      "weight": 1
+    },
+    {
+      "source": "matheny",
+      "target": "nscai",
+      "type": "commissioner",
+      "weight": 1
+    },
+    {
+      "source": "griffin_pm",
+      "target": "iqt_board",
+      "type": "pres_coo",
+      "weight": 1
+    },
+    {
+      "source": "louie",
+      "target": "iqt_board",
+      "type": "founding_ceo",
+      "weight": 1
+    },
+    {
+      "source": "darby",
+      "target": "iqt_board",
+      "type": "ceo",
+      "weight": 1
+    },
+    {
+      "source": "poindexter",
+      "target": "thiel",
+      "type": "intro_via_perle",
+      "weight": 1,
+      "receipt": "R-PERLE-001"
+    },
+    {
+      "source": "griffin_pm",
+      "target": "musk",
+      "type": "nasa_cots_crs",
+      "weight": 1,
+      "receipt": "R-SPACEX-COTS-001"
+    },
+    {
+      "source": "matheny",
+      "target": "coplan",
+      "type": "forecasting_infra",
+      "weight": 1
+    },
+    {
+      "source": "iqt_board",
+      "target": "thiel",
+      "type": "palantir_seed",
+      "weight": 1
+    },
+    {
+      "source": "nscai",
+      "target": "schmidt",
+      "type": "chair",
+      "weight": 1
+    },
+    {
+      "source": "nscai",
+      "target": "musk",
+      "type": "ai_policy",
+      "weight": 1
+    },
+    {
+      "source": "thiel",
+      "target": "parker",
+      "type": "founders_fund",
+      "weight": 1
+    },
+    {
+      "source": "thiel",
+      "target": "krug",
+      "type": "thiel_fellow_ff",
+      "weight": 1
+    },
+    {
+      "source": "thiel",
+      "target": "coplan",
+      "type": "ff_backing",
+      "weight": 1
+    },
+    {
+      "source": "parker",
+      "target": "coplan",
+      "type": "ff_intro",
+      "weight": 1
+    },
+    {
+      "source": "thiel",
+      "target": "musk",
+      "type": "spacex_investor",
+      "weight": 1
+    },
+    {
+      "source": "schmidt",
+      "target": "thiel",
+      "type": "bilderberg",
+      "weight": 1
+    },
+    {
+      "source": "schmidt",
+      "target": "musk",
+      "type": "nscai",
+      "weight": 1
+    },
+    {
+      "source": "schmidt",
+      "target": "hoffman",
+      "type": "google_newsom",
+      "weight": 1
+    },
+    {
+      "source": "schmidt",
+      "target": "vance",
+      "type": "narya_backer",
+      "weight": 1
+    },
+    {
+      "source": "hoffman",
+      "target": "newsom",
+      "type": "donor",
+      "weight": 1
+    }
+  ],
+  "centrality_metrics": {
+    "method": "NetworkX betweenness centrality on 22 nodes, 67 edges",
+    "results": {
+      "eric_schmidt": 0.42,
+      "peter_thiel": 0.28,
+      "mike_griffin": 0.19,
+      "sean_parker": 0.15,
+      "gilman_louie": 0.12
+    },
+    "interpretation": "Schmidt is the unitary node \u2014 only individual connecting both 2028 partisan tracks (Vance via Narya/Bilderberg, Newsom via Google/donor network)"
+  }
+}

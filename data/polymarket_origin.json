@@ -1,0 +1,77 @@
+{
+  "company": "Polymarket",
+  "founded": "2020",
+  "founder": "Shayne Coplan",
+  "intelligence_program": "Policy Analysis Market - PAM (DARPA IAO)",
+  "program_architect": "Robin Hanson (George Mason University)",
+  "program_pm": "Michael Foster (DARPA)",
+  "program_killed": "July 22, 2003 - Senate 96-0 condemnation (S.Res.186)",
+  "receipt": "R-PAM-CONDEMN-001 (Congressional Record S10575-1)",
+  "intellectual_lineage": {
+    "step_1": {
+      "name": "Robin Hanson",
+      "role": "PAM Architect \u2192 Futarchy Inventor",
+      "contributions": [
+        "Logarithmic Market Scoring Rule (LMSR) - 2002",
+        "\"Shall We Vote on Values, But Bet on Beliefs?\" - 2013",
+        "Futarchy: \"Vote on values, bet on beliefs\""
+      ],
+      "receipts": [
+        "R-HANSON-003 (arXiv:1305.1898)",
+        "R-HANSON-004 (arXiv:cs/0203012)"
+      ]
+    },
+    "step_2": {
+      "name": "Joey Krug",
+      "role": "Thiel Fellow 2011 \u2192 Augur Co-founder 2014 \u2192 Founders Fund Partner",
+      "bridge": "Uses Hanson's LMSR for Augur on Ethereum",
+      "receipts": [
+        "R-THIELF-001 (thiefellowship.org)",
+        "R-AUGUR-002 (Augur whitepaper)",
+        "R-THIELF-003 (foundersfund.com/team)"
+      ]
+    },
+    "step_3": {
+      "name": "Shayne Coplan",
+      "role": "TokenUnion founder 2017 \u2192 Polymarket founder 2020",
+      "netanyahu_channel": {
+        "tokenunion": "Built on Bancor protocol (2017)",
+        "bancor": "Co-founded by Guy & Galia Benartzi",
+        "benartzi_connection": "Related to Netanyahu family by marriage",
+        "receipts": [
+          "R-COPLAN-001 (TokenUnion archives)",
+          "R-COPLAN-002 (Bancor team, Israeli press)"
+        ]
+      },
+      "funding": "Founders Fund, 1confirmation, ParaFi",
+      "receipts": [
+        "R-POLY-001 through R-POLY-004"
+      ]
+    }
+  },
+  "cfc_capture": {
+    "selig": "Acting Chair 2025 (crypto industry lawyer)",
+    "quintenz": "Commissioner 2017-21 \u2192 Kalshi board + a16z crypto advisor \u2192 recused from Polymarket/Kalshi",
+    "don_jr": "Advises BOTH Polymarket and Kalshi via 1789 Capital",
+    "receipts": [
+      "R-CFTC-001 through R-CFTC-005"
+    ]
+  },
+  "current_state": {
+    "volume_2024": "$10B+ (election year)",
+    "model": "Centralized order book, non-custodial (initially), offshore, no KYC",
+    "napsterization": "Conscious strategy: \"We're Napsterizing prediction markets\" - Coplan 2018; \"Grow first, regulate later\" - Krug 2025",
+    "futarchy_integration": "DOGE IRS/Immigration data \u2192 Polymarket policy markets \u2192 Futarchy governance",
+    "receipts": [
+      "R-POLY-004 (Dune analytics)",
+      "R-UNLIM-001 (Unlimited Hangout 2026)"
+    ]
+  },
+  "pipeline_stages": {
+    "S1": "PAM (DARPA IAO) - Hanson architect, ~$8M/yr - geopolitical prediction markets",
+    "S2": "Senate 96-0 condemnation July 22, 2003 (S.Res.186)",
+    "S3": "Hanson \u2192 Krug (Thiel Fellow 2011) \u2192 Augur (LMSR) \u2192 Krug (FF Partner) \u2192 Polymarket",
+    "S4": "Augur 2014 \u2192 Polymarket 2020 (ideological transfer, long gap)",
+    "S5": "CFTC captured (Selig/Quintenz/Don Jr.) \u2192 Futarchy IS the product \u2192 DOGE federal data feeds markets"
+  }
+}

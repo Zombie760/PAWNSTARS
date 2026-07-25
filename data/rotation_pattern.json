@@ -1,0 +1,66 @@
+{
+  "stages": [
+    {
+      "stage": "Intelligence Director",
+      "examples": [
+        "Brennan (CIA)",
+        "Hayden (NSA/CIA)",
+        "Poindexter (NSC)"
+      ]
+    },
+    {
+      "stage": "Defense Prime Board",
+      "examples": [
+        "Augustine (Lockheed)",
+        "Perry (DefSec->Martin Marietta)"
+      ]
+    },
+    {
+      "stage": "Portfolio Board",
+      "examples": [
+        "In-Q-Tel Board",
+        "PIAB",
+        "DSB/JASON",
+        "NSCAI"
+      ]
+    },
+    {
+      "stage": "Political Appointment",
+      "examples": [
+        "Griffin (NASA Admin)",
+        "Acosta (Labor Sec)",
+        "Barr (AG)"
+      ]
+    },
+    {
+      "stage": "Intelligence Oversight",
+      "examples": [
+        "PIAB",
+        "IOB",
+        "Church/Pike successors"
+      ]
+    }
+  ],
+  "documented_rotations": [
+    {
+      "name": "Mike Griffin",
+      "path": "In-Q-Tel Pres/COO (2000-05) -> NASA Admin (2005-09) -> SpaceX enabler"
+    },
+    {
+      "name": "Gilman Louie",
+      "path": "In-Q-Tel Founding CEO (1999-06) -> Portfolio Board"
+    },
+    {
+      "name": "Eric Schmidt",
+      "path": "Google CEO -> NSCAI Chair -> Bilderberg Steering -> Narya (Vance) + Newsom donor"
+    },
+    {
+      "name": "Jason Matheny",
+      "path": "IARPA Dir (2015-18) -> NSCAI Commissioner"
+    },
+    {
+      "name": "John Poindexter",
+      "path": "DARPA IAO -> NSC Advisor (Reagan) -> Iran-Convict -> Rehabilitated"
+    }
+  ]
+}

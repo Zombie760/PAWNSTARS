@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Complete Machine Loop — The Procurement Machine</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.5rem; background: linear-gradient(135deg, #fff, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 8px; }
+        .subtitle { color: #888; margin-bottom: 32px; }
+        #graph { width: 100%; height: 70vh; background: #05050a; border-radius: 12px; border: 1px solid #222; }
+        .legend { position: absolute; top: 20px; right: 20px; z-index: 100; background: rgba(10,10,15,0.95); padding: 16px; border-radius: 8px; border: 1px solid #333; font-size: 12px; max-width: 250px; }
+        .legend h3 { margin: 0 0 12px; color: #fff; font-size: 14px; }
+        .legend-item { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+        .stats { position: absolute; bottom: 20px; left: 20px; z-index: 100; background: rgba(10,10,15,0.95); padding: 12px 16px; border-radius: 8px; border: 1px solid #333; font-size: 12px; color: #ccc; }
+        .epstein-box { position: absolute; top: 20px; left: 20px; z-index: 100; background: rgba(255,107,107,0.1); border: 1px solid #ff6b6b; border-radius: 8px; padding: 16px; max-width: 300px; font-size: 12px; color: #ff6b6b; }
+        .epstein-box h4 { color: #ff6b6b; margin: 0 0 8px; }
+    
+        @media (max-width: 768px) {
+            .container { padding: 16px 12px; }
+            header { padding: 20px 0 16px; }
+            h1 { font-size: 1.8rem !important; }
+            .subtitle { font-size: 1rem !important; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .filter-btn, .btn { width: 100%; text-align: center; }
+            .legend { position: static; margin: 20px 0; max-width: 100%; }
+            .stats { position: static; margin-top: 20px; text-align: center; }
+            .stats-row { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
+            .widget.full-width { grid-column: auto; }
+            .widget-body iframe { height: 300px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .pipeline-stages { flex-direction: column; }
+            .controls { flex-direction: column; }
+            .btn { width: 100%; }
+            .layer-header { flex-direction: column; align-items: flex-start; }
+            .nodes-grid { grid-template-columns: 1fr; }
+            .flow { flex-direction: column; gap: 12px; }
+            .legend { flex-direction: column; gap: 8px; }
+            .filter-row { flex-direction: column; }
+            .filter-btn { width: 100%; }
+            .event-card { max-width: 100%; }
+            .event-date { width: 80px; font-size: 11px; padding-right: 8px; }
+            .event-dot { left: 90px; }
+            .event-card { padding: 12px 14px; }
+            .event-header { flex-wrap: wrap; }
+            .stat-card { padding: 16px; }
+            .stat-card .value { font-size: 1.5rem; }
+            .quick-links { flex-direction: column; }
+            .quick-link { text-align: center; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .filter-row { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 12px 8px; }
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.3rem !important; }
+            h3 { font-size: 1.1rem !important; }
+            .widget-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .widget-header h3 { font-size: 1rem; }
+            .btn { padding: 12px 16px; font-size: 0.9rem; }
+            .stat-card { padding: 12px; }
+            .stat-card .value { font-size: 1.3rem; }
+            .widget-body { padding: 12px; }
+        }
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Complete Machine Loop</h1>
+            <p class="subtitle">The self-reinforcing extraction architecture: Intelligence Programs → DOGE → Machine Runs Itself</p>
+        </header>
+        
+        <div class="epstein-box" id="epsteinBox"></div>
+        <div id="graph"></div>
+        <div class="legend" id="legend"></div>
+        <div class="stats" id="stats"></div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        const data = {"core_loop": [{"id": "intel_programs", "label": "Intelligence Programs\n(TIA, LifeLog, PAM,\nSpace Launch)", "stage": "S1"}, {"id": "congress_defunds", "label": "Congress Defunds /\nPublic Rejection\n(\u00a78131, 96-0 vote,\nLifeLog cancellation)", "stage": "S2"}, {"id": "iqt_bridge", "label": "In-Q-Tel / CIA VC\nBridges Capital,\nPersonnel, IP", "stage": "S3"}, {"id": "private_incorp", "label": "Private Incorporation\n(Same Month, Same\nArchitects, Same Code)", "stage": "S4"}, {"id": "reg_capture", "label": "Regulatory Capture\n(Alumni as CIOs,\nCFTC/SEC/FTC Capture)", "stage": "S5a"}, {"id": "futarchy", "label": "Futarchy Governance\n(Federal Data ->\nPrediction Markets ->\nPolicy = Market Price)", "stage": "S5b"}, {"id": "flywheels", "label": "4 Self-Reinforcing\nFlywheels\n(L1 Personnel->Procurement\nL2 Data->Markets->Gov\nL3 Regulatory Protection\nL4 Narrative Control)", "stage": "S5c"}, {"id": "machine_runs", "label": "MACHINE RUNS ITSELF\n(No disposal needed -\nself-reinforcing extraction\narchitecture)", "stage": "OUTPUT"}], "connections": [{"from": "intel_programs", "to": "congress_defunds"}, {"from": "congress_defunds", "to": "iqt_bridge"}, {"from": "iqt_bridge", "to": "private_incorp"}, {"from": "private_incorp", "to": "reg_capture"}, {"from": "reg_capture", "to": "futarchy"}, {"from": "futarchy", "to": "flywheels"}, {"from": "flywheels", "to": "machine_runs"}, {"from": "flywheels", "to": "intel_programs", "label": "New programs\nprototyped", "feedback": true}], "unitary_node": {"entity": "Eric Schmidt", "position": "Sits across all layers", "centrality": 0.42}, "epstein_continuity": {"thesis": "Epstein V1.0 (1990s-2019) = Beta version\nDOGE V2.0 (2025+) = Production release", "evidence": "8-component structural isomorphism, 11/11 falsifier entities in Epstein archive"}};
+        
+        const width = window.innerWidth * 0.95;
+        const height = window.innerHeight * 0.65;
+        const svg = d3.select("#graph").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        
+        // Force-directed layout for the loop
+        const simulation = d3.forceSimulation(data.core_loop)
+            .force("link", d3.forceLink(data.connections).id(d => d.id).distance(200).strength(0.5))
+            .force("charge", d3.forceManyBody().strength(-600))
+            .force("center", d3.forceCenter(width/2, height/2))
+            .force("collision", d3.forceCollide().radius(100).strength(0.8));
+        
+        // Arrowhead marker
+        svg.append("defs").append("marker")
+            .attr("id", "arrowhead")
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 25)
+            .attr("refY", 0)
+            .attr("orient", "auto")
+            .attr("markerWidth", 8)
+            .attr("markerHeight", 8)
+            .append("path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .attr("fill", "#ffd700");
+        
+        // Links
+        const link = svg.append("g")
+            .attr("stroke", "#ffd700")
+            .attr("stroke-opacity", 0.6)
+            .attr("stroke-width", 2)
+            .attr("fill", "none")
+            .attr("marker-end", "url(#arrowhead)")
+            .selectAll("path")
+            .data(data.connections)
+            .enter().append("path")
+            .attr("class", d => d.feedback ? "feedback" : "")
+            .attr("stroke-dasharray", d => d.feedback ? "8,4" : "none")
+            .attr("stroke-width", d => d.feedback ? 1.5 : 2);
+        
+        // Nodes
+        const node = svg.append("g")
+            .selectAll("g")
+            .data(data.core_loop)
+            .enter().append("g")
+            .attr("class", "node")
+            .call(drag(simulation));
+        
+        node.append("rect")
+            .attr("x", -100)
+            .attr("y", -50)
+            .attr("width", 200)
+            .attr("height", 100)
+            .attr("rx", 12)
+            .attr("fill", d => {
+                if (d.stage === "OUTPUT") return "#ffd700";
+                if (d.stage === "S1") return "#00bfff";
+                if (d.stage === "S2") return "#ff6b6b";
+                if (d.stage === "S3") return "#ffd700";
+                if (d.stage === "S4") return "#00ff7f";
+                if (d.stage.startsWith("S5")) return "#ff00ff";
+                return "#666";
+            })
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 2);
+        
+        node.append("text")
+            .attr("text-anchor", "middle")
+            .attr("dominant-baseline", "middle")
+            .attr("font-size", "12px")
+            .attr("font-weight", "600")
+            .attr("fill", d => d.stage === "OUTPUT" ? "#0a0a0f" : "#fff")
+            .text(d => d.label);
+        
+        function drag(simulation) {
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x; d.fy = d.y;
+            }
+            function dragged(event, d) {
+                d.fx = event.x; d.fy = event.y;
+            }
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null; d.fy = null;
+            }
+            return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
+        }
+        
+        simulation.on("tick", () => {
+            link.attr("d", d => {
+                const dx = d.target.x - d.source.x;
+                const dy = d.target.y - d.source.y;
+                const dr = Math.sqrt(dx * dx + dy * dy);
+                return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
+            });
+            
+            node.attr("transform", d => `translate(${d.x - 100},${d.y - 50})`);
+        });
+        
+        // Legend
+        const legend = d3.select("#legend");
+        const stages = ["S1", "S2", "S3", "S4", "S5a", "S5b", "S5c", "OUTPUT"];
+        const colors = ["#00bfff", "#ff6b6b", "#ffd700", "#00ff7f", "#ff00ff", "#ff00ff", "#ff00ff", "#ffd700"];
+        stages.forEach((s, i) => {
+            const item = legend.append("div").attr("class", "legend-item");
+            item.append("div").attr("class", "legend-color").style("background", colors[i]);
+            item.append("span").text(s);
+        });
+        
+        // Epstein box
+        const ep = data.epstein_continuity;
+        document.getElementById("epsteinBox").innerHTML = `
+            <h4>Epstein Continuity</h4>
+            <p><strong>Thesis:</strong> ${ep.thesis}</p>
+            <p><strong>Evidence:</strong> ${ep.evidence}</p>
+        `;
+        
+        // Stats
+        document.getElementById("stats").innerHTML = `
+            <strong>${data.core_loop.length} stages</strong> | 
+            <strong>${data.connections.length} connections</strong> | 
+            <span style="color: #ffd700;">Unitary: Eric Schmidt (0.42)</span>
+        `;
+        
+        function drag(simulation) {
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x; d.fy = d.y;
+            }
+            function dragged(event, d) {
+                d.fx = event.x; d.fy = event.y;
+            }
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null; d.fy = null;
+            }
+            return d3.drag().on("start", dragstarted).on("drag", dragged).on("end", dragended);
+        }
+    </script>
+</body>
+</html>

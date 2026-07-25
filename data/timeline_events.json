@@ -1,0 +1,322 @@
+[
+  {
+    "date": "2002-01",
+    "wave": "TIA\u2192Palantir",
+    "stage": "S1",
+    "event": "Poindexter appointed DARPA IAO Director",
+    "receipt": "R-POINDEXTER-004",
+    "type": "program_start"
+  },
+  {
+    "date": "2002-11",
+    "wave": "TIA\u2192Palantir",
+    "stage": "S1",
+    "event": "NYT exposes TIA \"Surveillance Society\"",
+    "receipt": "R-TIA-EXPOSE-001",
+    "type": "media"
+  },
+  {
+    "date": "2003-05",
+    "wave": "TIA\u2192Palantir",
+    "stage": "S4",
+    "event": "Palantir incorporates (DE #3759318)",
+    "receipt": "R-PAL-INC-001",
+    "type": "incorporation"
+  },
+  {
+    "date": "2003-07-22",
+    "wave": "TIA\u2192Palantir",
+    "stage": "S2",
+    "event": "Senate votes 96-0 on PAM (S.Res.186)",
+    "receipt": "R-PAM-CONDEMN-001",
+    "type": "defunding"
+  },
+  {
+    "date": "2003-09-30",
+    "wave": "TIA\u2192Palantir",
+    "stage": "S2",
+    "event": "\u00a78131 enacted (PL 108-87) defunding TIA",
+    "receipt": "R-TIA-DEFUND-001",
+    "type": "defunding"
+  },
+  {
+    "date": "2004-05",
+    "wave": "TIA\u2192Palantir",
+    "stage": "S3",
+    "event": "In-Q-Tel invests ~$2M in Palantir",
+    "receipt": "R-IQT-PAL-001",
+    "type": "investment"
+  },
+  {
+    "date": "2008",
+    "wave": "TIA\u2192Palantir",
+    "stage": "S5",
+    "event": "Palantir reaches 18 IC agency customers",
+    "receipt": "R-PAL-IC-001",
+    "type": "capture"
+  },
+  {
+    "date": "2003-01",
+    "wave": "LifeLog\u2192Facebook",
+    "stage": "S1",
+    "event": "LifeLog program starts (Douglas Gage PM)",
+    "receipt": "R-LIFELOG-001",
+    "type": "program_start"
+  },
+  {
+    "date": "2004-02-04",
+    "wave": "LifeLog\u2192Facebook",
+    "stage": "S2",
+    "event": "LifeLog publicly cancelled",
+    "receipt": "R-LIFELOG-CANCEL-001",
+    "type": "defunding"
+  },
+  {
+    "date": "2004-02-04",
+    "wave": "LifeLog\u2192Facebook",
+    "stage": "S4",
+    "event": "TheFacebook.com launches at Harvard (SAME DAY)",
+    "receipt": "R-FB-INC-001",
+    "type": "incorporation"
+  },
+  {
+    "date": "2004-02-04",
+    "wave": "LifeLog\u2192Facebook",
+    "stage": "S1",
+    "event": "Gage: \"Facebook is pseudo-LifeLog\"",
+    "receipt": "R-FB-LIFELOG-001",
+    "type": "admission"
+  },
+  {
+    "date": "2004-09",
+    "wave": "LifeLog\u2192Facebook",
+    "stage": "S3",
+    "event": "Thiel invests $500K in Facebook",
+    "receipt": "R-FB-THIEL-001",
+    "type": "investment"
+  },
+  {
+    "date": "2005",
+    "wave": "LifeLog\u2192Facebook",
+    "stage": "S3",
+    "event": "Sean Parker joins Founders Fund",
+    "receipt": "R-FB-PARKER-001",
+    "type": "personnel"
+  },
+  {
+    "date": "2023",
+    "wave": "LifeLog\u2192Facebook",
+    "stage": "S5",
+    "event": "PYUSD stablecoin launches (Paxos, NYDFS)",
+    "receipt": "R-FB-PYUSD-001",
+    "type": "capture"
+  },
+  {
+    "date": "2001",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S1",
+    "event": "PAM program starts (Hanson architect, Foster PM)",
+    "receipt": "R-PAM-001",
+    "type": "program_start"
+  },
+  {
+    "date": "2002",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S1",
+    "event": "Hanson publishes LMSR (Logarithmic Market Scoring Rule)",
+    "receipt": "R-HANSON-004",
+    "type": "innovation"
+  },
+  {
+    "date": "2003-07-22",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S2",
+    "event": "Senate 96-0 condemns PAM (S.Res.186)",
+    "receipt": "R-PAM-CONDEMN-001",
+    "type": "defunding"
+  },
+  {
+    "date": "2011",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S3",
+    "event": "Joey Krug named Thiel Fellow (Class of 2011)",
+    "receipt": "R-THIELF-001",
+    "type": "personnel"
+  },
+  {
+    "date": "2013",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S1",
+    "event": "Hanson publishes \"Shall We Vote on Values, But Bet on Beliefs?\" (Futarchy)",
+    "receipt": "R-HANSON-003",
+    "type": "innovation"
+  },
+  {
+    "date": "2014",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S4",
+    "event": "Augur launches on Ethereum (Krug co-founder, LMSR)",
+    "receipt": "R-AUGUR-001",
+    "type": "incorporation"
+  },
+  {
+    "date": "2017",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S3",
+    "event": "Coplan founds TokenUnion on Bancor",
+    "receipt": "R-COPLAN-001",
+    "type": "incorporation"
+  },
+  {
+    "date": "2018",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S3",
+    "event": "Coplan: \"We're Napsterizing prediction markets\"",
+    "receipt": "R-UNLIM-001",
+    "type": "admission"
+  },
+  {
+    "date": "2020",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S4",
+    "event": "Polymarket launches (Founders Fund backing)",
+    "receipt": "R-POLY-001",
+    "type": "incorporation"
+  },
+  {
+    "date": "2022",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S5",
+    "event": "CFTC Wells Notice to Polymarket ($1.4M fine)",
+    "receipt": "R-CFTC-004",
+    "type": "enforcement"
+  },
+  {
+    "date": "2025",
+    "wave": "PAM\u2192Polymarket",
+    "stage": "S5",
+    "event": "Selig Acting Chair, Quintenz recusal, Don Jr. advises both",
+    "receipt": "R-CFTC-001",
+    "type": "capture"
+  },
+  {
+    "date": "2000-05",
+    "wave": "Space\u2192SpaceX",
+    "stage": "S3",
+    "event": "Griffin becomes In-Q-Tel President/COO",
+    "receipt": "R-GRIFFIN-IQT-001",
+    "type": "personnel"
+  },
+  {
+    "date": "2005-04",
+    "wave": "Space\u2192SpaceX",
+    "stage": "S3",
+    "event": "Griffin sworn in as NASA Administrator",
+    "receipt": "R-GRIFFIN-NASA-001",
+    "type": "personnel"
+  },
+  {
+    "date": "2006-08",
+    "wave": "Space\u2192SpaceX",
+    "stage": "S4",
+    "event": "SpaceX wins COTS contract ($278M) under Griffin",
+    "receipt": "R-SPACEX-COTS-001",
+    "type": "contract"
+  },
+  {
+    "date": "2008-09-28",
+    "wave": "Space\u2192SpaceX",
+    "stage": "S1",
+    "event": "Falcon 1 Flight 4 succeeds (first orbital)",
+    "receipt": "R-SPACEX-2008-001",
+    "type": "milestone"
+  },
+  {
+    "date": "2008-12-23",
+    "wave": "Space\u2192SpaceX",
+    "stage": "S5",
+    "event": "SpaceX wins CRS contract ($1.6B) under Griffin",
+    "receipt": "R-SPACEX-CRS-001",
+    "type": "contract"
+  },
+  {
+    "date": "2020",
+    "wave": "Space\u2192SpaceX",
+    "stage": "S5",
+    "event": "Tesla 2020 profit 100% ZEV-dependent ($1.58B credits vs $721M net)",
+    "receipt": "R-TSLA-ZEV-001",
+    "type": "capture"
+  },
+  {
+    "date": "2021",
+    "wave": "Space\u2192SpaceX",
+    "stage": "S5",
+    "event": "NRO Starshield $1.8B classified contract (Reuters 5 sources)",
+    "receipt": "R-REUTERS-009",
+    "type": "contract"
+  },
+  {
+    "date": "2025-02",
+    "wave": "Space\u2192SpaceX",
+    "stage": "S5",
+    "event": "SpaceX alumni installed as DOE/OPM CIOs (Hogan, Riedel, Graber)",
+    "receipt": "R-SPACEX-DOGE-001",
+    "type": "capture"
+  },
+  {
+    "date": "2025-02",
+    "wave": "DOGE",
+    "stage": "S5",
+    "event": "DOGE installs 5 Palantir/SpaceX alumni as federal CIOs",
+    "receipt": "R-DOGE-CIO-001",
+    "type": "capture"
+  },
+  {
+    "date": "2025-03",
+    "wave": "DOGE",
+    "stage": "S5",
+    "event": "Palantir wins $113M+ DOGE contracts (Immigration DB, IRS Mega API, AI agents)",
+    "receipt": "R-GUARD-026",
+    "type": "contract"
+  },
+  {
+    "date": "2025-04",
+    "wave": "DOGE",
+    "stage": "S5",
+    "event": "Palantir stock +90% post-election",
+    "receipt": "R-BLOOM-027",
+    "type": "capture"
+  },
+  {
+    "date": "2025-05",
+    "wave": "DOGE",
+    "stage": "S5",
+    "event": "IRS/Immigration/SSA/OPM data centralized \u2192 Palantir \u2192 Polymarket",
+    "receipt": "R-DOGE-DATA-001",
+    "type": "capture"
+  },
+  {
+    "date": "2019-08",
+    "wave": "Epstein\u2192DOGE",
+    "stage": "V1.0",
+    "event": "Epstein death in MCC (Acosta/Barr oversight)",
+    "receipt": "R-ISO-DISPOSAL-001",
+    "type": "disposal"
+  },
+  {
+    "date": "2022-03",
+    "wave": "Epstein\u2192DOGE",
+    "stage": "archive",
+    "event": "epstein-docs.github.io releases 29,525 deduplicated entities",
+    "receipt": "R-EPSTEIN-ARCHIVE-001",
+    "type": "archive"
+  },
+  {
+    "date": "2026-03",
+    "wave": "Epstein\u2192DOGE",
+    "stage": "V2.0",
+    "event": "rhowardstone v5.2 Epstein databases released (7 SQLite DBs)",
+    "receipt": "R-EPSTEIN-V5-001",
+    "type": "archive"
+  }
+]

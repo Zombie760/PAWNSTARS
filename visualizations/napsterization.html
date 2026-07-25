@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Napsterization Model — The Procurement Machine</title>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.5rem; background: linear-gradient(135deg, #fff, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 8px; }
+        .subtitle { color: #888; margin-bottom: 32px; }
+        .doctrine { background: rgba(255,215,0,0.05); border: 1px solid #ffd700; border-radius: 12px; padding: 24px; margin-bottom: 32px; font-size: 1.1rem; line-height: 1.7; }
+        .origin { background: rgba(255,255,255,0.02); border: 1px solid #222; border-radius: 12px; padding: 24px; margin-bottom: 32px; }
+        .app { background: rgba(255,255,255,0.02); border: 1px solid #222; border-radius: 12px; padding: 24px; margin: 16px 0; border-left: 4px solid #ff6b6b; }
+        .app-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+        .app-company { font-size: 1.3rem; font-weight: 600; color: #ffd700; }
+        .app-founder { color: #888; font-size: 1rem; }
+        .quote { background: rgba(255,215,0,0.1); border: 1px solid #ffd700; border-radius: 8px; padding: 16px; margin: 16px 0; font-style: italic; color: #ffd700; }
+        .steps { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+        .step { display: flex; align-items: flex-start; gap: 12px; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid #222; border-radius: 8px; }
+        .step-num { width: 32px; height: 32px; border-radius: 50%; background: #ff6b6b; color: #0a0a0f; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+        .insight { background: rgba(255,215,0,0.05); border: 1px solid #ffd700; border-radius: 12px; padding: 24px; margin-top: 32px; font-size: 1.1rem; line-height: 1.7; border-left: 4px solid #ffd700; }
+    
+        @media (max-width: 768px) {
+            .container { padding: 16px 12px; }
+            header { padding: 20px 0 16px; }
+            h1 { font-size: 1.8rem !important; }
+            .subtitle { font-size: 1rem !important; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .filter-btn, .btn { width: 100%; text-align: center; }
+            .legend { position: static; margin: 20px 0; max-width: 100%; }
+            .stats { position: static; margin-top: 20px; text-align: center; }
+            .stats-row { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
+            .widget.full-width { grid-column: auto; }
+            .widget-body iframe { height: 300px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .pipeline-stages { flex-direction: column; }
+            .controls { flex-direction: column; }
+            .btn { width: 100%; }
+            .layer-header { flex-direction: column; align-items: flex-start; }
+            .nodes-grid { grid-template-columns: 1fr; }
+            .flow { flex-direction: column; gap: 12px; }
+            .legend { flex-direction: column; gap: 8px; }
+            .filter-row { flex-direction: column; }
+            .filter-btn { width: 100%; }
+            .event-card { max-width: 100%; }
+            .event-date { width: 80px; font-size: 11px; padding-right: 8px; }
+            .event-dot { left: 90px; }
+            .event-card { padding: 12px 14px; }
+            .event-header { flex-wrap: wrap; }
+            .stat-card { padding: 16px; }
+            .stat-card .value { font-size: 1.5rem; }
+            .quick-links { flex-direction: column; }
+            .quick-link { text-align: center; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .filter-row { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 12px 8px; }
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.3rem !important; }
+            h3 { font-size: 1.1rem !important; }
+            .widget-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .widget-header h3 { font-size: 1rem; }
+            .btn { padding: 12px 16px; font-size: 0.9rem; }
+            .stat-card { padding: 12px; }
+            .stat-card .value { font-size: 1.3rem; }
+            .widget-body { padding: 12px; }
+        }
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Napsterization Model</h1>
+            <p class="subtitle">Conscious disruption doctrine: Build illegal → Grow → Face enforcement → Capture → Monopoly</p>
+        </header>
+        
+        <div class="doctrine">
+            <strong>Doctrine:</strong> Conscious strategy: Build illegal/unregulated product -> Grow massive volume before enforcement -> Face enforcement (fine/Wells notice) -> Negotiate settlement -> Regulatory capture -> Legitimized monopoly
+        </div>
+        
+        <div class="origin">
+            <h3 style="color: #ffd700; margin: 0 0 16px;">Origin</h3>
+            <p>Napster (1999-2001): Illegal P2P -> 80M users -> RIAA lawsuits -> Bankruptcy -> iTunes/Spotify legitimized model</p>
+        </div>
+        
+        <div id="apps"></div>
+        
+        <div class="insight">
+            <strong>Key Insight:</strong> Napsterization is the Stage 5 mechanism: Regulatory capture through conscious disruption. The fine/Wells notice is not a penalty - it's the entrance fee to the legitimized monopoly.
+        </div>
+    </div>
+
+    <script>
+        const data = {"doctrine": "Conscious strategy: Build illegal/unregulated product -> Grow massive volume before enforcement -> Face enforcement (fine/Wells notice) -> Negotiate settlement -> Regulatory capture -> Legitimized monopoly", "origin": "Napster (1999-2001): Illegal P2P -> 80M users -> RIAA lawsuits -> Bankruptcy -> iTunes/Spotify legitimized model", "applications": [{"company": "Polymarket", "founder": "Shayne Coplan", "quote_2018": "\"We're Napsterizing prediction markets.\"", "quote_2025_krug": "\"The strategy was always: grow first, regulate later.\"", "steps": ["2020: Launch offshore, no KYC, US users welcome", "2022: CFTC Wells Notice -> $1.4M fine, 'compliance' theater", "2023-24: Grow to $10B+ volume (election year)", "2025: CFTC captured (Selig Chair, Quintenz recusal, Don Jr. advisory) -> Legitimized monopoly"], "receipts": ["R-UNLIM-001", "R-CFTC-001 to R-CFTC-005"]}, {"company": "Uber", "founder": "Travis Kalanick", "pattern": "Illegal taxi service -> Massive scale -> Regulatory battles -> State-by-state legalization -> Monopoly", "note": "Kalanick explicitly referenced Napster strategy"}, {"company": "Airbnb", "founder": "Brian Chesky", "pattern": "Illegal short-term rentals -> Massive scale -> City regulations -> Negotiated compliance -> Dominant platform"}, {"company": "SpaceX/Starlink", "founder": "Elon Musk", "pattern": "Unlicensed satellite constellation -> Deploy first -> FCC/ITU catch-up -> Spectrum dominance"}, {"company": "Tesla", "founder": "Elon Musk", "pattern": "ZEV credit arbitrage -> 100% profit dependency -> Political protection of credits -> Regulatory moat"}], "key_insight": "Napsterization is the Stage 5 mechanism: Regulatory capture through conscious disruption. The fine/Wells notice is not a penalty - it's the entrance fee to the legitimized monopoly."};
+        
+        const container = document.getElementById('apps');
+        
+        data.applications.forEach(app => {
+            const el = document.createElement('div');
+            el.className = 'app';
+            el.innerHTML = `
+                <div class="app-header">
+                    <div>
+                        <div class="app-company">${app.company}</div>
+                        <div class="app-founder">Founder: ${app.founder}</div>
+                    </div>
+                </div>
+                ${app.quote_2018 ? `<div class="quote">"${app.quote_2018}" — ${app.founder}, 2018</div>` : ''}
+                ${app.quote_2025_krug ? `<div class="quote">"${app.quote_2025_krug}" — Joey Krug, 2025</div>` : ''}
+                ${app.pattern ? `<p style="color: #aaa;"><strong>Pattern:</strong> ${app.pattern}</p>` : ''}
+                ${app.note ? `<p style="color: #888; font-size: 0.9rem;">${app.note}</p>` : ''}
+                ${app.steps ? `
+                    <div class="steps">
+                        ${app.steps.map((step, i) => `
+                            <div class="step">
+                                <span class="step-num">${i + 1}</span>
+                                <span>${step}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+                ${app.receipts ? `<p style="font-size: 11px; color: #666; font-family: monospace; margin-top: 12px;">Receipts: ${app.receipts.join(', ')}</p>` : ''}
+            `;
+            container.appendChild(el);
+        });
+    </script>
+</body>
+</html>

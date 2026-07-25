@@ -1,0 +1,52 @@
+{
+  "company": "Facebook/Meta",
+  "founded": "Feb 4, 2004",
+  "intelligence_program": "LifeLog (DARPA)",
+  "program_manager": "Douglas Gage",
+  "program_cancelled": "Feb 4, 2004",
+  "same_day_launch": true,
+  "gage_quote": "\"Facebook is pseudo-LifeLog\"",
+  "receipt": "R-FB-LIFELOG-001 (Wired 2004-02-04)",
+  "bridge_personnel": [
+    {
+      "name": "Sean Parker",
+      "role": "Napster founder \u2192 Facebook President \u2192 Founders Fund Partner",
+      "intelligence_touchpoint": "CIA recruit at age 16 (VA state CS fair)",
+      "family_lineage": {
+        "father": "Bruce Parker - NOAA oceanographer, Project Medea (CIA environmental intelligence)",
+        "grandfather": "MK-ULTRA subject (Candy Jones, per family accounts)"
+      },
+      "receipts": [
+        "R-FB-PARKER-001 (Forbes 2011)",
+        "R-FB-PARKER-002 (NOAA Medea)",
+        "R-FB-PARKER-003 (CIA MK-ULTRA FOIA)"
+      ]
+    },
+    {
+      "name": "Peter Thiel",
+      "role": "PayPal co-founder \u2192 Facebook first outside investor ($500K Sept 2004) \u2192 Board 2005-2022",
+      "intelligence_touchpoint": "Stanford Review founder (1987) \u2192 PayPal anti-fraud \"collaborated with every 3/4-letter agency\" (Levchin) \u2192 In-Q-Tel portfolio (Palantir)",
+      "receipts": [
+        "R-FB-THIEL-001 (SEC Form D)",
+        "R-FB-THIEL-002 (Facebook S-1 2012)"
+      ]
+    }
+  ],
+  "current_state": {
+    "users": "3B+ monthly active",
+    "revenue": "$134B+ (2023)",
+    "ad_targeting": "Behavioral/psychographic profiles on 3B+ people",
+    "financial_infra": "PYUSD stablecoin (Paxos, NYDFS regulated) - successful Libra/Diem pivot",
+    "receipts": [
+      "R-META-001",
+      "R-FB-PYUSD-001"
+    ]
+  },
+  "pipeline_stages": {
+    "S1": "LifeLog (DARPA) - Gage PM - \"Capture totality of person's experience\"",
+    "S2": "Cancelled Feb 4, 2004 (public DARPA announcement)",
+    "S3": "Parker (CIA 16) \u2192 Thiel $500K Sept 2004",
+    "S4": "TheFacebook.com launches Feb 4, 2004 (Harvard only)",
+    "S5": "PYUSD + global ID layer + ad surveillance = futarchy-ready infrastructure"
+  }
+}

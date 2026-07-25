@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Rotation Pattern — The Procurement Machine</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2.5rem; background: linear-gradient(135deg, #fff, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 8px; }
+        .subtitle { color: #888; margin-bottom: 32px; }
+        .pipeline { display: flex; flex-direction: column; gap: 24px; align-items: center; }
+        .stage { width: 100%; max-width: 800px; background: rgba(255,255,255,0.02); border: 1px solid #222; border-radius: 12px; padding: 24px; position: relative; }
+        .stage::before { content: ''; position: absolute; left: -24px; top: 50%; transform: translateY(-50%); width: 48px; height: 2px; background: #ffd700; }
+        .stage:first-child::before { display: none; }
+        .stage-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+        .stage-num { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #ffd700, #ff6b6b); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; color: #0a0a0f; }
+        .stage-title { font-size: 1.5rem; font-weight: 600; }
+        .examples { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+        .example { background: rgba(255,215,0,0.1); border: 1px solid #ffd700; color: #ffd700; padding: 8px 16px; border-radius: 8px; font-size: 13px; }
+        .rotations-section { margin-top: 40px; }
+        .rotation { background: rgba(255,255,255,0.02); border: 1px solid #222; border-radius: 12px; padding: 24px; margin: 16px 0; }
+        .rotation-name { font-size: 1.2rem; font-weight: 600; color: #ffd700; margin-bottom: 8px; }
+        .rotation-path { font-size: 1rem; color: #ccc; line-height: 1.8; }
+    
+        @media (max-width: 768px) {
+            .container { padding: 16px 12px; }
+            header { padding: 20px 0 16px; }
+            h1 { font-size: 1.8rem !important; }
+            .subtitle { font-size: 1rem !important; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .filter-btn, .btn { width: 100%; text-align: center; }
+            .legend { position: static; margin: 20px 0; max-width: 100%; }
+            .stats { position: static; margin-top: 20px; text-align: center; }
+            .stats-row { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
+            .widget.full-width { grid-column: auto; }
+            .widget-body iframe { height: 300px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .pipeline-stages { flex-direction: column; }
+            .controls { flex-direction: column; }
+            .btn { width: 100%; }
+            .layer-header { flex-direction: column; align-items: flex-start; }
+            .nodes-grid { grid-template-columns: 1fr; }
+            .flow { flex-direction: column; gap: 12px; }
+            .legend { flex-direction: column; gap: 8px; }
+            .filter-row { flex-direction: column; }
+            .filter-btn { width: 100%; }
+            .event-card { max-width: 100%; }
+            .event-date { width: 80px; font-size: 11px; padding-right: 8px; }
+            .event-dot { left: 90px; }
+            .event-card { padding: 12px 14px; }
+            .event-header { flex-wrap: wrap; }
+            .stat-card { padding: 16px; }
+            .stat-card .value { font-size: 1.5rem; }
+            .quick-links { flex-direction: column; }
+            .quick-link { text-align: center; }
+            .card-grid { grid-template-columns: 1fr; }
+            .stage-badge { min-width: 100%; }
+            .filter-row { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 12px 8px; }
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.3rem !important; }
+            h3 { font-size: 1.1rem !important; }
+            .widget-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .widget-header h3 { font-size: 1rem; }
+            .btn { padding: 12px 16px; font-size: 0.9rem; }
+            .stat-card { padding: 12px; }
+            .stat-card .value { font-size: 1.3rem; }
+            .widget-body { padding: 12px; }
+        }
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rotation Pattern</h1>
+            <p class="subtitle">The career pipeline: Intel Director → Defense Prime → Portfolio Board → Political Appointment → Oversight</p>
+        </header>
+        
+        <div class="pipeline" id="pipeline"></div>
+        
+        <div class="rotations-section">
+            <h2 style="color: #ffd700; margin-bottom: 24px;">Documented Rotations</h2>
+            <div id="rotations"></div>
+        </div>
+    </div>
+
+    <script>
+        const data = {"stages": [{"stage": "Intelligence Director", "examples": ["Brennan (CIA)", "Hayden (NSA/CIA)", "Poindexter (NSC)"]}, {"stage": "Defense Prime Board", "examples": ["Augustine (Lockheed)", "Perry (DefSec->Martin Marietta)"]}, {"stage": "Portfolio Board", "examples": ["In-Q-Tel Board", "PIAB", "DSB/JASON", "NSCAI"]}, {"stage": "Political Appointment", "examples": ["Griffin (NASA Admin)", "Acosta (Labor Sec)", "Barr (AG)"]}, {"stage": "Intelligence Oversight", "examples": ["PIAB", "IOB", "Church/Pike successors"]}], "documented_rotations": [{"name": "Mike Griffin", "path": "In-Q-Tel Pres/COO (2000-05) -> NASA Admin (2005-09) -> SpaceX enabler"}, {"name": "Gilman Louie", "path": "In-Q-Tel Founding CEO (1999-06) -> Portfolio Board"}, {"name": "Eric Schmidt", "path": "Google CEO -> NSCAI Chair -> Bilderberg Steering -> Narya (Vance) + Newsom donor"}, {"name": "Jason Matheny", "path": "IARPA Dir (2015-18) -> NSCAI Commissioner"}, {"name": "John Poindexter", "path": "DARPA IAO -> NSC Advisor (Reagan) -> Iran-Convict -> Rehabilitated"}]};
+        
+        const pipeline = document.getElementById('pipeline');
+        
+        data.stages.forEach((stage, i) => {
+            const stageEl = document.createElement('div');
+            stageEl.className = 'stage';
+            stageEl.innerHTML = `
+                <div class="stage-header">
+                    <div class="stage-num">${i + 1}</div>
+                    <div class="stage-title">${stage.stage}</div>
+                </div>
+                <div class="examples">
+                    ${stage.examples.map(ex => `<span class="example">${ex}</span>`).join('')}
+                </div>
+            `;
+            pipeline.appendChild(stageEl);
+        });
+        
+        const rotationsContainer = document.getElementById('rotations');
+        data.documented_rotations.forEach(rot => {
+            const rotEl = document.createElement('div');
+            rotEl.className = 'rotation';
+            rotEl.innerHTML = `
+                <div class="rotation-name">${rot.name}</div>
+                <div class="rotation-path">${rot.path}</div>
+            `;
+            rotationsContainer.appendChild(rotEl);
+        });
+    </script>
+</body>
+</html>
