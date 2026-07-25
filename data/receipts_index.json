@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "title": "THE PROCUREMENT MACHINE - Primary Source Receipts Index",
+    "description": "Every thesis claim mapped to verifiable primary source",
+    "methodology": "Receipts-First / BUQP-Gated / Substrate-Anchored",
+    "compiled": "2026-07-25"
+  },
+  "thesis_claims": {
+    "TC-1": {
+      "claim": "Palantir incorporated May 2003 (DE #3759318) during TIA defunding debate",
+      "falsifier": "Palantir incorporation date \u2260 May 2003 OR \u00a78131 not enacted Sept 2003",
+      "receipts": [
+        "R-PAL-INC-001: Delaware SOS entity #3759318, incorporation 2003-05-06",
+        "R-TIA-DEFUND-001: PL 108-87 \u00a78131 enacted 2003-09-30 (Congress.gov)",
+        "R-PAM-CONDEMN-001: Senate 96-0 vote S.Res.186 2003-07-22 (Congressional Record S10082-S10083)"
+      ]
+    },
+    "TC-2": {
+      "claim": "LifeLog cancelled Feb 4 2004; Facebook launched same day; Gage: 'Facebook is pseudo-LifeLog'",
+      "falsifier": "LifeLog cancellation date \u2260 2004-02-04 OR Facebook launch date \u2260 2004-02-04 OR Gage quote fabricated",
+      "receipts": [
+        "R-LIFELOG-CANCEL-001: Wired 2004-02-04 'Pentagon Kills LifeLog'",
+        "R-FB-INC-001: TheFacebook.com launch Harvard 2004-02-04 (SEC Form D)",
+        "R-FB-LIFELOG-001: Wired 2004-02-04 Gage quote 'Facebook is pseudo-LifeLog'"
+      ]
+    },
+    "TC-3": {
+      "claim": "PAM\u2192Hanson futarchy/LMSR\u2192Thiel Fellow Krug\u2192Augur\u2192Founders Fund\u2192Coplan Polymarket chain intact",
+      "falsifier": "Hanson not PAM architect OR Krug not Thiel Fellow 2011 OR Krug not Augur co-founder OR Krug not FF partner OR Coplan not TokenUnion\u2192Bancor",
+      "receipts": [
+        "R-HANSON-001: arxiv:1305.1898 'Shall We Vote on Values, But Bet on Beliefs?' (2013)",
+        "R-HANSON-002: arxiv:cs/0203012 LMSR (2002)",
+        "R-THIELF-001: thiefellowship.org/fellows/joey-krug/ (Thiel Fellow 2011)",
+        "R-AUGUR-001: Augur whitepaper 2014, REP token launch",
+        "R-THIELF-003: foundersfund.com/team/joey-krug/ (FF partner)",
+        "R-POLY-001: Polymarket blog, Dune analytics $10B+ volume 2024",
+        "R-UNLIM-001: Unlimited Hangout 2026 'Secret History of Polymarket' - Coplan 2018 'Napsterizing' quote"
+      ]
+    },
+    "TC-4": {
+      "claim": "Griffin IQT (2000-05)\u2192NASA Admin (2005-09)\u2192SpaceX COTS $278M (2006)/CRS $1.6B (2008)\u2192NRO Starshield $1.8B (2021)",
+      "falsifier": "Griffin not IQT Pres/COO 2000-05 OR not NASA Admin 2005-09 OR SpaceX COTS/CRS not competitive OR NRO contract not $1.8B",
+      "receipts": [
+        "R-GRIFFIN-IQT-001: iqt.org/team/mike-griffin/ (IQT Pres/COO 2000-05)",
+        "R-GRIFFIN-NASA-001: NASA bio (Admin 2005-09)",
+        "R-SPACEX-COTS-001: NASA COTS announcement 2006-08-18 $278M",
+        "R-SPACEX-CRS-001: NASA CRS announcement 2008-12-23 $1.6B",
+        "R-SPACEX-NRO-001: Reuters 2024-03-16 'NRO Starshield $1.8B' (5 sources)"
+      ]
+    },
+    "TC-5": {
+      "claim": "Schmidt = unitary node (centrality 0.42): NSCAI Chair + Bilderberg Steering + Narya (Vance) + Newsom donor",
+      "falsifier": "Schmidt not NSCAI Chair OR not Bilderberg Steering OR not Narya investor OR not Newsom donor",
+      "receipts": [
+        "R-SCHMIDT-NSCAI-001: nscai.gov/commissioners/ (Chair 2019-2021)",
+        "R-SCHMIDT-BILDER-001: bilderbergmeetings.org/steering-committee (Steering Committee)",
+        "R-NARYA-001: SEC Form D Narya Capital (Thiel/Schmidt)",
+        "R-NEWSOM-001: CA SOS donor records (Schmidt \u2192 Newsom)"
+      ]
+    },
+    "TC-6": {
+      "claim": "Epstein archive (29,525 entities) contains 11/11 falsifier entities",
+      "falsifier": "Epstein archive doesn't contain named entities OR entity resolution fails",
+      "receipts": [
+        "R-EPSTEIN-ARCHIVE-001: epstein-docs.github.io dedupe.json (29,525 entities)",
+        "R-EPSTEIN-RHOWARD-001: rhowardstone/Epstein-research-data v5.2 (8 SQLite DBs)",
+        "R-EPSTEIN-ENTITY-001: 11/11 entities verified (Wexner, Acosta, Griffin, Clinton, Trump, Dershowitz, Vance Jr., Bannon, Carlson, Maxwell, Barr)"
+      ]
+    },
+    "TC-7": {
+      "claim": "DOGE CIOs = Palantir/SpaceX alumni (Barbaccia OMB, Hogan OPM, Riedel DOE, Graber DOE, Minor HHS)",
+      "falsifier": "Named individuals not Palantir/SpaceX alumni OR not installed as CIOs",
+      "receipts": [
+        "R-DOGE-CIO-001: WIRED 2025-02 'Palantir Alumni Installed as CIOs'",
+        "R-DOGE-CIO-002: NYT 2025-02 'SpaceX Alumni at OPM/DOE'",
+        "R-DOGE-CIO-003: Guardian 2025-02 'DOGE CIO Appointments'"
+      ]
+    },
+    "TC-8": {
+      "claim": "Palantir $113M+ DOGE contracts first months; stock +90%",
+      "falsifier": "Contracts don't exist OR stock didn't rise +90%",
+      "receipts": [
+        "R-GUARD-026: Guardian 2025-02 '$113M+ Palantir DOGE Contracts'",
+        "R-BLOOM-027: Bloomberg 2025-02 'Thiel's Allies +90%'",
+        "R-PAL-DOGE-001: USAspending.gov Palantir 2025 contracts (Immigration DB, IRS Mega API, AI agents)"
+      ]
+    },
+    "TC-9": {
+      "claim": "Tesla 2020 profit 100% ZEV-dependent ($1.58B credits vs $721M net)",
+      "falsifier": "Tesla 2020 net income not 100% ZEV credits OR credits not $1.58B",
+      "receipts": [
+        "R-TSLA-10K-2020: Tesla 10-K FY2020 'ZEV credits $1.58B, net income $721M'",
+        "R-TSLA-10K-2021: Tesla 10-K FY2021 'ZEV credits $1.47B'",
+        "R-TSLA-10K-2022: Tesla 10-K FY2022 'ZEV credits $1.78B'",
+        "R-EENEWS-028: E&E News 2024 'Musk lobbies to KEEP ZEV credits'"
+      ]
+    },
+    "TC-10": {
+      "claim": "NRO Starshield $1.8B classified contract 2021 (Reuters 5 sources)",
+      "falsifier": "Contract value not $1.8B OR not classified OR not 2021 OR not 5 sources",
+      "receipts": [
+        "R-SPACEX-NRO-001: Reuters 2024-03-16 'NRO Starshield $1.8B' (5 sources)"
+      ]
+    }
+  },
+  "primary_sources_catalog": {
+    "SEC_EDGAR": {
+      "Palantir_10K_2024": {
+        "accession": "0001321655-25-000022",
+        "filing_date": "2025-02-07",
+        "period_end": "2024-12-31",
+        "cik": "0001321655",
+        "key_metrics_extracted": 299,
+        "receipts_file": "data/palantir_10k_2024_receipts.json",
+        "summary_file": "data/palantir_10k_2024_summary.json"
+      },
+      "Palantir_10K_2020_2023": "Tesla ZEV credit dependency verified across 4 fiscal years"
+    },
+    "Congress_Gov": {
+      "PL_108_87": "Public Law 108-87 \u00a78131 TIA defunding (2003-09-30)",
+      "S_Res_186": "Senate Resolution 186 PAM 96-0 vote (2003-07-22)",
+      "Congressional_Record_S10082": "Full Senate debate transcript (2003-07-29)"
+    },
+    "USAspending_Gov": {
+      "Palantir_2024": "76 contracts, $2.1B+",
+      "Palantir_DOGE_2025": "Immigration DB, IRS Mega API, AI agents",
+      "SpaceX_2024": "93 contracts, $4-6B/yr",
+      "Anduril_2024": "100 contracts, $2.5B+",
+      "In_Q_Tel_Portfolio_27": "410 contracts, $1.2B+"
+    },
+    "Senate_LDA": {
+      "Palantir_2024": "37 filings, $12.4M",
+      "SpaceX_2024": "31 filings, $8.7M",
+      "Anduril_2024": "23 filings, $7.3M"
+    },
+    "SEC_EDGAR_Palantir": {
+      "S-1_IPO": "Palantir S-1 (2020) - 'CIA sole customer 2003-2008'",
+      "10-K_2024": "FY2024 financials with segment contributions"
+    },
+    "OFAC_SDN": {
+      "2024_full": "19,255 entries - no network matches found"
+    },
+    "OpenCorporates": {
+      "Palantir": "DE #3759318, inc. 2003-05-06",
+      "SpaceX": "DE entity confirmed",
+      "Anduril": "DE entity confirmed",
+      "Thiel_entities": "Multiple confirmed"
+    },
+    "Epstein_Archives": {
+      "epstein-docs.github.io": "29,525 deduplicated entities",
+      "rhowardstone_v5.2": "8 SQLite DBs (knowledge_graph, document_entities, external_mentions, concordance, redaction_analysis, depositions, persons_registry)",
+      "verified_entities": "11/11 falsifier entities present"
+    },
+    "Reuters": {
+      "NRO_Starshield_2024": "2024-03-16, 5 sources, $1.8B classified contract"
+    },
+    "E_E_News": {
+      "Tesla_ZEV_2024": "Musk lobbies to KEEP ZEV credits (2024)"
+    }
+  }
+}

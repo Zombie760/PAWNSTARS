@@ -1,0 +1,40 @@
+{
+  "source": "Palantir 10-K FY2024 (SEC EDGAR)",
+  "filing_date": "2025-02-07",
+  "cik": "0001321655",
+  "period_end": "2024-12-31",
+  "key_metrics": {
+    "total_revenue": 2865507000,
+    "net_income": 462190000,
+    "operating_income": 310403000,
+    "gross_profit": 2299517000,
+    "cost_of_revenue": 565990000,
+    "r_d_expense": 507878000,
+    "sales_marketing": 887755000,
+    "gn_a_expense": 593481000,
+    "cash_and_equivalents": 2098524000,
+    "marketable_securities": 3131463000,
+    "total_cash": 5229987000,
+    "accounts_receivable": 575048000,
+    "total_assets": 6340884000,
+    "total_liabilities": 1246477000,
+    "stockholders_equity": 5003275000,
+    "shares_outstanding_diluted": 2338795000,
+    "eps_basic": 0.21,
+    "eps_diluted": 0.19,
+    "operating_segments": "two",
+    "segment_contributions": {
+      "context_220": 948440000,
+      "context_221": 724970000,
+      "context_222": 620677000,
+      "context_223": 771508000,
+      "context_224": 520585000,
+      "context_225": 414496000,
+      "context_226": 1719948000,
+      "context_227": 1245555000,
+      "context_228": 1035173000
+    },
+    "customer_deposits_current": 265252000,
+    "customer_deposits_noncurrent": 1663000
+  }
+}
