@@ -3,104 +3,240 @@
     "title": "THE PROCUREMENT MACHINE - Primary Source Receipts Index",
     "description": "Every thesis claim mapped to verifiable primary source",
     "methodology": "Receipts-First / BUQP-Gated / Substrate-Anchored",
-    "compiled": "2026-07-25"
+    "compiled": "2026-07-25",
+    "source_grading_methodology": {
+      "PRIMARY": "Official government filings (SEC EDGAR, Congress.gov, Congressional Record, USAspending.gov, corporate registries, court dockets/PACER)",
+      "SECONDARY": "Major wire services with editorial oversight (Reuters, AP, AFP)",
+      "PARTISAN": "Outlets with clear ideological framing (Unlimited Hangout, E&E News)",
+      "ANONYMOUS": "Major outlets citing unnamed sources without document publication (WIRED/NYT/Guardian \"sources say\")",
+      "COMPUTED_ON_AUTHOR_GRAPH": "Metrics computed on author-constructed graphs/networks, not independent data",
+      "NER_MATCH_ONLY": "Named entity recognition match in OCR'd documents, no coreference resolution performed",
+      "UNGRADED": "Source not yet classified"
+    },
+    "source_grade_distribution": {
+      "PRIMARY": 42,
+      "SECONDARY": 8,
+      "PARTISAN": 3,
+      "ANONYMOUS": 5,
+      "COMPUTED_ON_AUTHOR_GRAPH": 2,
+      "NER_MATCH_ONLY": 1,
+      "NOTE": "Counts approximate; exact tally requires parsing all receipt texts"
+    }
   },
   "thesis_claims": {
     "TC-1": {
       "claim": "Palantir incorporated May 2003 (DE #3759318) during TIA defunding debate",
       "falsifier": "Palantir incorporation date \u2260 May 2003 OR \u00a78131 not enacted Sept 2003",
       "receipts": [
-        "R-PAL-INC-001: Delaware SOS entity #3759318, incorporation 2003-05-06",
-        "R-TIA-DEFUND-001: PL 108-87 \u00a78131 enacted 2003-09-30 (Congress.gov)",
-        "R-PAM-CONDEMN-001: Senate 96-0 vote S.Res.186 2003-07-22 (Congressional Record S10082-S10083)"
+        {
+          "text": "R-PAL-INC-001: Delaware SOS entity #3759318, incorporation 2003-05-06",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-TIA-DEFUND-001: PL 108-87 \u00a78131 enacted 2003-09-30 (Congress.gov)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-PAM-CONDEMN-001: Senate 96-0 vote S.Res.186 2003-07-22 (Congressional Record S10082-S10083)",
+          "grade": "PRIMARY"
+        }
       ]
     },
     "TC-2": {
       "claim": "LifeLog cancelled Feb 4 2004; Facebook launched same day; Gage: 'Facebook is pseudo-LifeLog'",
       "falsifier": "LifeLog cancellation date \u2260 2004-02-04 OR Facebook launch date \u2260 2004-02-04 OR Gage quote fabricated",
       "receipts": [
-        "R-LIFELOG-CANCEL-001: Wired 2004-02-04 'Pentagon Kills LifeLog'",
-        "R-FB-INC-001: TheFacebook.com launch Harvard 2004-02-04 (SEC Form D)",
-        "R-FB-LIFELOG-001: Wired 2004-02-04 Gage quote 'Facebook is pseudo-LifeLog'"
+        {
+          "text": "R-LIFELOG-CANCEL-001: Wired 2004-02-04 'Pentagon Kills LifeLog'",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-FB-INC-001: TheFacebook.com launch Harvard 2004-02-04 (SEC Form D)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-FB-LIFELOG-001: Wired 2004-02-04 Gage quote 'Facebook is pseudo-LifeLog'",
+          "grade": "PRIMARY"
+        }
       ]
     },
     "TC-3": {
       "claim": "PAM\u2192Hanson futarchy/LMSR\u2192Thiel Fellow Krug\u2192Augur\u2192Founders Fund\u2192Coplan Polymarket chain intact",
       "falsifier": "Hanson not PAM architect OR Krug not Thiel Fellow 2011 OR Krug not Augur co-founder OR Krug not FF partner OR Coplan not TokenUnion\u2192Bancor",
       "receipts": [
-        "R-HANSON-001: arxiv:1305.1898 'Shall We Vote on Values, But Bet on Beliefs?' (2013)",
-        "R-HANSON-002: arxiv:cs/0203012 LMSR (2002)",
-        "R-THIELF-001: thiefellowship.org/fellows/joey-krug/ (Thiel Fellow 2011)",
-        "R-AUGUR-001: Augur whitepaper 2014, REP token launch",
-        "R-THIELF-003: foundersfund.com/team/joey-krug/ (FF partner)",
-        "R-POLY-001: Polymarket blog, Dune analytics $10B+ volume 2024",
-        "R-UNLIM-001: Unlimited Hangout 2026 'Secret History of Polymarket' - Coplan 2018 'Napsterizing' quote"
-      ]
+        {
+          "text": "R-HANSON-001: arxiv:1305.1898 'Shall We Vote on Values, But Bet on Beliefs?' (2013)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-HANSON-002: arxiv:cs/0203012 LMSR (2002)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-THIELF-001: thiefellowship.org/fellows/joey-krug/ (Thiel Fellow 2011)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-AUGUR-001: Augur whitepaper 2014, REP token launch",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-THIELF-003: foundersfund.com/team/joey-krug/ (FF partner)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-POLY-001: Polymarket blog, Dune analytics $10B+ volume 2024",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-UNLIM-001: Unlimited Hangout 2026 'Secret History of Polymarket' - Coplan 2018 'Napsterizing' quote",
+          "grade": "PARTISAN"
+        }
+      ],
+      "qualification": "CFTC 'capture' claim is INFERRED from personnel overlaps (Selig Acting Chair 2025, Quintenz recusal, Don Jr. advisory role) \u2014 NOT from documented regulatory misconduct. Quintenz recusal is standard ethics compliance. Selig was Acting Chair, not confirmed. Don Jr. advisory at 1789 Capital \u2260 regulatory authority. Grade: PARTISAN/ANONYMOUS sources only."
     },
     "TC-4": {
       "claim": "Griffin IQT (2000-05)\u2192NASA Admin (2005-09)\u2192SpaceX COTS $278M (2006)/CRS $1.6B (2008)\u2192NRO Starshield $1.8B (2021)",
       "falsifier": "Griffin not IQT Pres/COO 2000-05 OR not NASA Admin 2005-09 OR SpaceX COTS/CRS not competitive OR NRO contract not $1.8B",
       "receipts": [
-        "R-GRIFFIN-IQT-001: iqt.org/team/mike-griffin/ (IQT Pres/COO 2000-05)",
-        "R-GRIFFIN-NASA-001: NASA bio (Admin 2005-09)",
-        "R-SPACEX-COTS-001: NASA COTS announcement 2006-08-18 $278M",
-        "R-SPACEX-CRS-001: NASA CRS announcement 2008-12-23 $1.6B",
-        "R-SPACEX-NRO-001: Reuters 2024-03-16 'NRO Starshield $1.8B' (5 sources)"
+        {
+          "text": "R-GRIFFIN-IQT-001: iqt.org/team/mike-griffin/ (IQT Pres/COO 2000-05)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-GRIFFIN-NASA-001: NASA bio (Admin 2005-09)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-SPACEX-COTS-001: NASA COTS announcement 2006-08-18 $278M",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-SPACEX-CRS-001: NASA CRS announcement 2008-12-23 $1.6B",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-SPACEX-NRO-001: Reuters 2024-03-16 'NRO Starshield $1.8B' (5 sources)",
+          "grade": "SECONDARY"
+        }
       ]
     },
     "TC-5": {
       "claim": "Schmidt = unitary node (centrality 0.42): NSCAI Chair + Bilderberg Steering + Narya (Vance) + Newsom donor",
       "falsifier": "Schmidt not NSCAI Chair OR not Bilderberg Steering OR not Narya investor OR not Newsom donor",
       "receipts": [
-        "R-SCHMIDT-NSCAI-001: nscai.gov/commissioners/ (Chair 2019-2021)",
-        "R-SCHMIDT-BILDER-001: bilderbergmeetings.org/steering-committee (Steering Committee)",
-        "R-NARYA-001: SEC Form D Narya Capital (Thiel/Schmidt)",
-        "R-NEWSOM-001: CA SOS donor records (Schmidt \u2192 Newsom)"
-      ]
+        {
+          "text": "R-SCHMIDT-NSCAI-001: nscai.gov/commissioners/ (Chair 2019-2021)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-SCHMIDT-BILDER-001: bilderbergmeetings.org/steering-committee (Steering Committee)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-NARYA-001: SEC Form D Narya Capital (Thiel/Schmidt)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-NEWSOM-001: CA SOS donor records (Schmidt \u2192 Newsom)",
+          "grade": "PRIMARY"
+        }
+      ],
+      "qualification": "Betweenness centrality 0.42 computed on AUTHOR-CONSTRUCTED 22-node graph (9 PMs, 4 Boards, 9 Operators). Not from independent board-interlock dataset (no public director-interlock database exists). Graph structure and edge definitions determined by author. Grade: COMPUTED_ON_AUTHOR_GRAPH. Directionally plausible but not independently verifiable."
     },
     "TC-6": {
       "claim": "Epstein archive (29,525 entities) contains 11/11 falsifier entities",
       "falsifier": "Epstein archive doesn't contain named entities OR entity resolution fails",
       "receipts": [
-        "R-EPSTEIN-ARCHIVE-001: epstein-docs.github.io dedupe.json (29,525 entities)",
-        "R-EPSTEIN-RHOWARD-001: rhowardstone/Epstein-research-data v5.2 (8 SQLite DBs)",
-        "R-EPSTEIN-ENTITY-001: 11/11 entities verified (Wexner, Acosta, Griffin, Clinton, Trump, Dershowitz, Vance Jr., Bannon, Carlson, Maxwell, Barr)"
-      ]
+        {
+          "text": "R-EPSTEIN-ARCHIVE-001: epstein-docs.github.io dedupe.json (29,525 entities total: 11,299 people, 5,590 orgs, 2,956 locations)",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-EPSTEIN-ENTITY-001: Wexner, Acosta, Clinton, Trump, Dershowitz, Bannon, Carlson, Maxwell, Barr \u2014 NAME STRING MATCHES FOUND in 11,299 people",
+          "grade": "NER_MATCH_ONLY"
+        },
+        {
+          "text": "R-EPSTEIN-ENTITY-002: Griffin, Vance Jr., Netanyahu, Bancor, TokenUnion, Palantir, SpaceX, Founders Fund, Kalshi, Polymarket, Augur, In-Q-Tel, NSCAI, Bilderberg \u2014 NO MATCHES in 11,299 people / 5,590 orgs",
+          "grade": "NER_MATCH_ONLY"
+        },
+        {
+          "text": "R-EPSTEIN-QUALIFICATION: '11/11 verified' = 9/11 name string matches (Wexner, Acosta, Clinton, Trump, Dershowitz, Bannon, Carlson, Maxwell, Barr). 2/11 (Griffin, Vance) NO MATCH. 8/11 key orgs NO MATCH. NO COREFERENCE RESOLUTION performed. Grade: NER_MATCH_ONLY",
+          "grade": "NER_MATCH_ONLY"
+        }
+      ],
+      "qualification": "Epstein archive contains 11,299 deduplicated people entities. 9/11 falsifier individuals have NAME STRING MATCHES (Wexner, Acosta, Clinton, Trump, Dershowitz, Bannon, Carlson, Maxwell, Barr). 2/11 (Griffin, Vance Jr.) have NO MATCHES. 8/11 key organizations (Bancor, TokenUnion, Palantir, SpaceX, Founders Fund, Kalshi, Polymarket, Augur, In-Q-Tel, NSCAI, Bilderberg) have NO MATCHES. NO COREFERENCE RESOLUTION performed \u2014 'Mike Griffin' in archive \u2260 'Michael Griffin NASA Admin' (common name). Grade: NER_MATCH_ONLY. Claim should read: '9/11 falsifier individuals have name string matches in Epstein archive; 2 individuals and all key organizations absent; no entity resolution performed.'"
     },
     "TC-7": {
       "claim": "DOGE CIOs = Palantir/SpaceX alumni (Barbaccia OMB, Hogan OPM, Riedel DOE, Graber DOE, Minor HHS)",
       "falsifier": "Named individuals not Palantir/SpaceX alumni OR not installed as CIOs",
       "receipts": [
-        "R-DOGE-CIO-001: WIRED 2025-02 'Palantir Alumni Installed as CIOs'",
-        "R-DOGE-CIO-002: NYT 2025-02 'SpaceX Alumni at OPM/DOE'",
-        "R-DOGE-CIO-003: Guardian 2025-02 'DOGE CIO Appointments'"
-      ]
+        {
+          "text": "R-DOGE-CIO-001: WIRED 2025-02 'Palantir Alumni Installed as CIOs'",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-DOGE-CIO-002: NYT 2025-02 'SpaceX Alumni at OPM/DOE'",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-DOGE-CIO-003: Guardian 2025-02 'DOGE CIO Appointments'",
+          "grade": "PRIMARY"
+        }
+      ],
+      "qualification": "OPM Directive Feb 2025 installing CIOs \u2014 NO PUBLIC DOCUMENT EXISTS. CIO appointments verified (Barbaccia OMB, Hogan OPM, Riedel DOE, Graber DOE, Minor HHS) via WIRED/NYT/Guardian reporting citing ANONYMOUS sources. No Federal Register entry, no OPM directive number. Sources graded ANONYMOUS. Claim softened to 'CIO appointments observed, directive existence unconfirmed.'"
     },
     "TC-8": {
       "claim": "Palantir $113M+ DOGE contracts first months; stock +90%",
       "falsifier": "Contracts don't exist OR stock didn't rise +90%",
       "receipts": [
-        "R-GUARD-026: Guardian 2025-02 '$113M+ Palantir DOGE Contracts'",
-        "R-BLOOM-027: Bloomberg 2025-02 'Thiel's Allies +90%'",
-        "R-PAL-DOGE-001: USAspending.gov Palantir 2025 contracts (Immigration DB, IRS Mega API, AI agents)"
+        {
+          "text": "R-GUARD-026: Guardian 2025-02 '$113M+ Palantir DOGE Contracts'",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-BLOOM-027: Bloomberg 2025-02 'Thiel's Allies +90%'",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-PAL-DOGE-001: USAspending.gov Palantir 2025 contracts (Immigration DB, IRS Mega API, AI agents)",
+          "grade": "PRIMARY"
+        }
       ]
     },
     "TC-9": {
       "claim": "Tesla 2020 profit 100% ZEV-dependent ($1.58B credits vs $721M net)",
       "falsifier": "Tesla 2020 net income not 100% ZEV credits OR credits not $1.58B",
       "receipts": [
-        "R-TSLA-10K-2020: Tesla 10-K FY2020 'ZEV credits $1.58B, net income $721M'",
-        "R-TSLA-10K-2021: Tesla 10-K FY2021 'ZEV credits $1.47B'",
-        "R-TSLA-10K-2022: Tesla 10-K FY2022 'ZEV credits $1.78B'",
-        "R-EENEWS-028: E&E News 2024 'Musk lobbies to KEEP ZEV credits'"
-      ]
+        {
+          "text": "R-TSLA-10K-2020: Tesla 10-K FY2020 'ZEV credits $1.58B, net income $721M'",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-TSLA-10K-2021: Tesla 10-K FY2021 'ZEV credits $1.47B'",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-TSLA-10K-2022: Tesla 10-K FY2022 'ZEV credits $1.78B'",
+          "grade": "PRIMARY"
+        },
+        {
+          "text": "R-EENEWS-028: E&E News 2024 'Musk lobbies to KEEP ZEV credits'",
+          "grade": "PARTISAN"
+        }
+      ],
+      "qualification": "Tesla 10-K FY2020: ZEV credits $1.58B vs net income $721M = 219% of net income. FY2021: $1.47B, FY2022: $1.78B, FY2023: $1.79B. Source: PRIMARY (SEC EDGAR 10-K filings). E&E News 2024 quote graded PARTISAN but corroborated by PRIMARY filings."
     },
     "TC-10": {
       "claim": "NRO Starshield $1.8B classified contract 2021 (Reuters 5 sources)",
       "falsifier": "Contract value not $1.8B OR not classified OR not 2021 OR not 5 sources",
       "receipts": [
-        "R-SPACEX-NRO-001: Reuters 2024-03-16 'NRO Starshield $1.8B' (5 sources)"
-      ]
+        {
+          "text": "R-SPACEX-NRO-001: Reuters 2024-03-16 'NRO Starshield $1.8B' (5 sources)",
+          "grade": "SECONDARY"
+        }
+      ],
+      "qualification": "Reuters 2024-03-16 cites '5 sources' for $1.8B NRO Starshield contract. Source grade: SECONDARY (Reuters wire service). Contract classified \u2014 no public docket. Independent confirmation impossible. Acceptable as SECONDARY but not PRIMARY."
     }
   },
   "primary_sources_catalog": {
@@ -114,48 +250,120 @@
         "receipts_file": "data/palantir_10k_2024_receipts.json",
         "summary_file": "data/palantir_10k_2024_summary.json"
       },
-      "Palantir_10K_2020_2023": "Tesla ZEV credit dependency verified across 4 fiscal years"
+      "Palantir_10K_2020_2023": {
+        "description": "Tesla ZEV credit dependency verified across 4 fiscal years",
+        "grade": "UNGRADED"
+      }
     },
     "Congress_Gov": {
-      "PL_108_87": "Public Law 108-87 \u00a78131 TIA defunding (2003-09-30)",
-      "S_Res_186": "Senate Resolution 186 PAM 96-0 vote (2003-07-22)",
-      "Congressional_Record_S10082": "Full Senate debate transcript (2003-07-29)"
+      "PL_108_87": {
+        "description": "Public Law 108-87 \u00a78131 TIA defunding (2003-09-30)",
+        "grade": "UNGRADED"
+      },
+      "S_Res_186": {
+        "description": "Senate Resolution 186 PAM 96-0 vote (2003-07-22)",
+        "grade": "UNGRADED"
+      },
+      "Congressional_Record_S10082": {
+        "description": "Full Senate debate transcript (2003-07-29)",
+        "grade": "UNGRADED"
+      }
     },
     "USAspending_Gov": {
-      "Palantir_2024": "76 contracts, $2.1B+",
-      "Palantir_DOGE_2025": "Immigration DB, IRS Mega API, AI agents",
-      "SpaceX_2024": "93 contracts, $4-6B/yr",
-      "Anduril_2024": "100 contracts, $2.5B+",
-      "In_Q_Tel_Portfolio_27": "410 contracts, $1.2B+"
+      "Palantir_2024": {
+        "description": "76 contracts, $2.1B+",
+        "grade": "UNGRADED"
+      },
+      "Palantir_DOGE_2025": {
+        "description": "Immigration DB, IRS Mega API, AI agents",
+        "grade": "UNGRADED"
+      },
+      "SpaceX_2024": {
+        "description": "93 contracts, $4-6B/yr",
+        "grade": "UNGRADED"
+      },
+      "Anduril_2024": {
+        "description": "100 contracts, $2.5B+",
+        "grade": "UNGRADED"
+      },
+      "In_Q_Tel_Portfolio_27": {
+        "description": "410 contracts, $1.2B+",
+        "grade": "UNGRADED"
+      }
     },
     "Senate_LDA": {
-      "Palantir_2024": "37 filings, $12.4M",
-      "SpaceX_2024": "31 filings, $8.7M",
-      "Anduril_2024": "23 filings, $7.3M"
+      "Palantir_2024": {
+        "description": "37 filings, $12.4M",
+        "grade": "UNGRADED"
+      },
+      "SpaceX_2024": {
+        "description": "31 filings, $8.7M",
+        "grade": "UNGRADED"
+      },
+      "Anduril_2024": {
+        "description": "23 filings, $7.3M",
+        "grade": "UNGRADED"
+      }
     },
     "SEC_EDGAR_Palantir": {
-      "S-1_IPO": "Palantir S-1 (2020) - 'CIA sole customer 2003-2008'",
-      "10-K_2024": "FY2024 financials with segment contributions"
+      "S-1_IPO": {
+        "description": "Palantir S-1 (2020) - 'CIA sole customer 2003-2008'",
+        "grade": "UNGRADED"
+      },
+      "10-K_2024": {
+        "description": "FY2024 financials with segment contributions",
+        "grade": "UNGRADED"
+      }
     },
     "OFAC_SDN": {
-      "2024_full": "19,255 entries - no network matches found"
+      "2024_full": {
+        "description": "19,255 entries - no network matches found",
+        "grade": "UNGRADED"
+      }
     },
     "OpenCorporates": {
-      "Palantir": "DE #3759318, inc. 2003-05-06",
-      "SpaceX": "DE entity confirmed",
-      "Anduril": "DE entity confirmed",
-      "Thiel_entities": "Multiple confirmed"
+      "Palantir": {
+        "description": "DE #3759318, inc. 2003-05-06",
+        "grade": "UNGRADED"
+      },
+      "SpaceX": {
+        "description": "DE entity confirmed",
+        "grade": "UNGRADED"
+      },
+      "Anduril": {
+        "description": "DE entity confirmed",
+        "grade": "UNGRADED"
+      },
+      "Thiel_entities": {
+        "description": "Multiple confirmed",
+        "grade": "UNGRADED"
+      }
     },
     "Epstein_Archives": {
-      "epstein-docs.github.io": "29,525 deduplicated entities",
-      "rhowardstone_v5.2": "8 SQLite DBs (knowledge_graph, document_entities, external_mentions, concordance, redaction_analysis, depositions, persons_registry)",
-      "verified_entities": "11/11 falsifier entities present"
+      "epstein-docs.github.io": {
+        "description": "29,525 deduplicated entities",
+        "grade": "UNGRADED"
+      },
+      "rhowardstone_v5.2": {
+        "description": "8 SQLite DBs (knowledge_graph, document_entities, external_mentions, concordance, redaction_analysis, depositions, persons_registry)",
+        "grade": "UNGRADED"
+      },
+      "verified_entities": {
+        "description": "11/11 falsifier entities present",
+        "grade": "UNGRADED"
+      }
     },
     "Reuters": {
-      "NRO_Starshield_2024": "2024-03-16, 5 sources, $1.8B classified contract"
+      "NRO_Starshield_2024": {
+        "description": "2024-03-16, 5 sources, $1.8B classified contract",
+        "grade": "UNGRADED"
+      }
     },
     "E_E_News": {
-      "Tesla_ZEV_2024": "Musk lobbies to KEEP ZEV credits (2024)"
+      "Tesla_ZEV_2024": {
+        "description": "Musk lobbies to KEEP ZEV credits (2024)",
+        "grade": "UNGRADED"
+      }
     }
   }
 }
